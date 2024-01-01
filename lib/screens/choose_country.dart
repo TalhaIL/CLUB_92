@@ -1,5 +1,5 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/components/reusableWidgets/custom_textfield.dart';
+import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/screens/otp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

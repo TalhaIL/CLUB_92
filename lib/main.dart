@@ -1,5 +1,5 @@
+import 'package:club_92/constants/color.dart';
 import 'package:club_92/screens/choose_country.dart';
-import 'package:club_92/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

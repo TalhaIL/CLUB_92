@@ -1,19 +1,17 @@
-import 'package:club_92/utils/const.dart';
+import 'package:club_92/constants/color.dart';
 import 'package:flutter/material.dart';
 
 class CustomMaterialButton extends StatelessWidget {
   final void Function()? onPress;
   final String text;
-  const CustomMaterialButton({
-    super.key,
-    required this.onPress,
-    required this.text,
-  });
+  final double? width;
+  const CustomMaterialButton(
+      {super.key, required this.onPress, required this.text, this.width = 150});
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      minWidth: 150,
+      minWidth: width,
       height: 50,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
