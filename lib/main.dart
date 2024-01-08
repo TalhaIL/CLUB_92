@@ -1,5 +1,5 @@
 import 'package:club_92/constants/color.dart';
-import 'package:club_92/screens/choose_country.dart';
+import 'package:club_92/screens/country.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,12 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       title: 'Club 92',
       theme: ThemeData(
         scaffoldBackgroundColor: appColor,
         useMaterial3: true,
+        brightness: Brightness.dark,
       ),
       home: const ChooseCountry(),
     );

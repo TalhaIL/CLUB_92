@@ -1,12 +1,12 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/constants/color.dart';
-import 'package:club_92/screens/speakers_list.dart';
+import 'package:club_92/screens/speakers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AddUserName extends StatelessWidget {
-  const AddUserName({super.key});
+class UserName extends StatelessWidget {
+  const UserName({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class AddUserName extends StatelessWidget {
                 CustomMaterialButton(
                   onPress: () {
                     Get.to(
-                      () => const SpeakersList(),
+                      () => SpeakersScreen(),
                     );
                   },
                   text: 'NEXT',

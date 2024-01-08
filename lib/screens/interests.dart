@@ -1,69 +1,57 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
+import 'package:club_92/controllers/interest_controller.dart';
 import 'package:club_92/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class InterestScreen extends StatelessWidget {
-  InterestScreen({super.key});
+  final InterestController _interestController = Get.put(InterestController());
 
-  final List<String> names = [
-    'Aliiiiiiiii',
-    'Aliiiiiiiiiiiiiiiiiiiiiiii',
-    'Ali',
-    'Ali',
-    'Ali',
-    'Ali',
-    'Ali',
-    'Ali',
-  ];
+  InterestScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 15),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
         child: CustomMaterialButton(
           onPress: () {
-            Get.to(
-              () => const HomeScreen(),
-            );
+            Get.offAll(() => const HomeScreen());
           },
           text: 'Next',
-          width: 120,
+          width: 130,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
             leading: IconButton(
               onPressed: () {},
               icon: const Icon(
                 Icons.arrow_back_ios,
-                color: Colors.white,
                 size: 20,
               ),
             ),
             title: const Text(
               'INTERESTS',
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(fontSize: 17),
             ),
             expandedHeight: 150.0,
-            floating: false,
+            floating: true,
             backgroundColor: appColor,
-            pinned: true,
+            // pinned: true,
             centerTitle: true,
             flexibleSpace: FlexibleSpaceBar(
+              collapseMode: CollapseMode.none,
               background: Container(
                 margin: const EdgeInsets.only(top: 50),
                 padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: const Center(
                   child: Text(
                     'Add more interests so we can provide best related rooms for you',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -83,48 +71,70 @@ class InterestScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      const Text(
-                        'TECHNOLOGY',
-                        style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.white,
+                      Text(
+                        _interestController.interests[index].name,
+                        style: const TextStyle(
+                          fontSize: 20,
                         ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         child: SizedBox(
-                          width: 350,
+                          width: 400,
                           child: Wrap(
                             spacing: 10,
-                            children: names
+                            children: _interestController
+                                .interests[index].subCategories
                                 .map(
-                                  (e) => ChoiceChip(
-                                    selected: true,
-                                    label: Text(
-                                      e,
-                                      style: const TextStyle(
-                                        color: Colors.black,
+                                  (v) => GestureDetector(
+                                    onTap: () {
+                                      v.isSelected.value = !v.isSelected.value;
+                                    },
+                                    child: Obx(
+                                      () => Chip(
+                                        side: const BorderSide(
+                                          color: Colors.green,
+                                        ),
+                                        label: Text(
+                                          v.categoryName,
+                                          style: TextStyle(
+                                            color: v.isSelected.value
+                                                ? Colors.white
+                                                : greenColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        backgroundColor: v.isSelected.value
+                                            ? Colors.green
+                                            : appColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
                                       ),
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
                                     ),
                                   ),
                                 )
                                 .toList(),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 );
               },
-              childCount: 4,
+              childCount: _interestController.interests.length,
             ),
-          )
+          ),
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 80.0, // Specify the height of the SizedBox
+            ),
+          ),
         ],
       ),
     );

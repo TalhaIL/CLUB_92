@@ -36,9 +36,7 @@ class ChooseCountry extends StatelessWidget {
             ),
             CustomMaterialButton(
               onPress: () {
-                Get.to(
-                  const OtpScreen(),
-                );
+                Get.to(() => const OtpScreen());
               },
               text: 'NEXT',
             )
