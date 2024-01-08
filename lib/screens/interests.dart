@@ -42,7 +42,6 @@ class InterestScreen extends StatelessWidget {
             expandedHeight: 150.0,
             floating: true,
             backgroundColor: appColor,
-            // pinned: true,
             centerTitle: true,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.none,
@@ -110,7 +109,7 @@ class InterestScreen extends StatelessWidget {
                                         ),
                                         backgroundColor: v.isSelected.value
                                             ? Colors.green
-                                            : appColor,
+                                            : appColor.withOpacity(0.6),
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20),

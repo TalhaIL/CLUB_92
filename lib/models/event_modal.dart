@@ -4,7 +4,7 @@ class EventModal {
   final String title;
   final String eventName;
   final String? eventDescription;
-  final DateTime? eventDate;
+  final String? eventDate;
   final List<Speaker> coHost;
   final int? ticketAmount;
   bool? live;

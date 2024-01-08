@@ -1,6 +1,7 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/screens/events/live_events.dart';
+import 'package:club_92/screens/events/upcoming_events.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,6 +24,72 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: appColor,
+        // pinned: true,
+        // floating: false,
+        leadingWidth: 140,
+        leading: SizedBox(
+          width: 120,
+          child: TabBar(
+            tabAlignment: TabAlignment.start,
+            controller: _tabController,
+            isScrollable: true,
+            dividerHeight: 0,
+            indicator: UnderlineTabIndicator(
+              insets: const EdgeInsets.only(
+                top: 5,
+              ),
+              borderSide: BorderSide(color: greenColor, width: 2),
+            ),
+            labelColor: greenColor,
+            labelPadding: const EdgeInsets.only(
+              bottom: 10,
+              right: 15,
+              left: 15,
+              top: 15,
+            ),
+            physics: const BouncingScrollPhysics(),
+            tabs: const [
+              Text(
+                'LIVE',
+                style: TextStyle(fontSize: 15),
+              ),
+              Text(
+                'UPCOMING',
+                style: TextStyle(fontSize: 15),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.search,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.wallet,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.notifications,
+            ),
+          ),
+          const CircleAvatar(
+            backgroundImage: NetworkImage(
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRny6M7SVLugIiTJGIYPcr744JSqVf5oPe1Vg&usqp=CAU'),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+        ],
+      ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: CustomMaterialButton(
@@ -32,80 +99,11 @@ class _HomeScreenState extends State<HomeScreen>
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            backgroundColor: appColor,
-            pinned: true,
-            leadingWidth: 140,
-            leading: SizedBox(
-              width: 120,
-              child: TabBar(
-                tabAlignment: TabAlignment.start,
-                controller: _tabController,
-                isScrollable: true,
-                dividerHeight: 0,
-                indicator: UnderlineTabIndicator(
-                  insets: const EdgeInsets.only(
-                    top: 5,
-                  ),
-                  borderSide: BorderSide(color: greenColor, width: 2),
-                ),
-                labelColor: greenColor,
-                labelPadding: const EdgeInsets.only(
-                    bottom: 10, right: 15, left: 15, top: 15),
-                physics: const BouncingScrollPhysics(),
-                tabs: const [
-                  Text(
-                    'LIVE',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  Text(
-                    'UPCOMING',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ],
-              ),
-            ),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.wallet,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.notifications,
-                ),
-              ),
-              const CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRny6M7SVLugIiTJGIYPcr744JSqVf5oPe1Vg&usqp=CAU'),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-            ],
-          ),
-          SliverFillRemaining(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                LiveEvents(),
-                const Center(
-                  child: Text('Two'),
-                )
-              ],
-            ),
-          )
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          LiveEvents(),
+          UpcomingEvents(),
         ],
       ),
     );

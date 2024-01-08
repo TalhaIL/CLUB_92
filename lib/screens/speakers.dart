@@ -15,7 +15,6 @@ class SpeakersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appColor,
       appBar: AppBar(
         backgroundColor: appColor,
         centerTitle: true,

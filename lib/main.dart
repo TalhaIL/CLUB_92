@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Club 92',
       theme: ThemeData(
-        scaffoldBackgroundColor: appColor,
+        scaffoldBackgroundColor: appColor.withOpacity(0.7),
         useMaterial3: true,
         brightness: Brightness.dark,
       ),
