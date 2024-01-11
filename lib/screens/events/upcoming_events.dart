@@ -1,7 +1,8 @@
 import 'package:club_92/components/resuableMethods/custom_card.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
-import 'package:club_92/controllers/event_controller.dart';
+import 'package:club_92/controllers/events/event_controller.dart';
+import 'package:club_92/screens/events/add_event.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -67,7 +68,11 @@ class UpcomingEvents extends StatelessWidget {
                   ),
                 ),
                 CustomMaterialButton(
-                  onPress: () {},
+                  onPress: () {
+                    Get.to(
+                      AddEventSceen(),
+                    );
+                  },
                   text: 'Add Event',
                   width: 120,
                 )

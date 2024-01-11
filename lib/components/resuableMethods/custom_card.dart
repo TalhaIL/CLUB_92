@@ -1,5 +1,5 @@
 import 'package:club_92/constants/color.dart';
-import 'package:club_92/controllers/event_controller.dart';
+import 'package:club_92/controllers/events/event_controller.dart';
 import 'package:club_92/models/event_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
