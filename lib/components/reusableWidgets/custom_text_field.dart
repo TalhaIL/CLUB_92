@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool isReadOnly;
+  final int? maxLines;
   final bool? isEnabled;
   final IconButton? icon;
   const CustomTextField(
@@ -11,12 +12,12 @@ class CustomTextField extends StatelessWidget {
       required this.hintText,
       this.isEnabled,
       this.isReadOnly = false,
+      this.maxLines,
       this.icon});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: textFieldColor,
@@ -29,8 +30,9 @@ class CustomTextField extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: TextFormField(
+        child: TextField(
           enabled: isEnabled,
+          maxLines: maxLines,
           readOnly: isReadOnly,
           cursorColor: Colors.white,
           decoration: InputDecoration(

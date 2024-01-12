@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/controllers/events/add_event_controller.dart';
@@ -18,11 +19,27 @@ class AddEventSceen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appColor,
-        title: const Text('ADD EVENT'),
+        title: const Text(
+          'ADD EVENT',
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
+        actions: [
+          CustomMaterialButton(
+            onPress: () {},
+            text: 'Publish',
+            width: 120,
+          ),
+          const SizedBox(
+            width: 15,
+          )
+        ],
       ),
       body: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +47,13 @@ class AddEventSceen extends StatelessWidget {
               const CustomTextField(
                 hintText: 'Event name',
               ),
-              const Text('Select Co-host or guest'),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text('Select Co-host or Guest'),
+              const SizedBox(
+                height: 10,
+              ),
               Column(
                 children: [
                   ListView.builder(
@@ -53,7 +76,13 @@ class AddEventSceen extends StatelessWidget {
                   cohostTile(text: 'Add Co-host or Guest', isAddCoHost: true),
                 ],
               ),
+              const SizedBox(
+                height: 20,
+              ),
               const Text('Select Event date and time'),
+              const SizedBox(
+                height: 10,
+              ),
               Row(
                 children: [
                   eventDateTime(
@@ -75,6 +104,9 @@ class AddEventSceen extends StatelessWidget {
                   )
                 ],
               ),
+              const SizedBox(
+                height: 20,
+              ),
               Obx(
                 () => Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,11 +126,26 @@ class AddEventSceen extends StatelessWidget {
               Obx(
                 () => Visibility(
                   visible: _addEventController.isSwitched.value,
-                  child: const CustomTextField(
-                    hintText: 'Enter Ticket amount in (\$)',
+                  child: const Column(
+                    children: [
+                      CustomTextField(
+                        hintText: 'Enter Ticket amount in (\$)',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      )
+                    ],
                   ),
                 ),
               ),
+              const Text('Description'),
+              const SizedBox(
+                height: 10,
+              ),
+              const CustomTextField(
+                hintText: 'Description',
+                maxLines: 5,
+              )
             ],
           ),
         ),
@@ -115,7 +162,7 @@ class AddEventSceen extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 50,
-        width: 150,
+        width: 140,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20), color: textFieldColor),
         child: Padding(
@@ -143,11 +190,12 @@ class AddEventSceen extends StatelessWidget {
     );
   }
 
-  Container cohostTile(
-      {String? text,
-      String? url,
-      bool isAddCoHost = false,
-      bool showCloseIcon = false}) {
+  Container cohostTile({
+    String? text,
+    String? url,
+    bool isAddCoHost = false,
+    bool showCloseIcon = false,
+  }) {
     return Container(
       height: 60,
       decoration: BoxDecoration(
