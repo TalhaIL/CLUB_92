@@ -17,6 +17,10 @@ class SpeakerController extends GetxController {
         profileImage:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzQBQuIz76W8hvZt8qxOvgCCt0mzKMd0wdzp8w9Jpr0wi1Yx3tbbj49uajKcoGZlfsrgc&usqp=CAU"),
     Speaker(
+        name: 'Sammy',
+        profileImage:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEH14u7rKYD9aCAr-qRwTjpnXljCPuy4xbQSkW4HWJtCFReJNpt0-3ZW3MQyiyaIWoYyI&usqp=CAU"),
+    Speaker(
         name: 'Monalisa',
         profileImage:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoaxcazjLKPaP2_xIYVKQV2sisCxMw9gCqo8w9NwWc6Y1xfFZfOxXmcCqiDjH2BvvHTNI&usqp=CAU"),
@@ -81,10 +85,6 @@ class SpeakerController extends GetxController {
         name: 'Dave',
         profileImage:
             "https://static.vecteezy.com/system/resources/thumbnails/020/926/555/small/young-man-portrait-photo.jpg"),
-    Speaker(
-        name: 'Sammy',
-        profileImage:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEH14u7rKYD9aCAr-qRwTjpnXljCPuy4xbQSkW4HWJtCFReJNpt0-3ZW3MQyiyaIWoYyI&usqp=CAU"),
     Speaker(
         name: 'Sammy',
         profileImage:

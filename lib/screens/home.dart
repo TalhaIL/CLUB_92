@@ -2,7 +2,10 @@ import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/screens/events/live_events.dart';
 import 'package:club_92/screens/events/upcoming_events.dart';
+import 'package:club_92/screens/notification.dart';
+import 'package:club_92/screens/wallet.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,8 +29,6 @@ class _HomeScreenState extends State<HomeScreen>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appColor,
-        // pinned: true,
-        // floating: false,
         leadingWidth: 140,
         leading: SizedBox(
           width: 120,
@@ -70,13 +71,22 @@ class _HomeScreenState extends State<HomeScreen>
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => const WalletScreen());
+            },
             icon: const Icon(
               Icons.wallet,
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NotificationScreen(),
+                ),
+              );
+            },
             icon: const Icon(
               Icons.notifications,
             ),
