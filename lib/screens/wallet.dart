@@ -1,9 +1,15 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
+import 'package:club_92/controllers/wallet_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WalletScreen extends StatelessWidget {
-  const WalletScreen({super.key});
+  WalletScreen({super.key});
+
+  final WalletController controller = Get.put(
+    WalletController(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -14,26 +20,26 @@ class WalletScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
             child: Row(
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Available amount in wallet',
                       style: TextStyle(
                         fontSize: 17,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Text(
-                      '\$ 58.00',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      '\$ ${controller.walletData.balance}',
+                      style: const TextStyle(
+                          fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                   ],
                 )
@@ -83,7 +89,8 @@ class WalletScreen extends StatelessWidget {
                         horizontal: 20,
                       ),
                       child: ListView.builder(
-                        itemCount: 10,
+                        itemCount:
+                            controller.walletData.transactions?.length ?? 0,
                         shrinkWrap: true,
                         itemBuilder: (context, index) => Column(
                           children: [
@@ -111,12 +118,13 @@ class WalletScreen extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       width: 270,
                                       child: Text(
-                                        'Basics of user interface ',
+                                        controller.walletData
+                                            .transactions![index].roomName,
                                         maxLines: 2,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -125,9 +133,9 @@ class WalletScreen extends StatelessWidget {
                                     )
                                   ],
                                 ),
-                                const Text(
-                                  '\$20',
-                                  style: TextStyle(
+                                Text(
+                                  '\$${controller.walletData.transactions![index].joiningAmount}',
+                                  style: const TextStyle(
                                     color: Colors.red,
                                     fontSize: 18,
                                   ),

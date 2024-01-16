@@ -1,4 +1,4 @@
-import 'package:club_92/models/speaker.dart';
+import 'package:club_92/models/speaker_modal.dart';
 
 class EventModal {
   final String title;

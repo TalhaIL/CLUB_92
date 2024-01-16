@@ -1,7 +1,7 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/constants/color.dart';
-import 'package:club_92/screens/speakers.dart';
+import 'package:club_92/screens/speakers_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -83,7 +83,7 @@ class UserName extends StatelessWidget {
                 CustomMaterialButton(
                   onPress: () {
                     Get.to(
-                      () => SpeakersScreen(),
+                      () => const SpeakersScreen(),
                     );
                   },
                   text: 'NEXT',

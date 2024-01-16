@@ -1,5 +1,5 @@
 import 'package:club_92/constants/color.dart';
-import 'package:club_92/models/speaker.dart';
+import 'package:club_92/models/speaker_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

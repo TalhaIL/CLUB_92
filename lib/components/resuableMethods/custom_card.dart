@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 Card customCard(EventModal event,
     {bool isUpcoming = false, EventController? controller}) {
   return Card(
-    color: textFieldColor.withOpacity(0.07),
+    color: appColor.withOpacity(0.15),
     child: Padding(
       padding: const EdgeInsets.all(15),
       child: Column(

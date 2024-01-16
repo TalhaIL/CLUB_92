@@ -1,5 +1,5 @@
 import 'package:club_92/models/event_modal.dart';
-import 'package:club_92/models/speaker.dart';
+import 'package:club_92/models/speaker_modal.dart';
 import 'package:get/get.dart';
 
 class EventController extends GetxController {

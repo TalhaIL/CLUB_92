@@ -3,6 +3,8 @@ import 'package:club_92/constants/color.dart';
 import 'package:club_92/screens/events/live_events.dart';
 import 'package:club_92/screens/events/upcoming_events.dart';
 import 'package:club_92/screens/notification.dart';
+import 'package:club_92/screens/profile_screen.dart';
+import 'package:club_92/screens/search_screen.dart';
 import 'package:club_92/screens/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -65,14 +67,20 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(
+                () => const SearchScreen(),
+              );
+            },
             icon: const Icon(
               Icons.search,
             ),
           ),
           IconButton(
             onPressed: () {
-              Get.to(() => const WalletScreen());
+              Get.to(
+                () => WalletScreen(),
+              );
             },
             icon: const Icon(
               Icons.wallet,
@@ -83,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen>
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => NotificationScreen(),
+                  builder: (context) => const NotificationScreen(),
                 ),
               );
             },
@@ -91,9 +99,16 @@ class _HomeScreenState extends State<HomeScreen>
               Icons.notifications,
             ),
           ),
-          const CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRny6M7SVLugIiTJGIYPcr744JSqVf5oPe1Vg&usqp=CAU'),
+          GestureDetector(
+            onTap: () {
+              Get.to(
+                () => const ProfileScreen(),
+              );
+            },
+            child: const CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjOOQLYeoZtOLftSG_sqMn0EiqyX4t9-lwAuhOtit5DtPiefzbW6-3eEcSTvGPmh-VBb8&usqp=CAU'),
+            ),
           ),
           const SizedBox(
             width: 10,
