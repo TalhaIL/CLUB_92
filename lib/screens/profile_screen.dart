@@ -37,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               Get.to(
-                () => SettingScreen(),
+                () => const SettingScreen(),
               );
             },
             icon: const Icon(
@@ -47,6 +47,7 @@ class ProfileScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
@@ -141,7 +142,7 @@ class ProfileScreen extends StatelessWidget {
               Text(
                 listOfSpeakers[0].about.toString(),
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: 15,
                 ),
               ),
               const SizedBox(
@@ -171,6 +172,77 @@ class ProfileScreen extends StatelessWidget {
                       icon: 'assets/icons/instagramIcon.svg',
                       accountHandle: listOfSpeakers[0].instaHandle!),
                 ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                ),
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: textFieldColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Today 8:30 pm',
+                              style: TextStyle(
+                                color: greenColor,
+                                fontSize: 15,
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {},
+                              child: Text(
+                                'Edit',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: greenColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          'Discuss over pollution control',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            const Text('FROM WORLD WARRIORS'),
+                            Icon(
+                              Icons.flag,
+                              color: greenColor,
+                              size: 18,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 20,
