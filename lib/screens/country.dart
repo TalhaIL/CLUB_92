@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/components/reusableWidgets/language_bottom_sheet.dart';
+import 'package:club_92/constants/color.dart';
 import 'package:club_92/screens/otp.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -67,18 +69,41 @@ class _ChooseCountryState extends State<ChooseCountry> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            InkWell(
-              onTap: () {
-                log('Country');
-              },
-              child: CustomTextField(
-                hintText: 'Choose country',
-                isEnabled: false,
-                isReadOnly: true,
-                icon: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.arrow_drop_down),
-                  color: Colors.white,
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: textFieldColor,
+                border: Border.all(
+                  color: Colors.blueGrey.withOpacity(
+                    0.2,
+                  ),
+                  width: 1.0,
+                ),
+              ),
+              child: CountryCodePicker(
+                showDropDownButton: true,
+                onChanged: print,
+                initialSelection: 'Pk',
+                // countryFilter: const ['IT', 'FR'],
+                // favorite: const ['+92', 'Pk', '+91', 'IN'],
+                showFlag: true,
+                showFlagMain: false,
+                showFlagDialog: true,
+                showOnlyCountryWhenClosed: false,
+                alignLeft: true,
+
+                padding: const EdgeInsets.all(0),
+                dialogBackgroundColor: appColor.withOpacity(
+                  1,
+                ),
+                searchDecoration: InputDecoration(
+                  hintText: 'Choose Country',
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: greenColor,
+                    ),
+                  ),
                 ),
               ),
             ),

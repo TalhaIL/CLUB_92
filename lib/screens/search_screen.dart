@@ -132,7 +132,9 @@ class _SearchScreenState extends State<SearchScreen>
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) =>
                                       CustomSpeakerTile(
-                                    index: index,
+                                    profileImage:
+                                        listOfSpeakers[index].profileImage,
+                                    name: listOfSpeakers[index].name,
                                     isSearchSceen: true,
                                   ),
                                   itemCount: listOfSpeakers.length,

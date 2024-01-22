@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:club_92/components/resuableMethods/custom_card.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
+import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/controllers/events/event_controller.dart';
 import 'package:club_92/screens/events/add_event.dart';
@@ -39,7 +43,9 @@ class UpcomingEvents extends StatelessWidget {
                         ),
                       ),
                       child: const Center(
-                        child: Text('All'),
+                        child: Text(
+                          'All',
+                        ),
                       ),
                     ),
                   ),
@@ -89,8 +95,211 @@ class UpcomingEvents extends StatelessWidget {
                       : 2,
                   itemBuilder: (context, index) {
                     var event = _eventController.upcomingEvents[index];
-                    return customCard(event,
-                        isUpcoming: true, controller: _eventController);
+                    return GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          backgroundColor: const Color(0xff20283b),
+                          showDragHandle: false,
+                          context: context,
+                          builder: (context) => SizedBox(
+                            width: double.infinity,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              // crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Divider(
+                                  thickness: 3,
+                                  indent: 130,
+                                  endIndent: 130,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
+                                  child: Container(
+                                    color: Colors.transparent,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Today 6:00 pm',
+                                          style: TextStyle(
+                                              color: greenColor,
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            CustomTicket(
+                                              ticketAmount:
+                                                  event.ticketAmount.toString(),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            IconButton(
+                                              onPressed: () {},
+                                              icon: const Icon(
+                                                  Icons.notifications),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Stack(
+                                    children: [
+                                      SingleChildScrollView(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 15),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                event.eventName,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 17,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    event.title,
+                                                    style: TextStyle(
+                                                        color: Colors.white
+                                                            .withOpacity(0.5)),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 2,
+                                                  ),
+                                                  Icon(
+                                                    Icons.flag,
+                                                    color: greenColor,
+                                                    size: 17,
+                                                  )
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                event.eventDescription
+                                                    .toString(),
+                                                style: const TextStyle(
+                                                    fontSize: 12),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              const Text(
+                                                'Mentors',
+                                                style: TextStyle(
+                                                    fontSize: 17,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              ListView.builder(
+                                                physics:
+                                                    const NeverScrollableScrollPhysics(),
+                                                shrinkWrap: true,
+                                                itemBuilder: (context, index) =>
+                                                    CustomSpeakerTile(
+                                                  name:
+                                                      event.coHost[index].name,
+                                                  profileImage: event
+                                                      .coHost[index]
+                                                      .profileImage,
+                                                  isEvents: true,
+                                                ),
+                                                itemCount: event.coHost.length,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        bottom: -10,
+                                        child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          height: 100,
+                                          alignment: Alignment.bottomCenter,
+                                          padding:
+                                              const EdgeInsets.only(bottom: 20),
+                                          decoration: const BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  begin: Alignment.bottomCenter,
+                                                  end: Alignment.topCenter,
+                                                  colors: [
+                                                Color(0xff20283b),
+                                                Colors.transparent
+                                              ])),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                    '\$${event.ticketAmount}',
+                                                    style: const TextStyle(
+                                                        fontSize: 17,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  const Text(
+                                                    'Charge',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  )
+                                                ],
+                                              ),
+                                              CustomMaterialButton(
+                                                height: 45,
+                                                onPress: () {},
+                                                text: 'Buy a Ticket',
+                                              ),
+                                              const Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Icon(Icons.share),
+                                                  Text('Share')
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      child: customCard(
+                        event,
+                        isUpcoming: true,
+                        controller: _eventController,
+                      ),
+                    );
                   }),
             ),
           ),

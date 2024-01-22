@@ -3,13 +3,18 @@ import 'package:club_92/constants/speaker.dart';
 import 'package:flutter/material.dart';
 
 class CustomSpeakerTile extends StatelessWidget {
+  final String profileImage;
+  final String name;
+  final bool isEvents;
   const CustomSpeakerTile({
     super.key,
-    required this.index,
     this.isSearchSceen = false,
+    this.isEvents = false,
+    required this.profileImage,
+    required this.name,
   });
   final bool isSearchSceen;
-  final int index;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +30,7 @@ class CustomSpeakerTile extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                    listOfSpeakers[index].profileImage,
+                    profileImage,
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -33,14 +38,14 @@ class CustomSpeakerTile extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: isSearchSceen
+              width: isSearchSceen || isEvents
                   ? MediaQuery.of(context).size.width * 0.38
                   : MediaQuery.of(context).size.width * 0.53,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    listOfSpeakers[index].name,
+                    name,
                     style: const TextStyle(fontSize: 18),
                   ),
                   const Text(
@@ -54,11 +59,11 @@ class CustomSpeakerTile extends StatelessWidget {
                 ],
               ),
             ),
-            isSearchSceen
+            isSearchSceen || isEvents
                 ? CustomMaterialButton(
                     onPress: () {},
                     text: 'Follow',
-                    width: 85,
+                    width: 100,
                     height: 40,
                     isSearch: true,
                   )
