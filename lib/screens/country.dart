@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/components/reusableWidgets/language_bottom_sheet.dart';

@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:club_92/components/reusableWidgets/language_bottom_sheet.dart';
 import 'package:club_92/constants/color.dart';
-import 'package:club_92/constants/languages.dart';
+import 'package:club_92/screens/Settings/faqs_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -60,8 +58,12 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             const Divider(),
             textWithMethod(
-              text: 'FAQs',
-            ),
+                text: 'FAQs',
+                onTap: () {
+                  Get.to(
+                    () => const FaqsScreen(),
+                  );
+                }),
             textWithMethod(
               text: 'Terms and Conditions',
             ),
@@ -97,14 +99,14 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 
-  Column textWithMethod({required String text}) {
+  Column textWithMethod({required String text, Function()? onTap}) {
     return Column(
       children: [
         const SizedBox(
           height: 18,
         ),
         InkWell(
-          onTap: () {},
+          onTap: onTap,
           child: Text(
             text,
             style: const TextStyle(

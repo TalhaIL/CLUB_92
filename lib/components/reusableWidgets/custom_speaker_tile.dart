@@ -1,5 +1,4 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/constants/speaker.dart';
 import 'package:flutter/material.dart';
 
 class CustomSpeakerTile extends StatelessWidget {
