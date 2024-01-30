@@ -1,3 +1,4 @@
+import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/speaker.dart';
@@ -191,28 +192,195 @@ class _MainEventScreenState extends State<MainEventScreen> {
                               mainAxisExtent: 115,
                               mainAxisSpacing: 10.0,
                             ),
-                            itemBuilder: (context, index) => Column(
-                              children: [
-                                Container(
-                                  width: 60,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                    image: DecorationImage(
-                                      image: NetworkImage(
-                                        listOfSpeakers[index].profileImage,
+                            itemBuilder: (context, index) => InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  backgroundColor:
+                                      const Color(0xff505666).withOpacity(0.97),
+                                  context: context,
+                                  builder: (context) => SizedBox(
+                                    height: 400,
+                                    width: double.infinity,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 15,
+                                        vertical: 10,
                                       ),
-                                      fit: BoxFit.cover,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              IconButton(
+                                                onPressed: () {},
+                                                icon: const Icon(
+                                                  Icons.more_vert_outlined,
+                                                ),
+                                              ),
+                                              IconButton(
+                                                onPressed: () {},
+                                                icon: const Icon(Icons.close),
+                                              )
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                height: 100,
+                                                width: 100,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                  border: Border.all(
+                                                      color: greenColor),
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(
+                                                      listOfSpeakers[index]
+                                                          .profileImage,
+                                                    ),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 20,
+                                              ),
+                                              Column(
+                                                children: [
+                                                  Text(
+                                                    listOfSpeakers[index].name,
+                                                    style: const TextStyle(
+                                                        fontSize: 25),
+                                                  ),
+                                                  Text(
+                                                    listOfSpeakers[index]
+                                                        .username
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                      color: Colors.white
+                                                          .withOpacity(0.5),
+                                                    ),
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    listOfSpeakers[0]
+                                                        .followers
+                                                        .toString(),
+                                                    style: const TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Followers',
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                      color: Colors.white
+                                                          .withOpacity(0.5),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                width: 20,
+                                              ),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    listOfSpeakers[0]
+                                                        .following
+                                                        .toString(),
+                                                    style: const TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Followings',
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                      color: Colors.white
+                                                          .withOpacity(0.5),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              const Spacer(),
+                                              CustomMaterialButton(
+                                                onPress: () {},
+                                                text: 'Follow',
+                                                width: 100,
+                                                height: 40,
+                                                isSearch: true,
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            listOfSpeakers[index]
+                                                .about
+                                                .toString(),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          CustomMaterialButton(
+                                            onPress: () {},
+                                            text: 'Visit Full Profile',
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  listOfSpeakers[index].name,
-                                )
-                              ],
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: 60,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                          listOfSpeakers[index].profileImage,
+                                        ),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    listOfSpeakers[index].name,
+                                  ),
+                                ],
+                              ),
                             ),
                             itemCount: listOfSpeakers.length,
                           ),
