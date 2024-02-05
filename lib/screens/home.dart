@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/speaker.dart';
+import 'package:club_92/controllers/home_controller.dart';
 import 'package:club_92/screens/events/live_events.dart';
 import 'package:club_92/screens/events/upcoming_events.dart';
 import 'package:club_92/screens/notification.dart';
@@ -105,7 +108,9 @@ class _HomeScreenState extends State<HomeScreen>
           GestureDetector(
             onTap: () {
               Get.to(
-                () => const ProfileScreen(),
+                () => ProfileScreen(
+                  speaker: listOfSpeakers[0],
+                ),
               );
             },
             child: const CircleAvatar(
@@ -125,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen>
             showModalBottomSheet(
               backgroundColor: const Color(0xff20283b),
               context: context,
-              builder: (context) => const StartRoom(),
+              builder: (context) => const StartRoomSheet(),
             );
           },
           text: 'Start a room',
@@ -144,10 +149,20 @@ class _HomeScreenState extends State<HomeScreen>
   }
 }
 
-class StartRoom extends StatelessWidget {
-  const StartRoom({
+class StartRoomSheet extends StatefulWidget {
+  const StartRoomSheet({
     super.key,
   });
+
+  @override
+  State<StartRoomSheet> createState() => _StartRoomSheetState();
+}
+
+class _StartRoomSheetState extends State<StartRoomSheet> {
+  String selectedPrivacy = 'Public';
+  final homeController = Get.put(
+    HomeController(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -270,16 +285,25 @@ class StartRoom extends StatelessWidget {
     );
   }
 
-  Container selectPrivacyContainer({required privacy}) {
-    return Container(
-      padding: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: textFieldColor.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Text(
-        privacy,
-        style: const TextStyle(fontSize: 18),
+  GestureDetector selectPrivacyContainer({required privacy}) {
+    return GestureDetector(
+      onTap: () {
+        homeController.selectedPrivacy.value = privacy;
+      },
+      child: Obx(
+        () => Container(
+          padding: const EdgeInsets.all(15),
+          decoration: BoxDecoration(
+            color: homeController.selectedPrivacy.value == privacy
+                ? textFieldColor.withOpacity(0.2)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Text(
+            privacy,
+            style: const TextStyle(fontSize: 18),
+          ),
+        ),
       ),
     );
   }

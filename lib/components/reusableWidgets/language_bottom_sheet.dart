@@ -2,25 +2,27 @@ import 'dart:developer';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/languages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LanguageBottomSheet extends StatefulWidget {
   const LanguageBottomSheet({super.key});
 
   @override
-  _LanguageBottomSheetState createState() => _LanguageBottomSheetState();
+  LanguageBottomSheetState createState() => LanguageBottomSheetState();
 }
 
-class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
+class LanguageBottomSheetState extends State<LanguageBottomSheet> {
   String selectedLanguage = "English";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0x9020283b),
+      backgroundColor: transparentWhite,
       floatingActionButton: FloatingActionButton(
         backgroundColor: greenColor,
         child: const Icon(Icons.check),
         onPressed: () {
           log(selectedLanguage);
+          Get.back();
         },
       ),
       body: Padding(

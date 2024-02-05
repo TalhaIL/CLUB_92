@@ -1,6 +1,7 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomSpeakerTile extends StatelessWidget {
   final String profileImage;
@@ -80,7 +81,6 @@ class CustomSpeakerTile extends StatelessWidget {
                     text: 'Follow',
                     width: 100,
                     height: 40,
-                    isSearch: true,
                   )
                 : isStartRoom
                     ? InkWell(

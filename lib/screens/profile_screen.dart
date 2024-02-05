@@ -2,13 +2,15 @@ import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/room_list.dart';
 import 'package:club_92/constants/speaker.dart';
+import 'package:club_92/models/speaker_modal.dart';
 import 'package:club_92/screens/Settings/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  final Speaker speaker;
+  const ProfileScreen({super.key, required this.speaker});
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +63,10 @@ class ProfileScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(color: greenColor),
-                      image: const DecorationImage(
+                      image: DecorationImage(
                         image: NetworkImage(
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjOOQLYeoZtOLftSG_sqMn0EiqyX4t9-lwAuhOtit5DtPiefzbW6-3eEcSTvGPmh-VBb8&usqp=CAU'),
+                          speaker.profileImage,
+                        ),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -74,11 +77,11 @@ class ProfileScreen extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        listOfSpeakers[0].name,
+                        speaker.name,
                         style: const TextStyle(fontSize: 25),
                       ),
                       Text(
-                        listOfSpeakers[0].username.toString(),
+                        speaker.username.toString(),
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.white.withOpacity(0.5),
@@ -97,7 +100,7 @@ class ProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        listOfSpeakers[0].followers.toString(),
+                        speaker.followers.toString(),
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -119,7 +122,7 @@ class ProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        listOfSpeakers[0].following.toString(),
+                        speaker.following.toString(),
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -140,7 +143,7 @@ class ProfileScreen extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                listOfSpeakers[0].about.toString(),
+                speaker.about.toString(),
                 style: const TextStyle(
                   fontSize: 15,
                 ),
@@ -153,10 +156,10 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   accountIconWithUrl(
                       icon: 'assets/icons/linkedinIcon.svg',
-                      accountHandle: listOfSpeakers[0].linkedInHandle!),
+                      accountHandle: speaker.linkedInHandle!),
                   accountIconWithUrl(
                       icon: 'assets/icons/youtubeIcon.svg',
-                      accountHandle: listOfSpeakers[0].youtubeHandle!),
+                      accountHandle: speaker.youtubeHandle!),
                 ],
               ),
               const SizedBox(
@@ -167,10 +170,10 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   accountIconWithUrl(
                       icon: 'assets/icons/twitterIcon.svg',
-                      accountHandle: listOfSpeakers[0].twitterHandle!),
+                      accountHandle: speaker.twitterHandle!),
                   accountIconWithUrl(
                       icon: 'assets/icons/instagramIcon.svg',
-                      accountHandle: listOfSpeakers[0].instaHandle!),
+                      accountHandle: speaker.instaHandle!),
                 ],
               ),
               const SizedBox(

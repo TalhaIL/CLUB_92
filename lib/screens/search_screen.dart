@@ -88,30 +88,21 @@ class _SearchScreenState extends State<SearchScreen>
                       horizontal: 20,
                       vertical: 20,
                     ),
-                    child: Container(
-                      height: 55,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 3,
-                          color: Colors.black.withOpacity(0.18),
-                        ),
-                        borderRadius: BorderRadius.circular(25),
+                    child: TabBar(
+                      indicator: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      child: TabBar(
-                        indicator: BoxDecoration(
-                          color: greenColor,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        indicatorSize: TabBarIndicatorSize.tab,
-                        labelColor: Colors.white,
-                        unselectedLabelColor: Colors.white.withOpacity(0.5),
-                        dividerHeight: 0,
-                        controller: tabcontroller,
-                        tabs: const [
-                          Text('People'),
-                          Text('Room'),
-                        ],
-                      ),
+                      labelPadding: const EdgeInsets.all(10),
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      labelColor: Colors.white,
+                      unselectedLabelColor: Colors.white.withOpacity(0.5),
+                      dividerHeight: 0,
+                      controller: tabcontroller,
+                      tabs: const [
+                        Text('People'),
+                        Text('Room'),
+                      ],
                     ),
                   ),
                   Expanded(
