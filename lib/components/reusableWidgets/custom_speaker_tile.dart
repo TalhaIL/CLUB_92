@@ -1,5 +1,6 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
+import 'package:club_92/constants/speaker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,11 +10,13 @@ class CustomSpeakerTile extends StatelessWidget {
   final bool isEvents;
   final bool isSearchSceen;
   final bool isStartRoom;
+  final int index;
   const CustomSpeakerTile({
     super.key,
     this.isSearchSceen = false,
     this.isEvents = false,
     this.isStartRoom = false,
+    required this.index,
     required this.profileImage,
     required this.name,
   });
@@ -76,32 +79,48 @@ class CustomSpeakerTile extends StatelessWidget {
                     ),
                   ),
             isSearchSceen || isEvents
-                ? CustomMaterialButton(
-                    onPress: () {},
-                    text: 'Follow',
-                    width: 100,
-                    height: 40,
+                ? Obx(
+                    () => CustomMaterialButton(
+                      onPress: () {
+                        listOfSpeakers[index].isFollowing.value =
+                            !listOfSpeakers[index].isFollowing.value;
+                      },
+                      width: 100,
+                      height: 40,
+                      child: Text(
+                        listOfSpeakers[index].isFollowing.value
+                            ? 'Following'
+                            : 'Follow',
+                      ),
+                    ),
                   )
                 : isStartRoom
-                    ? InkWell(
-                        onTap: () {},
-                        child: Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                              color: textFieldColor.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(15)),
-                          child: const Row(
-                            children: [
-                              Icon(Icons.add),
-                              SizedBox(
-                                width: 4,
-                              ),
-                              Text('Room'),
-                              SizedBox(
-                                width: 4,
-                              ),
-                              Icon(Icons.lock)
-                            ],
+                    ? Obx(
+                        () => GestureDetector(
+                          onTap: () {
+                            listOfSpeakers[index].isSelected.value =
+                                !listOfSpeakers[index].isSelected.value;
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                color: listOfSpeakers[index].isSelected.value
+                                    ? Colors.green
+                                    : textFieldColor.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(15)),
+                            child: const Row(
+                              children: [
+                                Icon(Icons.add),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Text('Room'),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Icon(Icons.lock)
+                              ],
+                            ),
                           ),
                         ),
                       )

@@ -26,8 +26,8 @@ class SpeakersScreen extends StatelessWidget {
           onPress: () {
             Get.to(() => InterestScreen());
           },
-          text: 'Next',
           width: 130,
+          child: const Text('Next'),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -54,8 +54,8 @@ class SpeakersScreen extends StatelessWidget {
                 (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      listOfSpeakers[index].isSelected!.value =
-                          !listOfSpeakers[index].isSelected!.value;
+                      listOfSpeakers[index].isSelected.value =
+                          !listOfSpeakers[index].isSelected.value;
 
                       log(listOfSpeakers[index].isSelected.toString());
                     },
@@ -77,8 +77,7 @@ class SpeakersScreen extends StatelessWidget {
                             ),
                             Obx(
                               () => Visibility(
-                                visible:
-                                    listOfSpeakers[index].isSelected!.value,
+                                visible: listOfSpeakers[index].isSelected.value,
                                 child: Positioned(
                                   child: Icon(
                                     Icons.check_circle_rounded,

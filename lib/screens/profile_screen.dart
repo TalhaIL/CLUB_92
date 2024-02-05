@@ -1,9 +1,9 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/room_list.dart';
-import 'package:club_92/constants/speaker.dart';
 import 'package:club_92/models/speaker_modal.dart';
 import 'package:club_92/screens/Settings/setting_screen.dart';
+import 'package:club_92/screens/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -22,10 +22,14 @@ class ProfileScreen extends StatelessWidget {
             onPress: () {},
             height: 40,
             width: 50,
-            text: 'Buy this app',
+            child: const Text('Buy this app'),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(
+                () => WalletScreen(),
+              );
+            },
             icon: const Icon(
               Icons.wallet,
             ),

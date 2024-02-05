@@ -2,15 +2,20 @@ import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/speaker.dart';
+import 'package:club_92/controllers/events/event_controller.dart';
 import 'package:club_92/models/event_modal.dart';
 import 'package:club_92/screens/profile_screen.dart';
+import 'package:club_92/utils/countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class MainEventScreen extends StatefulWidget {
   final EventModal event;
+  final bool isMyEvent;
 
-  const MainEventScreen({super.key, required this.event});
+  const MainEventScreen(
+      {super.key, required this.event, this.isMyEvent = false});
 
   @override
   State<MainEventScreen> createState() => _MainEventScreenState();
@@ -18,6 +23,9 @@ class MainEventScreen extends StatefulWidget {
 
 class _MainEventScreenState extends State<MainEventScreen> {
   bool isContainerVisible = false;
+  final controller = Get.put(
+    EventController(),
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +111,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
                     ),
-                    color: appColor.withOpacity(0.8),
+                    color: appColor,
                   ),
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
@@ -147,26 +155,51 @@ class _MainEventScreenState extends State<MainEventScreen> {
                                           ),
                                         ),
                                       ),
-                                      Positioned(
-                                        bottom: -2,
-                                        right: -2,
-                                        child: Container(
-                                          height: 20,
-                                          width: 20,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            color: appColor.withOpacity(0.6),
-                                          ),
-                                          child: Align(
-                                            child: Icon(
-                                              Icons.mic,
-                                              size: 20,
-                                              color: greenColor,
+                                      (index % 2 == 0)
+                                          ? Positioned(
+                                              bottom: -2,
+                                              right: -2,
+                                              child: Container(
+                                                height: 25,
+                                                width: 25,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  color: appColor,
+                                                ),
+                                                child: ColorFiltered(
+                                                  colorFilter: ColorFilter.mode(
+                                                    greenColor,
+                                                    BlendMode.srcATop,
+                                                  ),
+                                                  child: Lottie.asset(
+                                                    'assets/animations/mic_on.json',
+                                                    height: 20,
+                                                    width: 20,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : Positioned(
+                                              bottom: -2,
+                                              right: -2,
+                                              child: Container(
+                                                height: 25,
+                                                width: 25,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  color: appColor,
+                                                ),
+                                                child: Align(
+                                                  child: Icon(
+                                                    Icons.mic,
+                                                    size: 18,
+                                                    color: transparentWhite,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      ),
                                     ],
                                   ),
                                   const SizedBox(
@@ -242,48 +275,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                   visible: isContainerVisible,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 20),
-                    child: Container(
-                      height: 190,
-                      width: 190,
-                      decoration: BoxDecoration(
-                        color: transparentWhite,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Invite to Room',
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
-                            ),
-                            const Text(
-                              'Search in Room',
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
-                            ),
-                            const Text(
-                              'Report Room Activity',
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                customRoomRulesSheet(context);
-                              },
-                              child: const Text(
-                                'Review Clubroom Rules',
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    child: dialogContainer(context),
                   ),
                 )
               ],
@@ -291,30 +283,35 @@ class _MainEventScreenState extends State<MainEventScreen> {
           )
         ],
       ),
-      bottomNavigationBar: Container(
-        height: 80,
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(25),
-            topRight: Radius.circular(25),
-          ),
+      bottomNavigationBar: _bottomNavigationBar(context),
+    );
+  }
+
+  Container _bottomNavigationBar(BuildContext context) {
+    return Container(
+      height: 90,
+      decoration: BoxDecoration(
+        color: transparentWhite,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
         ),
-        child: Row(
+      ),
+      child: Obx(
+        () => Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               height: 40,
               width: 100,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.5),
+                color: Colors.white.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Center(
                 child: Text(
                   'Leave',
                   style: TextStyle(
-                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -330,27 +327,174 @@ class _MainEventScreenState extends State<MainEventScreen> {
                   ? const Icon(Icons.close)
                   : const Icon(Icons.keyboard_control),
             ),
-            Container(
-              height: 40,
-              width: 100,
-              decoration: BoxDecoration(
-                color: greenColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Center(
-                child: Text(
-                  'Raise',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+            if (widget.isMyEvent)
+              Stack(
+                children: [
+                  Positioned(
+                    top: 15,
+                    bottom: 10,
+                    right: 0,
+                    child: Container(
+                      height: 35,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
                   ),
-                ),
+                  Lottie.asset(
+                    'assets/animations/raise_hand.json',
+                    height: 60,
+                    animate: false,
+                    width: 70,
+                  ),
+                  Positioned(
+                    bottom: 5,
+                    right: 0,
+                    child: Container(
+                      height: 20,
+                      width: 20,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.red,
+                      ),
+                      child: const Center(child: Text('5')),
+                    ),
+                  )
+                ],
               ),
-            )
+            controller.isMicOn.value || widget.isMyEvent
+                ? GestureDetector(
+                    onTap: () {
+                      controller.isMicOn.value = !controller.isMicOn.value;
+                    },
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: 28,
+                          bottom: 20,
+                          right: 0,
+                          child: Container(
+                            height: 35,
+                            width: 60,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          child: ColorFiltered(
+                            colorFilter: ColorFilter.mode(
+                              greenColor,
+                              BlendMode.srcATop,
+                            ),
+                            child: Lottie.asset(
+                              'assets/animations/mic_on.json',
+                              height: 85,
+                              width: 70,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : GestureDetector(
+                    onTap: () {
+                      _showRaiseDialog(context);
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'Raise',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
           ],
         ),
       ),
     );
+  }
+
+  Container dialogContainer(BuildContext context) {
+    return Container(
+      height: 190,
+      width: 190,
+      decoration: BoxDecoration(
+        color: transparentWhite,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            dialogContainerOption(text: 'Invite to Room'),
+            dialogContainerOption(text: 'Search in Room'),
+            dialogContainerOption(text: 'Report Room Activity'),
+            dialogContainerOption(
+                text: 'Review Clubroom Rules',
+                onTap: () {
+                  customRoomRulesSheet(context);
+                }),
+          ],
+        ),
+      ),
+    );
+  }
+
+  InkWell dialogContainerOption({required text, onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showRaiseDialog(BuildContext context) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: transparentWhite,
+          title: Text(
+            'Wait for 3 seconds',
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.7),
+            ),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          content: const CircularCountdownTimer(),
+        );
+      },
+    );
+
+    await Future.delayed(const Duration(seconds: 3));
+    if (mounted) {
+      Navigator.of(context).pop();
+    }
+    controller.isMicOn.value = true;
   }
 
   Future<dynamic> shortProfileSheet(BuildContext context, int index) {
@@ -426,53 +570,34 @@ class _MainEventScreenState extends State<MainEventScreen> {
               ),
               Row(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        listOfSpeakers[index].followers.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        'Followers',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white.withOpacity(0.5),
-                        ),
-                      )
-                    ],
+                  countAndText(
+                    index,
+                    count: listOfSpeakers[index].followers.toString(),
+                    text: 'Followers',
                   ),
                   const SizedBox(
                     width: 20,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        listOfSpeakers[index].following.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        'Followings',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white.withOpacity(0.5),
-                        ),
-                      )
-                    ],
+                  countAndText(
+                    index,
+                    count: listOfSpeakers[index].following.toString(),
+                    text: 'Following',
                   ),
                   const Spacer(),
-                  CustomMaterialButton(
-                    onPress: () {},
-                    text: 'Follow',
-                    width: 100,
-                    height: 40,
+                  Obx(
+                    () => CustomMaterialButton(
+                      onPress: () {
+                        listOfSpeakers[index].isFollowing.value =
+                            !listOfSpeakers[index].isFollowing.value;
+                      },
+                      width: 100,
+                      height: 40,
+                      child: Text(
+                        listOfSpeakers[index].isFollowing.value
+                            ? 'Following'
+                            : 'Follow',
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -495,12 +620,34 @@ class _MainEventScreenState extends State<MainEventScreen> {
                     ),
                   );
                 },
-                text: 'Visit Full Profile',
+                child: const Text('Visit Full Profile'),
               )
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Column countAndText(int index, {required count, required text}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          count,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white.withOpacity(0.5),
+          ),
+        )
+      ],
     );
   }
 
@@ -521,7 +668,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                   Text(
                     widget.event.title,
                     style: const TextStyle(
-                      color: Colors.grey,
+                      color: Colors.white60,
                     ),
                   ),
                   const SizedBox(
@@ -588,8 +735,8 @@ class _MainEventScreenState extends State<MainEventScreen> {
         ),
         Text(
           text,
-          style: TextStyle(
-            color: Colors.grey.withOpacity(0.9),
+          style: const TextStyle(
+            color: Colors.white54,
           ),
         ),
         const SizedBox(

@@ -19,8 +19,8 @@ class InterestScreen extends StatelessWidget {
           onPress: () {
             Get.offAll(() => const HomeScreen());
           },
-          text: 'Next',
           width: 130,
+          child: const Text('Next'),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -95,8 +95,8 @@ class InterestScreen extends StatelessWidget {
                                     },
                                     child: Obx(
                                       () => Chip(
-                                        side: const BorderSide(
-                                          color: Colors.green,
+                                        side: BorderSide(
+                                          color: greenColor,
                                         ),
                                         label: Text(
                                           v.categoryName,
@@ -108,8 +108,8 @@ class InterestScreen extends StatelessWidget {
                                           ),
                                         ),
                                         backgroundColor: v.isSelected.value
-                                            ? Colors.green
-                                            : appColor.withOpacity(0.6),
+                                            ? greenColor
+                                            : appColor,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20),

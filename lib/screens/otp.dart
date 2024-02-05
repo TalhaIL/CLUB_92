@@ -53,12 +53,13 @@ class OtpScreen extends StatelessWidget {
                   height: 30,
                 ),
                 CustomMaterialButton(
-                    onPress: () {
-                      Get.to(
-                        () => const UserName(),
-                      );
-                    },
-                    text: 'NEXT'),
+                  onPress: () {
+                    Get.to(
+                      () => const UserName(),
+                    );
+                  },
+                  child: const Text('Next'),
+                ),
                 const SizedBox(
                   height: 20,
                 ),

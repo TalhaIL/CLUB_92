@@ -16,7 +16,7 @@ class LanguageBottomSheetState extends State<LanguageBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: transparentWhite,
+      backgroundColor: appColor,
       floatingActionButton: FloatingActionButton(
         backgroundColor: greenColor,
         child: const Icon(Icons.check),

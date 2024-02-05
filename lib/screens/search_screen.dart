@@ -127,6 +127,7 @@ class _SearchScreenState extends State<SearchScreen>
                                         listOfSpeakers[index].profileImage,
                                     name: listOfSpeakers[index].name,
                                     isSearchSceen: true,
+                                    index: index,
                                   ),
                                   itemCount: listOfSpeakers.length,
                                 ),

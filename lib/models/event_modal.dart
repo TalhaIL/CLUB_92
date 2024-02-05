@@ -9,6 +9,7 @@ class EventModal {
   final int? ticketAmount;
   bool? live;
   final int? listeners;
+  final bool? isOwner;
 
   EventModal({
     required this.title,
@@ -19,5 +20,6 @@ class EventModal {
     this.ticketAmount,
     this.live,
     this.listeners,
+    this.isOwner,
   });
 }

@@ -1,13 +1,13 @@
-import 'dart:developer';
-
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/constants/color.dart';
+import 'package:club_92/constants/live_events.dart';
 import 'package:club_92/constants/speaker.dart';
 import 'package:club_92/controllers/home_controller.dart';
 import 'package:club_92/screens/events/live_events.dart';
-import 'package:club_92/screens/events/upcoming_events.dart';
+import 'package:club_92/screens/events/main_event.dart';
+import 'package:club_92/screens/events/upcoming_events_screen.dart';
 import 'package:club_92/screens/notification.dart';
 import 'package:club_92/screens/profile_screen.dart';
 import 'package:club_92/screens/search_screen.dart';
@@ -133,15 +133,27 @@ class _HomeScreenState extends State<HomeScreen>
               builder: (context) => const StartRoomSheet(),
             );
           },
-          text: 'Start a room',
           width: 130,
+          child: const SizedBox(
+            width: 130,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.add),
+                SizedBox(
+                  width: 5,
+                ),
+                Text('Start a room'),
+              ],
+            ),
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: TabBarView(
         controller: _tabController,
         children: [
-          LiveEvents(),
+          const LiveEvents(),
           UpcomingEvents(),
         ],
       ),
@@ -244,8 +256,15 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
                     CustomMaterialButton(
                       height: 45,
                       width: 120,
-                      onPress: () {},
-                      text: 'Start Now',
+                      onPress: () {
+                        Get.off(
+                          () => MainEventScreen(
+                            event: liveEvents[0],
+                            isMyEvent: true,
+                          ),
+                        );
+                      },
+                      child: const Text('Start Now'),
                     ),
                     const SizedBox(
                       height: 20,
@@ -273,6 +292,7 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
                         profileImage: listOfSpeakers[index].profileImage,
                         name: listOfSpeakers[index].name,
                         isStartRoom: true,
+                        index: index,
                       ),
                     )
                   ],

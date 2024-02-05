@@ -77,7 +77,7 @@ class WalletScreen extends StatelessWidget {
                           baselineType: TextBaseline.alphabetic,
                           child: CustomMaterialButton(
                             onPress: () {},
-                            text: 'ADD MONEY',
+                            child: const Text('Add Money'),
                           ),
                         )
                       ],

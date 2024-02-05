@@ -88,13 +88,11 @@ class _ChooseCountryState extends State<ChooseCountry> {
                 showFlag: true,
                 showFlagMain: false,
                 showFlagDialog: true,
-                showOnlyCountryWhenClosed: false,
+                showOnlyCountryWhenClosed: true,
                 alignLeft: true,
 
                 padding: const EdgeInsets.all(0),
-                dialogBackgroundColor: appColor.withOpacity(
-                  1,
-                ),
+                dialogBackgroundColor: appColor,
                 searchDecoration: InputDecoration(
                   hintText: 'Choose Country',
                   focusedBorder: UnderlineInputBorder(
@@ -118,7 +116,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
               onPress: () {
                 Get.to(() => const OtpScreen());
               },
-              text: 'NEXT',
+              child: const Text('Next'),
             )
           ],
         ),

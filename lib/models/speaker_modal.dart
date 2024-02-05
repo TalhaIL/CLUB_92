@@ -8,7 +8,8 @@ class Speaker {
   String? about;
   String? followers;
   String? following;
-  RxBool? isSelected;
+  RxBool isFollowing;
+  RxBool isSelected;
   String? twitterHandle;
   String? youtubeHandle;
   String? instaHandle;
@@ -27,6 +28,8 @@ class Speaker {
     this.memberOf,
     this.twitterHandle,
     this.youtubeHandle,
-    bool isSelected = false, // Use regular bool here
-  }) : isSelected = isSelected.obs; // Convert to RxBool using .obs constructor
+    bool isSelected = false,
+    bool isFollowing = false,
+  })  : isSelected = isSelected.obs,
+        isFollowing = isFollowing.obs;
 }

@@ -1,3 +1,4 @@
+import 'package:club_92/constants/color.dart';
 import 'package:club_92/screens/country.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Club 92',
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xff20283b),
+        scaffoldBackgroundColor: appColor,
         useMaterial3: true,
         brightness: Brightness.dark,
       ),

@@ -28,8 +28,8 @@ class AddEventSceen extends StatelessWidget {
         actions: [
           CustomMaterialButton(
             onPress: () {},
-            text: 'Publish',
             width: 120,
+            child: const Text('Publish'),
           ),
           const SizedBox(
             width: 15,

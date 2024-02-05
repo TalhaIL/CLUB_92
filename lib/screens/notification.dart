@@ -22,6 +22,7 @@ class NotificationScreen extends StatelessWidget {
           itemBuilder: (context, index) => CustomSpeakerTile(
             profileImage: listOfSpeakers[index].profileImage,
             name: listOfSpeakers[index].name,
+            index: index,
           ),
           itemCount: listOfSpeakers.length,
         ),

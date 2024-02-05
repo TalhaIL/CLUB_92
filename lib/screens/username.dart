@@ -86,7 +86,7 @@ class UserName extends StatelessWidget {
                       () => const SpeakersScreen(),
                     );
                   },
-                  text: 'NEXT',
+                  child: const Text('Next'),
                 ),
                 const SizedBox(
                   height: 20,
