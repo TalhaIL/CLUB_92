@@ -4,15 +4,46 @@ import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/controllers/events/add_event_controller.dart';
+import 'package:club_92/models/event_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AddEventSceen extends StatelessWidget {
-  AddEventSceen({super.key});
+class AddEventSceen extends StatefulWidget {
+  final bool isUpdateEvent;
+  final EventModal? event;
+  const AddEventSceen({
+    super.key,
+    this.isUpdateEvent = false,
+    this.event,
+  });
 
+  @override
+  State<AddEventSceen> createState() => _AddEventSceenState();
+}
+
+class _AddEventSceenState extends State<AddEventSceen> {
   final AddEventController _addEventController = Get.put(
     AddEventController(),
   );
+
+  @override
+  void initState() {
+    _addEventController.nameController.text = widget.event?.eventName ?? '';
+    _addEventController.ticketController.text =
+        widget.event?.ticketAmount.toString() ?? '';
+    _addEventController.descriptionController.text =
+        widget.event?.eventDescription.toString() ?? '';
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _addEventController.nameController.dispose();
+    _addEventController.ticketController.dispose();
+    _addEventController.descriptionController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +57,17 @@ class AddEventSceen extends StatelessWidget {
           ),
         ),
         actions: [
-          CustomMaterialButton(
-            onPress: () {},
-            width: 120,
-            child: const Text('Publish'),
-          ),
+          widget.isUpdateEvent
+              ? CustomMaterialButton(
+                  onPress: () {},
+                  width: 120,
+                  child: const Text('Update'),
+                )
+              : CustomMaterialButton(
+                  onPress: () {},
+                  width: 120,
+                  child: const Text('Publish'),
+                ),
           const SizedBox(
             width: 15,
           )
@@ -39,13 +76,17 @@ class AddEventSceen extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 25,
+            vertical: 20,
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomTextField(
+              CustomTextField(
                 hintText: 'Event name',
+                controller: _addEventController.nameController,
               ),
               const SizedBox(
                 height: 20,
@@ -126,12 +167,13 @@ class AddEventSceen extends StatelessWidget {
               Obx(
                 () => Visibility(
                   visible: _addEventController.isSwitched.value,
-                  child: const Column(
+                  child: Column(
                     children: [
                       CustomTextField(
                         hintText: 'Enter Ticket amount in (\$)',
+                        controller: _addEventController.ticketController,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       )
                     ],
@@ -142,8 +184,9 @@ class AddEventSceen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const CustomTextField(
+              CustomTextField(
                 hintText: 'Description',
+                controller: _addEventController.descriptionController,
                 maxLines: 5,
               )
             ],

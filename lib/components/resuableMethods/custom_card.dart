@@ -2,6 +2,7 @@ import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/controllers/events/event_controller.dart';
 import 'package:club_92/models/event_modal.dart';
+import 'package:club_92/screens/events/add_event.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,9 +29,19 @@ Card customCard(
                   ),
                   controller!.isAllEvents.value
                       ? const Icon(Icons.notifications)
-                      : Text(
-                          'Edit',
-                          style: TextStyle(color: greenColor),
+                      : GestureDetector(
+                          onTap: () {
+                            Get.to(
+                              () => AddEventSceen(
+                                isUpdateEvent: true,
+                                event: event,
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'Edit',
+                            style: TextStyle(color: greenColor),
+                          ),
                         ),
                 ],
               ),

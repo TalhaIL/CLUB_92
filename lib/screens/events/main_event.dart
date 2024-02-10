@@ -26,6 +26,13 @@ class _MainEventScreenState extends State<MainEventScreen> {
   final controller = Get.put(
     EventController(),
   );
+
+  @override
+  void dispose() {
+    controller.isMicOn.value = false;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +52,9 @@ class _MainEventScreenState extends State<MainEventScreen> {
             CustomTicket(
               ticketAmount: widget.event.ticketAmount.toString(),
             ),
+          const SizedBox(
+            width: 5,
+          ),
           IconButton(
             onPressed: () {
               customRoomRulesSheet(context);
@@ -52,6 +62,9 @@ class _MainEventScreenState extends State<MainEventScreen> {
             icon: const Icon(
               Icons.event_note,
             ),
+          ),
+          const SizedBox(
+            width: 5,
           ),
           GestureDetector(
             onTap: () {

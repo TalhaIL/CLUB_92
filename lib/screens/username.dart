@@ -52,7 +52,7 @@ class UserName extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
                 Container(
                   height: 120,
@@ -74,9 +74,21 @@ class UserName extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 30,
+                ),
+                const CustomTextField(hintText: "What's your name"),
+                const SizedBox(
+                  height: 30,
                 ),
                 const CustomTextField(hintText: 'Set a username'),
+                const SizedBox(
+                  height: 30,
+                ),
+                const CustomTextField(hintText: 'Enter your email'),
+                const SizedBox(
+                  height: 30,
+                ),
+                const CustomTextField(hintText: 'Choose your password'),
                 const SizedBox(
                   height: 30,
                 ),

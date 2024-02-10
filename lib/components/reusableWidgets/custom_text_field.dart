@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool isReadOnly;
+  final TextEditingController? controller;
   final int? maxLines;
   final bool? isEnabled;
   final IconButton? icon;
@@ -13,6 +14,7 @@ class CustomTextField extends StatelessWidget {
       this.isEnabled,
       this.isReadOnly = false,
       this.maxLines,
+      this.controller,
       this.icon});
 
   @override
@@ -31,6 +33,7 @@ class CustomTextField extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: TextField(
+          controller: controller,
           enabled: isEnabled,
           maxLines: maxLines,
           readOnly: isReadOnly,

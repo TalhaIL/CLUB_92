@@ -13,13 +13,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       title: 'Club 92',
-      theme: ThemeData(
+      themeMode: ThemeMode.dark,
+      darkTheme: ThemeData(
         scaffoldBackgroundColor: appColor,
         useMaterial3: true,
-        brightness: Brightness.dark,
+        primaryTextTheme: const TextTheme(
+          bodyLarge:
+              TextStyle(color: Colors.white), // White text for dark theme
+          bodyMedium:
+              TextStyle(color: Colors.white), // White text for dark theme
+        ),
+      ),
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        useMaterial3: true,
+        primaryTextTheme: const TextTheme(
+          bodyLarge:
+              TextStyle(color: Colors.black), // Black text for light theme
+          bodyMedium:
+              TextStyle(color: Colors.black), // Black text for light theme
+        ),
       ),
       home: const ChooseCountry(),
     );

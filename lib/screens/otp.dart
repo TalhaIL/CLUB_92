@@ -38,7 +38,7 @@ class OtpScreen extends StatelessWidget {
                 RichText(
                   textAlign: TextAlign.center,
                   text: const TextSpan(
-                    style: TextStyle(fontSize: 15),
+                    style: TextStyle(color: Colors.white),
                     children: [
                       TextSpan(text: 'Enter verification code sent\n'),
                       TextSpan(text: 'on your given number.'),
@@ -70,9 +70,9 @@ class OtpScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
+                Text(
                   "RESEND",
-                  style: TextStyle(color: Colors.green),
+                  style: TextStyle(color: greenColor),
                 ),
               ],
             ),

@@ -7,6 +7,9 @@ class AddEventController extends GetxController {
   final Rx<DateTime> selectedDate = DateTime.now().obs;
   Rx<TimeOfDay> selectedTime = TimeOfDay.now().obs;
   RxBool isSwitched = true.obs;
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController ticketController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
 
   Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(

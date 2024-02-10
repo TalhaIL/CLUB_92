@@ -5,6 +5,7 @@ import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/live_events.dart';
 import 'package:club_92/constants/speaker.dart';
 import 'package:club_92/controllers/home_controller.dart';
+import 'package:club_92/screens/chat/chat_list.dart';
 import 'package:club_92/screens/events/live_events.dart';
 import 'package:club_92/screens/events/main_event.dart';
 import 'package:club_92/screens/events/upcoming_events_screen.dart';
@@ -85,11 +86,11 @@ class _HomeScreenState extends State<HomeScreen>
           IconButton(
             onPressed: () {
               Get.to(
-                () => WalletScreen(),
+                () => const ChatListScreen(),
               );
             },
             icon: const Icon(
-              Icons.wallet,
+              Icons.chat,
             ),
           ),
           IconButton(
@@ -104,6 +105,9 @@ class _HomeScreenState extends State<HomeScreen>
             icon: const Icon(
               Icons.notifications,
             ),
+          ),
+          const SizedBox(
+            width: 5,
           ),
           GestureDetector(
             onTap: () {
