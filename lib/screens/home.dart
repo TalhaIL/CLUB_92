@@ -12,7 +12,6 @@ import 'package:club_92/screens/events/upcoming_events_screen.dart';
 import 'package:club_92/screens/notification.dart';
 import 'package:club_92/screens/profile_screen.dart';
 import 'package:club_92/screens/search_screen.dart';
-import 'package:club_92/screens/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
         leadingWidth: 140,
         leading: SizedBox(
           width: 120,

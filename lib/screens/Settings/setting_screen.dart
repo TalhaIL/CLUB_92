@@ -1,5 +1,6 @@
 import 'package:club_92/components/reusableWidgets/language_bottom_sheet.dart';
 import 'package:club_92/constants/color.dart';
+import 'package:club_92/controllers/theme/theme.dart';
 import 'package:club_92/screens/Settings/faqs_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,7 @@ class _SettingScreenState extends State<SettingScreen> {
   bool isPausedNotification = false;
   bool isDarkMode = true;
   String isSelectedLanguage = 'English';
+  final controller = Get.put(ThemeController());
 
   @override
   Widget build(BuildContext context) {
@@ -29,23 +31,25 @@ class _SettingScreenState extends State<SettingScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             textWithSwitch(
-              text: 'Pause Notifications',
-              switchValue: isPausedNotification,
+                text: 'Pause Notifications',
+                switchValue: isPausedNotification,
+                onChanged: null),
+            const SizedBox(
+              height: 18,
+            ),
+            Obx(
+              () => textWithSwitch(
+                  text: 'Dark Mode',
+                  switchValue: controller.theme.value == ThemeMode.dark,
+                  onChanged: (val) {
+                    controller.toggleTheme();
+                  }),
             ),
             const SizedBox(
               height: 18,
             ),
             textWithSwitch(
-              text: 'Dark Mode',
-              switchValue: isDarkMode,
-            ),
-            const SizedBox(
-              height: 18,
-            ),
-            textWithSwitch(
-              text: 'App Language',
-              text2: 'English',
-            ),
+                text: 'App Language', text2: 'English', onChanged: null),
             const SizedBox(
               height: 18,
             ),
@@ -120,8 +124,9 @@ class _SettingScreenState extends State<SettingScreen> {
 
   Row textWithSwitch({
     required String text,
-    bool? switchValue,
     String? text2,
+    bool? switchValue,
+    required Function(bool)? onChanged,
   }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -134,11 +139,7 @@ class _SettingScreenState extends State<SettingScreen> {
         switchValue != null
             ? Switch(
                 value: switchValue,
-                onChanged: (value) {
-                  setState(() {
-                    isPausedNotification = value;
-                  });
-                },
+                onChanged: onChanged,
                 activeColor: greenColor,
               )
             : TextButton(

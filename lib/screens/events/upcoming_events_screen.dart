@@ -76,7 +76,7 @@ class UpcomingEvents extends StatelessWidget {
                 CustomMaterialButton(
                   onPress: () {
                     Get.to(
-                      AddEventSceen(),
+                      const AddEventSceen(),
                     );
                   },
                   width: 120,
@@ -110,8 +110,8 @@ class UpcomingEvents extends StatelessWidget {
                       onTap: () {
                         upcomingEventsSheet(context, event);
                       },
-                      child: customCard(
-                        event,
+                      child: CustomCard(
+                        event: event,
                         isUpcoming: true,
                         controller: _eventController,
                       ),

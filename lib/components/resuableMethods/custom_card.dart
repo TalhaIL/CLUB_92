@@ -6,279 +6,285 @@ import 'package:club_92/screens/events/add_event.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Card customCard(
-  EventModal event, {
-  bool isUpcoming = false,
-  EventController? controller,
-}) {
-  return Card(
-    color: const Color(0xff20283b).withOpacity(1),
-    child: Padding(
-      padding: const EdgeInsets.all(15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (isUpcoming)
-            Obx(
-              () => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Today, 6:00pm',
-                    style: TextStyle(color: greenColor),
-                  ),
-                  controller!.isAllEvents.value
-                      ? const Icon(Icons.notifications)
-                      : GestureDetector(
-                          onTap: () {
-                            Get.to(
-                              () => AddEventSceen(
-                                isUpdateEvent: true,
-                                event: event,
-                              ),
-                            );
-                          },
-                          child: Text(
-                            'Edit',
-                            style: TextStyle(color: greenColor),
-                          ),
-                        ),
-                ],
-              ),
-            ),
-          if (isUpcoming)
-            const SizedBox(
-              height: 10,
-            ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    event.title,
-                    style: const TextStyle(fontSize: 13, color: Colors.white),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    Icons.flag,
-                    color: greenColor,
-                    size: 17,
-                  )
-                ],
-              ),
-              if (event.ticketAmount != null)
-                CustomTicket(
-                  ticketAmount: event.ticketAmount.toString(),
-                )
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Text(
-            event.eventName,
-            style: const TextStyle(fontSize: 14, color: Colors.white),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          if (isUpcoming)
-            SizedBox(
-              height: 80,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                itemCount: event.coHost.length,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.only(right: 5),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 55,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              event.coHost[index].profileImage,
+class CustomCard extends StatelessWidget {
+  final bool isUpcoming;
+  final EventModal event;
+  final EventController? controller;
+
+  const CustomCard(
+      {super.key,
+      required this.event,
+      required this.isUpcoming,
+      this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Theme.of(context).colorScheme.background,
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (isUpcoming)
+              Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Today, 6:00pm',
+                      style: TextStyle(color: greenColor),
+                    ),
+                    controller!.isAllEvents.value
+                        ? const Icon(Icons.notifications)
+                        : GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                () => AddEventSceen(
+                                  isUpdateEvent: true,
+                                  event: event,
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'Edit',
+                              style: TextStyle(color: greenColor),
                             ),
-                            fit: BoxFit.cover,
                           ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 2,
-                      ),
-                      Text(event.coHost[index].name)
-                    ],
-                  ),
+                  ],
                 ),
               ),
-            ),
-          if (!isUpcoming)
+            if (isUpcoming)
+              const SizedBox(
+                height: 10,
+              ),
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    SizedBox(
-                      width: 170,
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: 60,
-                            width: 55,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              image: DecorationImage(
-                                image: NetworkImage(
-                                  event.coHost[0].profileImage,
-                                ),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            left: 45,
-                            child: Container(
-                              height: 60,
-                              width: 55,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    event.coHost[1].profileImage,
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            left: 95,
-                            child: Container(
-                              height: 60,
-                              width: 55,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    event.coHost[2].profileImage,
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                    Text(
+                      event.title,
+                      style: const TextStyle(
+                        fontSize: 13,
                       ),
                     ),
                     const SizedBox(
-                      height: 15,
+                      width: 5,
                     ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.hearing,
-                          size: 13,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        Text(
-                          event.listeners.toString(),
-                          style: const TextStyle(
-                              fontSize: 12, color: Colors.white),
-                        ),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        Container(
-                          height: 5,
-                          width: 5,
-                          decoration: BoxDecoration(
-                            color: greenColor,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        const Icon(
-                          Icons.person_outline_rounded,
-                          size: 13,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        const Text(
-                          '20',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
+                    Icon(
+                      Icons.flag,
+                      color: greenColor,
+                      size: 17,
                     )
                   ],
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          event.coHost[0].name,
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                        const SizedBox(
-                          width: 3,
-                        ),
-                        const Icon(
-                          Icons.mic,
-                          color: Colors.white,
-                          size: 15,
-                        ),
-                      ],
-                    ),
-                    Text(
-                      event.coHost[1].name,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          event.coHost[2].name,
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                        const SizedBox(
-                          width: 3,
-                        ),
-                        const Icon(
-                          Icons.mic,
-                          size: 15,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                  ],
-                )
+                if (event.ticketAmount != null)
+                  CustomTicket(
+                    ticketAmount: event.ticketAmount.toString(),
+                  )
               ],
             ),
-          if (isUpcoming)
+            const SizedBox(
+              height: 5,
+            ),
             Text(
-              event.eventDescription.toString(),
-              style: const TextStyle(fontSize: 12),
-            )
-        ],
+              event.eventName,
+              style: const TextStyle(
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            if (isUpcoming)
+              SizedBox(
+                height: 80,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: event.coHost.length,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.only(right: 5),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 55,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                event.coHost[index].profileImage,
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 2,
+                        ),
+                        Text(event.coHost[index].name)
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            if (!isUpcoming)
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 170,
+                        child: Stack(
+                          children: [
+                            Container(
+                              height: 60,
+                              width: 55,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25),
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    event.coHost[0].profileImage,
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 45,
+                              child: Container(
+                                height: 60,
+                                width: 55,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      event.coHost[1].profileImage,
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 95,
+                              child: Container(
+                                height: 60,
+                                width: 55,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      event.coHost[2].profileImage,
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.hearing,
+                            size: 13,
+                          ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          Text(
+                            event.listeners.toString(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          Container(
+                            height: 5,
+                            width: 5,
+                            decoration: BoxDecoration(
+                              color: greenColor,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          const Icon(
+                            Icons.person_outline_rounded,
+                            size: 13,
+                          ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          const Text(
+                            '20',
+                            style: TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            event.coHost[0].name,
+                          ),
+                          const SizedBox(
+                            width: 3,
+                          ),
+                          const Icon(
+                            Icons.mic,
+                            size: 15,
+                          ),
+                        ],
+                      ),
+                      Text(
+                        event.coHost[1].name,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            event.coHost[2].name,
+                          ),
+                          const SizedBox(
+                            width: 3,
+                          ),
+                          const Icon(
+                            Icons.mic,
+                            size: 15,
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            if (isUpcoming)
+              Text(
+                event.eventDescription.toString(),
+                style: const TextStyle(fontSize: 12),
+              )
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

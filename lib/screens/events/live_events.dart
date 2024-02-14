@@ -25,7 +25,10 @@ class LiveEvents extends StatelessWidget {
                   ),
                 );
               },
-              child: customCard(event),
+              child: CustomCard(
+                event: event,
+                isUpcoming: false,
+              ),
             );
           }),
     );
