@@ -49,7 +49,6 @@ class _AddEventSceenState extends State<AddEventSceen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
         title: const Text(
           'ADD EVENT',
           style: TextStyle(
@@ -61,12 +60,18 @@ class _AddEventSceenState extends State<AddEventSceen> {
               ? CustomMaterialButton(
                   onPress: () {},
                   width: 120,
-                  child: const Text('Update'),
+                  child: const Text(
+                    'Update',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 )
               : CustomMaterialButton(
                   onPress: () {},
                   width: 120,
-                  child: const Text('Publish'),
+                  child: const Text(
+                    'Publish',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
           const SizedBox(
             width: 15,
@@ -154,7 +159,7 @@ class _AddEventSceenState extends State<AddEventSceen> {
                   children: [
                     const Text('Paid Event?'),
                     Switch(
-                      activeColor: greenColor,
+                      activeColor: deepPurple,
                       value: _addEventController.isSwitched.value,
                       onChanged: (val) {
                         _addEventController.isSwitched.value = val;
@@ -257,7 +262,7 @@ class _AddEventSceenState extends State<AddEventSceen> {
             children: [
               isAddCoHost
                   ? CircleAvatar(
-                      backgroundColor: greenColor,
+                      backgroundColor: deepPurple,
                       maxRadius: 25,
                       child: const Icon(Icons.add),
                     )

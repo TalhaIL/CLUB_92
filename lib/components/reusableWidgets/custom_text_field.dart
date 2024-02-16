@@ -40,9 +40,7 @@ class CustomTextField extends StatelessWidget {
           cursorColor: Colors.white,
           decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: TextStyle(
-              color: Colors.white.withOpacity(0.5),
-            ),
+            hintStyle: Theme.of(context).primaryTextTheme.bodySmall,
             border: InputBorder.none,
             suffixIcon: icon,
           ),

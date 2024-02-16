@@ -15,7 +15,6 @@ class WalletScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
         title: const Text('WALLET'),
       ),
       body: Column(
@@ -77,7 +76,12 @@ class WalletScreen extends StatelessWidget {
                           baselineType: TextBaseline.alphabetic,
                           child: CustomMaterialButton(
                             onPress: () {},
-                            child: const Text('Add Money'),
+                            child: const Text(
+                              'Add Money',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         )
                       ],

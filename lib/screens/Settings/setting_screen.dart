@@ -22,7 +22,6 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
         title: const Text('Setting'),
       ),
       body: Padding(
@@ -140,7 +139,7 @@ class _SettingScreenState extends State<SettingScreen> {
             ? Switch(
                 value: switchValue,
                 onChanged: onChanged,
-                activeColor: greenColor,
+                activeColor: deepPurple,
               )
             : TextButton(
                 onPressed: () {
@@ -162,7 +161,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   text2.toString(),
                   style: TextStyle(
                     fontSize: 15,
-                    color: greenColor,
+                    color: deepPurple,
                   ),
                 ),
               )

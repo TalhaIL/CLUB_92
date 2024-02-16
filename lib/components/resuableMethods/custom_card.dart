@@ -33,7 +33,7 @@ class CustomCard extends StatelessWidget {
                   children: [
                     Text(
                       'Today, 6:00pm',
-                      style: TextStyle(color: greenColor),
+                      style: TextStyle(color: deepPurple),
                     ),
                     controller!.isAllEvents.value
                         ? const Icon(Icons.notifications)
@@ -48,7 +48,7 @@ class CustomCard extends StatelessWidget {
                             },
                             child: Text(
                               'Edit',
-                              style: TextStyle(color: greenColor),
+                              style: TextStyle(color: deepPurple),
                             ),
                           ),
                   ],
@@ -74,7 +74,7 @@ class CustomCard extends StatelessWidget {
                     ),
                     Icon(
                       Icons.flag,
-                      color: greenColor,
+                      color: deepPurple,
                       size: 17,
                     )
                   ],
@@ -215,7 +215,7 @@ class CustomCard extends StatelessWidget {
                             height: 5,
                             width: 5,
                             decoration: BoxDecoration(
-                              color: greenColor,
+                              color: deepPurple,
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),

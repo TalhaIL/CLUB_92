@@ -97,7 +97,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                     Text(widget.event.title),
                     Icon(
                       Icons.flag,
-                      color: greenColor,
+                      color: deepPurple,
                     )
                   ],
                 ),
@@ -182,7 +182,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                                                 ),
                                                 child: ColorFiltered(
                                                   colorFilter: ColorFilter.mode(
-                                                    greenColor,
+                                                    deepPurple,
                                                     BlendMode.srcATop,
                                                   ),
                                                   child: Lottie.asset(
@@ -400,7 +400,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                         Positioned(
                           child: ColorFiltered(
                             colorFilter: ColorFilter.mode(
-                              greenColor,
+                              deepPurple,
                               BlendMode.srcATop,
                             ),
                             child: Lottie.asset(
@@ -421,7 +421,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                       height: 40,
                       width: 100,
                       decoration: BoxDecoration(
-                        color: greenColor,
+                        color: deepPurple,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Center(
@@ -549,7 +549,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                     width: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: greenColor),
+                      border: Border.all(color: deepPurple),
                       image: DecorationImage(
                         image: NetworkImage(
                           listOfSpeakers[index].profileImage,
@@ -689,7 +689,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                   ),
                   Icon(
                     Icons.flag,
-                    color: greenColor.withOpacity(0.8),
+                    color: deepPurple.withOpacity(0.8),
                     size: 17,
                   )
                 ],

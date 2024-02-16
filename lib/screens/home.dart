@@ -48,9 +48,9 @@ class _HomeScreenState extends State<HomeScreen>
               insets: const EdgeInsets.only(
                 top: 5,
               ),
-              borderSide: BorderSide(color: greenColor, width: 2),
+              borderSide: BorderSide(color: deepPurple, width: 2),
             ),
-            labelColor: greenColor,
+            labelColor: deepPurple,
             labelPadding: const EdgeInsets.only(
               bottom: 10,
               right: 15,
@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen>
         child: CustomMaterialButton(
           onPress: () {
             showModalBottomSheet(
-              backgroundColor: const Color(0xff20283b),
+              backgroundColor: Theme.of(context).colorScheme.background,
               context: context,
               builder: (context) => const StartRoomSheet(),
             );
@@ -141,11 +141,19 @@ class _HomeScreenState extends State<HomeScreen>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.add),
+                Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
                 SizedBox(
                   width: 5,
                 ),
-                Text('Start a room'),
+                Text(
+                  'Start a room',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
           ),
@@ -241,7 +249,6 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
                           TextSpan(
                             text: ' People I choose',
                             style: TextStyle(
-                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -266,7 +273,12 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
                           ),
                         );
                       },
-                      child: const Text('Start Now'),
+                      child: const Text(
+                        'Start Now',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
@@ -279,7 +291,6 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
                           TextSpan(
                             text: ' with online friends',
                             style: TextStyle(
-                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -317,13 +328,18 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
           padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
             color: homeController.selectedPrivacy.value == privacy
-                ? textFieldColor.withOpacity(0.2)
-                : Colors.transparent,
+                ? deepPurple
+                : transparentWhite.withOpacity(0.1),
             borderRadius: BorderRadius.circular(15),
           ),
           child: Text(
             privacy,
-            style: const TextStyle(fontSize: 18),
+            style: TextStyle(
+              fontSize: 18,
+              color: homeController.selectedPrivacy.value == privacy
+                  ? Colors.white
+                  : Colors.grey,
+            ),
           ),
         ),
       ),

@@ -5,6 +5,7 @@ import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/upcoming_events.dart';
 import 'package:club_92/controllers/events/event_controller.dart';
+import 'package:club_92/controllers/theme/theme.dart';
 import 'package:club_92/models/event_modal.dart';
 import 'package:club_92/screens/events/add_event.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ import 'package:get/get.dart';
 class UpcomingEvents extends StatelessWidget {
   UpcomingEvents({super.key});
   final EventController _eventController = Get.put(EventController());
+  final ThemeController _themeController = Get.put(ThemeController());
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +37,21 @@ class UpcomingEvents extends StatelessWidget {
                       width: 60,
                       decoration: BoxDecoration(
                         color: _eventController.isAllEvents.value
-                            ? textFieldColor.withOpacity(0.09)
+                            ? deepPurple
                             : Colors.transparent,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: greenColor,
+                          color: deepPurple,
                         ),
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Text(
                           'All',
+                          style: TextStyle(
+                            color: _eventController.isAllEvents.value
+                                ? Colors.white
+                                : Theme.of(context).colorScheme.tertiary,
+                          ),
                         ),
                       ),
                     ),
@@ -61,14 +68,21 @@ class UpcomingEvents extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: _eventController.isAllEvents.value
                             ? Colors.transparent
-                            : textFieldColor.withOpacity(0.09),
+                            : deepPurple,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: greenColor,
+                          color: deepPurple,
                         ),
                       ),
-                      child: const Center(
-                        child: Text('My Events'),
+                      child: Center(
+                        child: Text(
+                          'My Events',
+                          style: TextStyle(
+                            color: !_eventController.isAllEvents.value
+                                ? Colors.white
+                                : Theme.of(context).colorScheme.tertiary,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -84,11 +98,19 @@ class UpcomingEvents extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.add),
+                        Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
                         SizedBox(
                           width: 5,
                         ),
-                        Text('Add Event'),
+                        Text(
+                          'Add Event',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -126,7 +148,7 @@ class UpcomingEvents extends StatelessWidget {
 
   Future<dynamic> upcomingEventsSheet(BuildContext context, EventModal event) {
     return showModalBottomSheet(
-      backgroundColor: appColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       showDragHandle: false,
       context: context,
       builder: (context) => SizedBox(
@@ -149,7 +171,7 @@ class UpcomingEvents extends StatelessWidget {
                     Text(
                       'Today 6:00 pm',
                       style: TextStyle(
-                          color: greenColor,
+                          color: deepPurple,
                           fontSize: 17,
                           fontWeight: FontWeight.bold),
                     ),
@@ -194,17 +216,16 @@ class UpcomingEvents extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Text(
-                                event.title,
-                                style: TextStyle(
-                                    color: Colors.white.withOpacity(0.5)),
-                              ),
+                              Text(event.title,
+                                  style: Theme.of(context)
+                                      .primaryTextTheme
+                                      .bodySmall),
                               const SizedBox(
                                 width: 2,
                               ),
                               Icon(
                                 Icons.flag,
-                                color: greenColor,
+                                color: deepPurple,
                                 size: 17,
                               )
                             ],
@@ -264,11 +285,15 @@ class UpcomingEvents extends StatelessWidget {
                               Text(
                                 '\$${event.ticketAmount}',
                                 style: const TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.bold),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
                               ),
                               const Text(
                                 'Charge',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
                               )
                             ],
                           ),
@@ -276,16 +301,35 @@ class UpcomingEvents extends StatelessWidget {
                               ? CustomMaterialButton(
                                   height: 45,
                                   onPress: () {},
-                                  child: const Text('Buy a Ticket'),
+                                  child: const Text(
+                                    'Buy a Ticket',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 )
                               : CustomMaterialButton(
                                   height: 45,
                                   onPress: () {},
-                                  child: const Text('Edit Event'),
+                                  child: const Text(
+                                    'Edit Event',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
                           const Column(
                             mainAxisAlignment: MainAxisAlignment.end,
-                            children: [Icon(Icons.share), Text('Share')],
+                            children: [
+                              Icon(
+                                Icons.share,
+                                color: Colors.white,
+                              ),
+                              Text(
+                                'Share',
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
                           ),
                         ],
                       ),

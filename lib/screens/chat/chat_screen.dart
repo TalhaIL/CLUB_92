@@ -27,7 +27,6 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
         title: Text(
           widget.sender.sender,
         ),
@@ -176,7 +175,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   onPressed: () {},
                   icon: Icon(
                     Icons.send,
-                    color: greenColor,
+                    color: deepPurple,
                   ),
                 ),
               ],

@@ -96,19 +96,19 @@ class InterestScreen extends StatelessWidget {
                                     child: Obx(
                                       () => Chip(
                                         side: BorderSide(
-                                          color: greenColor,
+                                          color: deepPurple,
                                         ),
                                         label: Text(
                                           v.categoryName,
                                           style: TextStyle(
                                             color: v.isSelected.value
                                                 ? Colors.white
-                                                : greenColor,
+                                                : deepPurple,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                         backgroundColor: v.isSelected.value
-                                            ? greenColor
+                                            ? deepPurple
                                             : appColor,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:

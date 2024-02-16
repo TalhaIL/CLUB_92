@@ -72,7 +72,7 @@ class OtpScreen extends StatelessWidget {
                 ),
                 Text(
                   "RESEND",
-                  style: TextStyle(color: greenColor),
+                  style: TextStyle(color: deepPurple),
                 ),
               ],
             ),

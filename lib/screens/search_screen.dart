@@ -26,7 +26,6 @@ class _SearchScreenState extends State<SearchScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
         title: const Text('Search'),
       ),
       body: Column(
@@ -90,13 +89,12 @@ class _SearchScreenState extends State<SearchScreen>
                     ),
                     child: TabBar(
                       indicator: BoxDecoration(
-                        color: greenColor,
+                        color: deepPurple,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       labelPadding: const EdgeInsets.all(10),
                       indicatorSize: TabBarIndicatorSize.tab,
                       labelColor: Colors.white,
-                      unselectedLabelColor: Colors.white.withOpacity(0.5),
                       dividerHeight: 0,
                       controller: tabcontroller,
                       tabs: const [
@@ -183,7 +181,7 @@ class _SearchScreenState extends State<SearchScreen>
                                                   ),
                                                   Icon(
                                                     Icons.flag,
-                                                    color: greenColor,
+                                                    color: deepPurple,
                                                     size: 20,
                                                   )
                                                 ],
@@ -191,19 +189,17 @@ class _SearchScreenState extends State<SearchScreen>
                                               Row(
                                                 children: [
                                                   Text(
-                                                    '${listOfRooms[index].members} Members',
-                                                    style: TextStyle(
-                                                      color: Colors.white
-                                                          .withOpacity(0.5),
-                                                    ),
-                                                  ),
+                                                      '${listOfRooms[index].members} Members',
+                                                      style: Theme.of(context)
+                                                          .primaryTextTheme
+                                                          .bodySmall),
                                                   const SizedBox(
                                                     width: 10,
                                                   ),
                                                   Container(
                                                     height: 5,
                                                     width: 5,
-                                                    color: greenColor,
+                                                    color: deepPurple,
                                                   ),
                                                   const SizedBox(
                                                     width: 10,

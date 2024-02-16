@@ -1,6 +1,7 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/speaker.dart';
+import 'package:club_92/controllers/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +24,8 @@ class CustomSpeakerTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeController = Get.put(ThemeController());
+
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: GestureDetector(
@@ -91,6 +94,9 @@ class CustomSpeakerTile extends StatelessWidget {
                         listOfSpeakers[index].isFollowing.value
                             ? 'Following'
                             : 'Follow',
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   )
@@ -105,20 +111,47 @@ class CustomSpeakerTile extends StatelessWidget {
                             padding: const EdgeInsets.all(5),
                             decoration: BoxDecoration(
                                 color: listOfSpeakers[index].isSelected.value
-                                    ? Colors.green
-                                    : textFieldColor.withOpacity(0.2),
+                                    ? deepPurple
+                                    : transparentWhite.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(15)),
-                            child: const Row(
+                            child: Row(
                               children: [
-                                Icon(Icons.add),
-                                SizedBox(
+                                Icon(
+                                  Icons.add,
+                                  color: listOfSpeakers[index].isSelected.value
+                                      ? Colors.white
+                                      : themeController.theme.value ==
+                                              ThemeMode.light
+                                          ? Colors.black
+                                          : Colors.white,
+                                ),
+                                const SizedBox(
                                   width: 4,
                                 ),
-                                Text('Room'),
-                                SizedBox(
+                                Text(
+                                  'Room',
+                                  style: TextStyle(
+                                    color:
+                                        listOfSpeakers[index].isSelected.value
+                                            ? Colors.white
+                                            : themeController.theme.value ==
+                                                    ThemeMode.light
+                                                ? Colors.black
+                                                : Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(
                                   width: 4,
                                 ),
-                                Icon(Icons.lock)
+                                Icon(
+                                  Icons.lock,
+                                  color: listOfSpeakers[index].isSelected.value
+                                      ? Colors.white
+                                      : themeController.theme.value ==
+                                              ThemeMode.light
+                                          ? Colors.black
+                                          : Colors.white,
+                                )
                               ],
                             ),
                           ),

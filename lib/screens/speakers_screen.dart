@@ -81,7 +81,7 @@ class SpeakersScreen extends StatelessWidget {
                                 child: Positioned(
                                   child: Icon(
                                     Icons.check_circle_rounded,
-                                    color: greenColor,
+                                    color: deepPurple,
                                   ),
                                 ),
                               ),

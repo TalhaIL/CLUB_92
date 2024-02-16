@@ -10,7 +10,6 @@ class FaqsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
         title: const Text('FAQ\'s'),
       ),
       body: Padding(

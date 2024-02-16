@@ -68,7 +68,7 @@ class UserName extends StatelessWidget {
                       onPressed: () {},
                       icon: Icon(
                         Icons.camera_alt,
-                        color: greenColor,
+                        color: deepPurple,
                       ),
                     ),
                   ),

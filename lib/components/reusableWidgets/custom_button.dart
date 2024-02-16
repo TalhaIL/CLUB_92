@@ -23,7 +23,7 @@ class CustomMaterialButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        color: greenColor,
+        color: deepPurple,
         onPressed: onPress,
         child: child);
   }

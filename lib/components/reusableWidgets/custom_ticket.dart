@@ -14,7 +14,7 @@ class CustomTicket extends StatelessWidget {
       width: 45,
       height: 25,
       decoration: BoxDecoration(
-        color: greenColor,
+        color: deepPurple,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
@@ -24,7 +24,7 @@ class CustomTicket extends StatelessWidget {
             height: 7,
             width: 7,
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: Theme.of(context).colorScheme.background,
               borderRadius: BorderRadius.circular(30),
             ),
           ),
@@ -38,7 +38,8 @@ class CustomTicket extends StatelessWidget {
             height: 7,
             width: 7,
             decoration: BoxDecoration(
-                color: Colors.black, borderRadius: BorderRadius.circular(30)),
+                color: Theme.of(context).colorScheme.background,
+                borderRadius: BorderRadius.circular(30)),
           ),
         ],
       ),

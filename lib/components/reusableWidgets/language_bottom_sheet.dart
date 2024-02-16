@@ -18,7 +18,7 @@ class LanguageBottomSheetState extends State<LanguageBottomSheet> {
     return Scaffold(
       backgroundColor: appColor,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: greenColor,
+        backgroundColor: deepPurple,
         child: const Icon(Icons.check),
         onPressed: () {
           log(selectedLanguage);
@@ -44,7 +44,7 @@ class LanguageBottomSheetState extends State<LanguageBottomSheet> {
                 itemCount: languages.length,
                 itemBuilder: (context, index) {
                   return RadioListTile(
-                    activeColor: greenColor,
+                    activeColor: deepPurple,
                     title: Text(languages[index]),
                     value: languages[index],
                     groupValue: selectedLanguage,

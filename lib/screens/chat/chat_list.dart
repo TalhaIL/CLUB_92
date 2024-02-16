@@ -10,7 +10,6 @@ class ChatListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
         title: const Text('Chats'),
       ),
       body: ListView.builder(
@@ -46,10 +45,7 @@ class ChatListScreen extends StatelessWidget {
               ),
               subtitle: Text(
                 chats[index].lastMessage,
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white.withOpacity(0.5),
-                ),
+                style: Theme.of(context).primaryTextTheme.bodySmall,
               ),
               onTap: () {
                 Navigator.push(

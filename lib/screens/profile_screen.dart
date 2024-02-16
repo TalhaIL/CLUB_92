@@ -16,13 +16,17 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
         actions: [
           CustomMaterialButton(
             onPress: () {},
             height: 40,
             width: 50,
-            child: const Text('Buy this app'),
+            child: const Text(
+              'Buy this app',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ),
           IconButton(
             onPressed: () {
@@ -66,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
                     width: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: greenColor),
+                      border: Border.all(color: deepPurple),
                       image: DecorationImage(
                         image: NetworkImage(
                           speaker.profileImage,
@@ -86,9 +90,8 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Text(
                         speaker.username.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
-                          color: Colors.white.withOpacity(0.5),
                         ),
                       )
                     ],
@@ -112,10 +115,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Text(
                         'Followers',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white.withOpacity(0.5),
-                        ),
+                        style: Theme.of(context).primaryTextTheme.bodySmall,
                       )
                     ],
                   ),
@@ -134,10 +134,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Text(
                         'Followings',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white.withOpacity(0.5),
-                        ),
+                        style: Theme.of(context).primaryTextTheme.bodySmall,
                       )
                     ],
                   )
@@ -190,7 +187,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: textFieldColor,
+                    color: transparentWhite.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
@@ -206,7 +203,7 @@ class ProfileScreen extends StatelessWidget {
                             Text(
                               'Today 8:30 pm',
                               style: TextStyle(
-                                color: greenColor,
+                                color: deepPurple,
                                 fontSize: 15,
                               ),
                             ),
@@ -216,7 +213,7 @@ class ProfileScreen extends StatelessWidget {
                                 'Edit',
                                 style: TextStyle(
                                   fontSize: 15,
-                                  color: greenColor,
+                                  color: deepPurple,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -241,7 +238,7 @@ class ProfileScreen extends StatelessWidget {
                             const Text('FROM WORLD WARRIORS'),
                             Icon(
                               Icons.flag,
-                              color: greenColor,
+                              color: deepPurple,
                               size: 18,
                             )
                           ],
