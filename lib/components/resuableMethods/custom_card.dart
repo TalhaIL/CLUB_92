@@ -5,6 +5,7 @@ import 'package:club_92/models/event_modal.dart';
 import 'package:club_92/screens/events/add_event.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class CustomCard extends StatelessWidget {
   final bool isUpcoming;
@@ -57,6 +58,25 @@ class CustomCard extends StatelessWidget {
             if (isUpcoming)
               const SizedBox(
                 height: 10,
+              ),
+            if (!isUpcoming)
+              Column(
+                children: [
+                  ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      deepPurple,
+                      BlendMode.srcATop,
+                    ),
+                    child: Lottie.asset(
+                      'assets/animations/live_streaming.json',
+                      height: 30,
+                      width: 30,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  )
+                ],
               ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,110 +154,57 @@ class CustomCard extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 170,
-                        child: Stack(
-                          children: [
-                            Container(
-                              height: 60,
-                              width: 55,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    event.coHost[0].profileImage,
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
+                  SizedBox(
+                    width: 170,
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 60,
+                          width: 55,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                event.coHost[0].profileImage,
                               ),
+                              fit: BoxFit.cover,
                             ),
-                            Positioned(
-                              left: 45,
-                              child: Container(
-                                height: 60,
-                                width: 55,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      event.coHost[1].profileImage,
-                                    ),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              left: 95,
-                              child: Container(
-                                height: 60,
-                                width: 55,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      event.coHost[2].profileImage,
-                                    ),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.hearing,
-                            size: 13,
-                          ),
-                          const SizedBox(
-                            width: 6,
-                          ),
-                          Text(
-                            event.listeners.toString(),
-                            style: const TextStyle(
-                              fontSize: 12,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 6,
-                          ),
-                          Container(
-                            height: 5,
-                            width: 5,
+                        Positioned(
+                          left: 45,
+                          child: Container(
+                            height: 60,
+                            width: 55,
                             decoration: BoxDecoration(
-                              color: deepPurple,
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(25),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  event.coHost[1].profileImage,
+                                ),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 6,
-                          ),
-                          const Icon(
-                            Icons.person_outline_rounded,
-                            size: 13,
-                          ),
-                          const SizedBox(
-                            width: 6,
-                          ),
-                          const Text(
-                            '20',
-                            style: TextStyle(
-                              fontSize: 12,
+                        ),
+                        Positioned(
+                          left: 95,
+                          child: Container(
+                            height: 60,
+                            width: 55,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  event.coHost[2].profileImage,
+                                ),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ],
-                      )
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -274,7 +241,11 @@ class CustomCard extends StatelessWidget {
                         ],
                       ),
                     ],
-                  )
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  liveStatsData()
                 ],
               ),
             if (isUpcoming)
@@ -285,6 +256,62 @@ class CustomCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Column liveStatsData() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Row(
+          children: [
+            const Icon(
+              Icons.hearing,
+              size: 13,
+            ),
+            const SizedBox(
+              width: 6,
+            ),
+            Text(
+              event.listeners.toString(),
+              style: const TextStyle(
+                fontSize: 12,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Container(
+          height: 5,
+          width: 5,
+          decoration: BoxDecoration(
+            color: deepPurple,
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        const Row(
+          children: [
+            Icon(
+              Icons.person_outline_rounded,
+              size: 13,
+            ),
+            SizedBox(
+              width: 6,
+            ),
+            Text(
+              '20',
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
+          ],
+        )
+      ],
     );
   }
 }

@@ -310,7 +310,14 @@ class UpcomingEvents extends StatelessWidget {
                                 )
                               : CustomMaterialButton(
                                   height: 45,
-                                  onPress: () {},
+                                  onPress: () {
+                                    Get.to(
+                                      () => AddEventSceen(
+                                        isUpdateEvent: true,
+                                        event: event,
+                                      ),
+                                    );
+                                  },
                                   child: const Text(
                                     'Edit Event',
                                     style: TextStyle(

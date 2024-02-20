@@ -177,7 +177,9 @@ class _MainEventScreenState extends State<MainEventScreen> {
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(15),
-                                                  color: appColor,
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .background,
                                                 ),
                                                 child: ColorFiltered(
                                                   colorFilter: ColorFilter.mode(
@@ -201,7 +203,9 @@ class _MainEventScreenState extends State<MainEventScreen> {
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(15),
-                                                  color: appColor,
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .background,
                                                 ),
                                                 child: Align(
                                                   child: Icon(

@@ -1,4 +1,3 @@
-import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/message_list.dart';
 import 'package:club_92/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';

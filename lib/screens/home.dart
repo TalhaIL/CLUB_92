@@ -201,7 +201,11 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                const SizedBox(
+                  width: 25,
+                ),
                 const Text(
                   'Start a Room',
                   style: TextStyle(
@@ -211,7 +215,9 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
                   textAlign: TextAlign.center,
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.back();
+                  },
                   icon: const Icon(Icons.close),
                 )
               ],
