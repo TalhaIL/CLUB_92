@@ -37,7 +37,6 @@ class _MainEventScreenState extends State<MainEventScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
         leading: IconButton(
           onPressed: () {
             Get.back();
@@ -124,7 +123,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
                     ),
-                    color: appColor,
+                    color: Theme.of(context).colorScheme.background,
                   ),
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
@@ -304,7 +303,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
     return Container(
       height: 90,
       decoration: BoxDecoration(
-        color: transparentWhite,
+        color: transparentWhite.withOpacity(0.2),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(25),
           topRight: Radius.circular(25),
@@ -446,7 +445,15 @@ class _MainEventScreenState extends State<MainEventScreen> {
       height: 190,
       width: 190,
       decoration: BoxDecoration(
-        color: transparentWhite,
+        color: Theme.of(context).colorScheme.primaryContainer,
+        boxShadow: [
+          BoxShadow(
+            color: transparentWhite.withOpacity(0.05),
+            offset: const Offset(2, 2),
+            blurRadius: 5,
+            spreadRadius: 5,
+          )
+        ],
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
@@ -488,12 +495,10 @@ class _MainEventScreenState extends State<MainEventScreen> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: transparentWhite,
-          title: Text(
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          shadowColor: Colors.black26,
+          title: const Text(
             'Wait for 3 seconds',
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.7),
-            ),
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
@@ -512,7 +517,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
 
   Future<dynamic> shortProfileSheet(BuildContext context, int index) {
     return showModalBottomSheet(
-      backgroundColor: transparentWhite,
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       context: context,
       builder: (context) => SizedBox(
         height: 400,
@@ -569,9 +574,8 @@ class _MainEventScreenState extends State<MainEventScreen> {
                       ),
                       Text(
                         listOfSpeakers[index].username.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
-                          color: Colors.white.withOpacity(0.5),
                         ),
                       )
                     ],
@@ -609,6 +613,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                         listOfSpeakers[index].isFollowing.value
                             ? 'Following'
                             : 'Follow',
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ),
                   )
@@ -633,7 +638,10 @@ class _MainEventScreenState extends State<MainEventScreen> {
                     ),
                   );
                 },
-                child: const Text('Visit Full Profile'),
+                child: const Text(
+                  'Visit Full Profile',
+                  style: TextStyle(color: Colors.white),
+                ),
               )
             ],
           ),
@@ -655,9 +663,8 @@ class _MainEventScreenState extends State<MainEventScreen> {
         ),
         Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18,
-            color: Colors.white.withOpacity(0.5),
           ),
         )
       ],
@@ -666,7 +673,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
 
   Future<dynamic> customRoomRulesSheet(BuildContext context) {
     return showModalBottomSheet(
-      backgroundColor: transparentWhite,
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       context: context,
       showDragHandle: true,
       builder: (context) => SizedBox(
@@ -680,9 +687,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                 children: [
                   Text(
                     widget.event.title,
-                    style: const TextStyle(
-                      color: Colors.white60,
-                    ),
+                    style: const TextStyle(),
                   ),
                   const SizedBox(
                     width: 5,
@@ -748,9 +753,6 @@ class _MainEventScreenState extends State<MainEventScreen> {
         ),
         Text(
           text,
-          style: const TextStyle(
-            color: Colors.white54,
-          ),
         ),
         const SizedBox(
           height: 10,

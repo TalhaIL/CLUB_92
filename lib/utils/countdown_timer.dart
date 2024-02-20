@@ -8,7 +8,7 @@ class CircularCountdownTimer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircularCountDownTimer(
-      ringColor: transparentWhite,
+      ringColor: Theme.of(context).colorScheme.primaryContainer,
       duration: 3,
       width: 70,
       height: 70,
@@ -18,9 +18,8 @@ class CircularCountdownTimer extends StatelessWidget {
       onComplete: () {
         // Handle completion if needed
       },
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         fontSize: 20.0,
-        color: Colors.white.withOpacity(0.7),
         fontWeight: FontWeight.bold,
       ),
     );

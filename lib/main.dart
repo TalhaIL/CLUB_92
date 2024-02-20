@@ -1,7 +1,6 @@
 import 'package:club_92/constants/color.dart';
-import 'package:club_92/constants/speaker.dart';
 import 'package:club_92/controllers/theme/theme.dart';
-import 'package:club_92/screens/country.dart';
+import 'package:club_92/screens/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +29,8 @@ class MyApp extends StatelessWidget {
                 colorScheme: ColorScheme.dark(
                     brightness: Brightness.dark,
                     background: const Color(0xff20283b).withOpacity(1),
-                    tertiary: Colors.white),
+                    tertiary: Colors.white,
+                    primaryContainer: transparentWhite),
                 primaryTextTheme: TextTheme(
                   bodyLarge: const TextStyle(color: Colors.white),
                   bodyMedium: const TextStyle(color: Colors.white),
@@ -48,7 +48,8 @@ class MyApp extends StatelessWidget {
               colorScheme: const ColorScheme.light(
                   brightness: Brightness.light,
                   background: Colors.white,
-                  tertiary: Colors.black),
+                  tertiary: Colors.black,
+                  primaryContainer: Colors.white),
               primaryTextTheme: TextTheme(
                 bodyLarge: const TextStyle(color: Colors.black),
                 bodyMedium: const TextStyle(color: Colors.black),
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            home: const ChooseCountry(),
+            home: const LoginScreen(),
           ),
         );
       },

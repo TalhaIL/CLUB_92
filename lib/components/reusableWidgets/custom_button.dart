@@ -12,7 +12,7 @@ class CustomMaterialButton extends StatelessWidget {
     required this.onPress,
     required this.child,
     this.width = 150,
-    this.height = 50,
+    this.height = 40,
   });
 
   @override

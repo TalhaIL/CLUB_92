@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/speaker.dart';
-import 'package:club_92/screens/interests.dart';
+import 'package:club_92/screens/auth/register/interests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
