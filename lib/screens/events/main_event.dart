@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
 import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/speaker.dart';
@@ -344,41 +347,46 @@ class _MainEventScreenState extends State<MainEventScreen> {
                   : const Icon(Icons.keyboard_control),
             ),
             if (widget.isMyEvent)
-              Stack(
-                children: [
-                  Positioned(
-                    top: 15,
-                    bottom: 10,
-                    right: 0,
-                    child: Container(
-                      height: 35,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(15),
+              GestureDetector(
+                onTap: () {
+                  customRaiseHandSheet(context);
+                },
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: 15,
+                      bottom: 10,
+                      right: 0,
+                      child: Container(
+                        height: 35,
+                        width: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                       ),
                     ),
-                  ),
-                  Lottie.asset(
-                    'assets/animations/raise_hand.json',
-                    height: 60,
-                    animate: false,
-                    width: 70,
-                  ),
-                  Positioned(
-                    bottom: 5,
-                    right: 0,
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.red,
-                      ),
-                      child: const Center(child: Text('5')),
+                    Lottie.asset(
+                      'assets/animations/raise_hand.json',
+                      height: 60,
+                      animate: false,
+                      width: 70,
                     ),
-                  )
-                ],
+                    Positioned(
+                      bottom: 5,
+                      right: 0,
+                      child: Container(
+                        height: 20,
+                        width: 20,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.red,
+                        ),
+                        child: const Center(child: Text('5')),
+                      ),
+                    )
+                  ],
+                ),
               ),
             controller.isMicOn.value || widget.isMyEvent
                 ? GestureDetector(
@@ -442,6 +450,55 @@ class _MainEventScreenState extends State<MainEventScreen> {
         ),
       ),
     );
+  }
+
+  Future<dynamic> customRaiseHandSheet(BuildContext context) {
+    return showModalBottomSheet(
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        context: context,
+        builder: (context) {
+          return SizedBox(
+            height: 400,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Raised Hands',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Obx(
+                        () => Switch(
+                            activeColor: deepPurple,
+                            value: controller.isRaisedHandsEnable.value,
+                            onChanged: (val) {
+                              controller.isRaisedHandsEnable.value = val;
+                            }),
+                      )
+                    ],
+                  ),
+                  const Divider(),
+                  Expanded(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return CustomSpeakerTile(
+                          index: index,
+                          isRaiseHands: true,
+                          profileImage: listOfSpeakers[index].profileImage,
+                          name: listOfSpeakers[index].name,
+                        );
+                      },
+                      itemCount: 5,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        });
   }
 
   Container dialogContainer(BuildContext context) {
