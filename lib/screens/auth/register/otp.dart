@@ -12,14 +12,9 @@ class OtpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-        backgroundColor: appColor,
         title: const Text(
           'VERIFICATION',
           style: TextStyle(
-            color: Colors.white,
             fontSize: 15,
           ),
         ),
@@ -58,14 +53,16 @@ class OtpScreen extends StatelessWidget {
                       () => const UserName(),
                     );
                   },
-                  child: const Text('Next'),
+                  child: const Text(
+                    'Next',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 const Text(
                   "Didn't recieve it?",
-                  style: TextStyle(color: Colors.white),
                 ),
                 const SizedBox(
                   height: 20,

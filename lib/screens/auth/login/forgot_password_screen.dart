@@ -29,7 +29,10 @@ class ForgotPassword extends StatelessWidget {
             ),
             CustomMaterialButton(
               onPress: () {},
-              child: const Text('Reset Password'),
+              child: const Text(
+                'Reset Password',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
             const SizedBox(
               height: 20,

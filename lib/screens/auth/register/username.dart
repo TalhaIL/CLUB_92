@@ -12,18 +12,12 @@ class UserName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
         actions: [
           TextButton(
             onPressed: () {},
             child: const Text(
               'SKIP',
-              style: TextStyle(
-                color: Colors.white,
-              ),
+              style: TextStyle(),
             ),
           ),
         ],
@@ -41,11 +35,11 @@ class UserName extends StatelessWidget {
               children: [
                 RichText(
                   textAlign: TextAlign.center,
-                  text: const TextSpan(
+                  text: TextSpan(
                     style: TextStyle(
-                      fontSize: 15,
-                    ),
-                    children: [
+                        fontSize: 15,
+                        color: Theme.of(context).colorScheme.tertiary),
+                    children: const [
                       TextSpan(text: 'Great now let us know\n'),
                       TextSpan(text: 'how you look a like'),
                     ],
@@ -58,7 +52,7 @@ class UserName extends StatelessWidget {
                   height: 120,
                   width: 115,
                   decoration: BoxDecoration(
-                    color: textFieldColor,
+                    color: transparentWhite.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(
                       35,
                     ),
@@ -98,7 +92,10 @@ class UserName extends StatelessWidget {
                       () => const SpeakersScreen(),
                     );
                   },
-                  child: const Text('Next'),
+                  child: const Text(
+                    'Next',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,

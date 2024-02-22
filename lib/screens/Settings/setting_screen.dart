@@ -40,9 +40,10 @@ class _SettingScreenState extends State<SettingScreen> {
             Obx(
               () => textWithSwitch(
                   text: 'Dark Mode',
-                  switchValue: controller.isDark,
+                  switchValue:
+                      controller.theme.value == ThemeMode.dark ? true : false,
                   onChanged: (val) {
-                    controller.changeTheme(val);
+                    controller.toggleTheme(val);
                   }),
             ),
             const SizedBox(

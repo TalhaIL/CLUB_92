@@ -13,22 +13,25 @@ class SpeakersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
         centerTitle: true,
         title: const Text(
           'TOP SPEAKERS',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          style: TextStyle(
+            fontSize: 20,
+          ),
         ),
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: CustomMaterialButton(
-          onPress: () {
-            Get.to(() => InterestScreen());
-          },
-          width: 130,
-          child: const Text('Next'),
-        ),
+            onPress: () {
+              Get.to(() => InterestScreen());
+            },
+            width: 130,
+            child: const Text(
+              'Next',
+              style: TextStyle(color: Colors.white),
+            )),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Padding(
@@ -93,9 +96,6 @@ class SpeakersScreen extends StatelessWidget {
                         ),
                         Text(
                           listOfSpeakers[index].name,
-                          style: const TextStyle(
-                            color: Colors.white,
-                          ),
                         )
                       ],
                     ),
