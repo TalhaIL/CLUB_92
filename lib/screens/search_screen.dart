@@ -37,8 +37,8 @@ class _SearchScreenState extends State<SearchScreen>
                 border: Border(
                   bottom: BorderSide(
                     color: _focusNode.hasFocus
-                        ? Colors.transparent
-                        : Colors.grey.withOpacity(0.5),
+                        ? Theme.of(context).colorScheme.background
+                        : Theme.of(context).colorScheme.onSurface,
                     width: 2,
                   ),
                 ),
@@ -48,7 +48,10 @@ class _SearchScreenState extends State<SearchScreen>
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Row(
                   children: [
-                    const Icon(Icons.search),
+                    Icon(
+                      Icons.search,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                     const SizedBox(
                       width: 5,
                     ),
@@ -89,12 +92,12 @@ class _SearchScreenState extends State<SearchScreen>
                     ),
                     child: TabBar(
                       indicator: BoxDecoration(
-                        color: deepPurple,
+                        color: Theme.of(context).colorScheme.primary,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       labelPadding: const EdgeInsets.all(10),
                       indicatorSize: TabBarIndicatorSize.tab,
-                      labelColor: Colors.white,
+                      labelColor: Theme.of(context).colorScheme.onPrimary,
                       dividerHeight: 0,
                       controller: tabcontroller,
                       tabs: const [
@@ -136,89 +139,93 @@ class _SearchScreenState extends State<SearchScreen>
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: ListView.builder(
-                              itemCount: listOfRooms.length,
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) => Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 10, bottom: 10),
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            height: 60,
-                                            width: 60,
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                image: NetworkImage(
-                                                  listOfRooms[index].coverImage,
-                                                ),
-                                                fit: BoxFit.cover,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
+                            itemCount: listOfRooms.length,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) => Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10, bottom: 10),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: 60,
+                                      width: 60,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                            listOfRooms[index].coverImage,
                                           ),
-                                          const SizedBox(
-                                            width: 15,
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    listOfRooms[index].name,
-                                                    style: const TextStyle(
-                                                      fontSize: 18,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 5,
-                                                  ),
-                                                  Icon(
-                                                    Icons.flag,
-                                                    color: deepPurple,
-                                                    size: 20,
-                                                  )
-                                                ],
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                      '${listOfRooms[index].members} Members',
-                                                      style: Theme.of(context)
-                                                          .primaryTextTheme
-                                                          .bodySmall),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Container(
-                                                    height: 5,
-                                                    width: 5,
-                                                    color: deepPurple,
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    '${listOfRooms[index].followers} followers',
-                                                    style: TextStyle(
-                                                      color: Colors.white
-                                                          .withOpacity(0.5),
-                                                    ),
-                                                  )
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ],
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: BorderRadius.circular(15),
                                       ),
                                     ),
-                                  )),
+                                    const SizedBox(
+                                      width: 15,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              listOfRooms[index].name,
+                                              style: const TextStyle(
+                                                fontSize: 18,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Icon(
+                                              Icons.flag,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
+                                              size: 20,
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '${listOfRooms[index].members} Members',
+                                              style: Theme.of(context)
+                                                  .primaryTextTheme
+                                                  .bodySmall,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Container(
+                                              height: 5,
+                                              width: 5,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              '${listOfRooms[index].followers} followers',
+                                              style: TextStyle(
+                                                color: Colors.white
+                                                    .withOpacity(0.5),
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                         )
                       ],
                     ),

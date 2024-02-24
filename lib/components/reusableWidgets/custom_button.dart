@@ -1,4 +1,3 @@
-import 'package:club_92/constants/color.dart';
 import 'package:flutter/material.dart';
 
 class CustomMaterialButton extends StatelessWidget {
@@ -18,13 +17,14 @@ class CustomMaterialButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-        minWidth: width,
-        height: height,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        color: deepPurple,
-        onPressed: onPress,
-        child: child);
+      minWidth: width,
+      height: height,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      color: Theme.of(context).colorScheme.primary,
+      onPressed: onPress,
+      child: child,
+    );
   }
 }

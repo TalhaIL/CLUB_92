@@ -70,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
                     width: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: deepPurple),
+                      border: Border.all(color: appColor),
                       image: DecorationImage(
                         image: NetworkImage(
                           speaker.profileImage,
@@ -203,7 +203,7 @@ class ProfileScreen extends StatelessWidget {
                             Text(
                               'Today 8:30 pm',
                               style: TextStyle(
-                                color: deepPurple,
+                                color: appColor,
                                 fontSize: 15,
                               ),
                             ),
@@ -213,7 +213,7 @@ class ProfileScreen extends StatelessWidget {
                                 'Edit',
                                 style: TextStyle(
                                   fontSize: 15,
-                                  color: deepPurple,
+                                  color: appColor,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -238,7 +238,7 @@ class ProfileScreen extends StatelessWidget {
                             const Text('FROM WORLD WARRIORS'),
                             Icon(
                               Icons.flag,
-                              color: deepPurple,
+                              color: appColor,
                               size: 18,
                             )
                           ],

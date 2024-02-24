@@ -60,17 +60,19 @@ class _AddEventSceenState extends State<AddEventSceen> {
               ? CustomMaterialButton(
                   onPress: () {},
                   width: 120,
-                  child: const Text(
+                  child: Text(
                     'Update',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary),
                   ),
                 )
               : CustomMaterialButton(
                   onPress: () {},
                   width: 120,
-                  child: const Text(
+                  child: Text(
                     'Publish',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary),
                   ),
                 ),
           const SizedBox(
@@ -159,7 +161,7 @@ class _AddEventSceenState extends State<AddEventSceen> {
                   children: [
                     const Text('Paid Event?'),
                     Switch(
-                      activeColor: deepPurple,
+                      activeColor: Theme.of(context).colorScheme.primary,
                       value: _addEventController.isSwitched.value,
                       onChanged: (val) {
                         _addEventController.isSwitched.value = val;
@@ -212,7 +214,9 @@ class _AddEventSceenState extends State<AddEventSceen> {
         height: 50,
         width: 140,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20), color: textFieldColor),
+          borderRadius: BorderRadius.circular(20),
+          color: Theme.of(context).colorScheme.surface,
+        ),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Row(
@@ -248,11 +252,9 @@ class _AddEventSceenState extends State<AddEventSceen> {
       height: 60,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: textFieldColor,
+        color: Theme.of(context).colorScheme.surface,
         border: Border.all(
-          color: Colors.blueGrey.withOpacity(
-            0.2,
-          ),
+          color: Theme.of(context).colorScheme.onSurface,
           width: 1.0,
         ),
       ),
@@ -262,7 +264,7 @@ class _AddEventSceenState extends State<AddEventSceen> {
             children: [
               isAddCoHost
                   ? CircleAvatar(
-                      backgroundColor: deepPurple,
+                      backgroundColor: appColor,
                       maxRadius: 25,
                       child: const Icon(Icons.add),
                     )

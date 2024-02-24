@@ -93,8 +93,10 @@ class _SettingScreenState extends State<SettingScreen> {
             Text(
               'Version 1.0.0',
               style: TextStyle(
-                color: Colors.white.withOpacity(0.5),
-              ),
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onBackground
+                      .withOpacity(0.5)),
             )
           ],
         ),
@@ -133,13 +135,15 @@ class _SettingScreenState extends State<SettingScreen> {
       children: [
         Text(
           text,
-          style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontSize: 19,
+          ),
         ),
         switchValue != null
             ? Switch(
                 value: switchValue,
                 onChanged: onChanged,
-                activeColor: deepPurple,
+                activeColor: Theme.of(context).colorScheme.primary,
               )
             : TextButton(
                 onPressed: () {
@@ -151,7 +155,6 @@ class _SettingScreenState extends State<SettingScreen> {
                           topRight: Radius.circular(20),
                         ),
                       ),
-                      backgroundColor: Colors.black,
                       context: context,
                       builder: (BuildContext context) {
                         return const LanguageBottomSheet();
@@ -161,7 +164,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   text2.toString(),
                   style: TextStyle(
                     fontSize: 15,
-                    color: deepPurple,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               )

@@ -37,11 +37,11 @@ class UpcomingEvents extends StatelessWidget {
                       width: 60,
                       decoration: BoxDecoration(
                         color: _eventController.isAllEvents.value
-                            ? deepPurple
-                            : Colors.transparent,
+                            ? Theme.of(context).colorScheme.primary
+                            : Theme.of(context).colorScheme.background,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: deepPurple,
+                          color: appColor,
                         ),
                       ),
                       child: Center(
@@ -49,8 +49,8 @@ class UpcomingEvents extends StatelessWidget {
                           'All',
                           style: TextStyle(
                             color: _eventController.isAllEvents.value
-                                ? Colors.white
-                                : Theme.of(context).colorScheme.tertiary,
+                                ? Theme.of(context).colorScheme.onPrimary
+                                : Theme.of(context).colorScheme.onBackground,
                           ),
                         ),
                       ),
@@ -67,11 +67,11 @@ class UpcomingEvents extends StatelessWidget {
                       width: 110,
                       decoration: BoxDecoration(
                         color: _eventController.isAllEvents.value
-                            ? Colors.transparent
-                            : deepPurple,
+                            ? Theme.of(context).colorScheme.background
+                            : Theme.of(context).colorScheme.primary,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: deepPurple,
+                          color: appColor,
                         ),
                       ),
                       child: Center(
@@ -79,8 +79,8 @@ class UpcomingEvents extends StatelessWidget {
                           'My Events',
                           style: TextStyle(
                             color: !_eventController.isAllEvents.value
-                                ? Colors.white
-                                : Theme.of(context).colorScheme.tertiary,
+                                ? Theme.of(context).colorScheme.onPrimary
+                                : Theme.of(context).colorScheme.onBackground,
                           ),
                         ),
                       ),
@@ -94,25 +94,23 @@ class UpcomingEvents extends StatelessWidget {
                     );
                   },
                   width: 120,
-                  child: const SizedBox(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.add,
-                          color: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        'Add Event',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary,
                         ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'Add Event',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 )
               ],
@@ -171,7 +169,7 @@ class UpcomingEvents extends StatelessWidget {
                     Text(
                       'Today 6:00 pm',
                       style: TextStyle(
-                          color: deepPurple,
+                          color: appColor,
                           fontSize: 17,
                           fontWeight: FontWeight.bold),
                     ),
@@ -225,7 +223,7 @@ class UpcomingEvents extends StatelessWidget {
                               ),
                               Icon(
                                 Icons.flag,
-                                color: deepPurple,
+                                color: appColor,
                                 size: 17,
                               )
                             ],

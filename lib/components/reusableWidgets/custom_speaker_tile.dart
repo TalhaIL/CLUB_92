@@ -1,7 +1,5 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/speaker.dart';
-import 'package:club_92/controllers/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,8 +22,6 @@ class CustomSpeakerTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.put(ThemeController());
-
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: GestureDetector(
@@ -94,8 +90,8 @@ class CustomSpeakerTile extends StatelessWidget {
                         listOfSpeakers[index].isFollowing.value
                             ? 'Following'
                             : 'Follow',
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
                     ),
@@ -111,19 +107,18 @@ class CustomSpeakerTile extends StatelessWidget {
                             padding: const EdgeInsets.all(5),
                             decoration: BoxDecoration(
                                 color: listOfSpeakers[index].isSelected.value
-                                    ? deepPurple
-                                    : transparentWhite.withOpacity(0.1),
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Theme.of(context).colorScheme.surface,
                                 borderRadius: BorderRadius.circular(15)),
                             child: Row(
                               children: [
                                 Icon(
                                   Icons.add,
                                   color: listOfSpeakers[index].isSelected.value
-                                      ? Colors.white
-                                      : themeController.theme.value ==
-                                              ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white,
+                                      ? Theme.of(context).colorScheme.onPrimary
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onBackground,
                                 ),
                                 const SizedBox(
                                   width: 4,
@@ -133,11 +128,12 @@ class CustomSpeakerTile extends StatelessWidget {
                                   style: TextStyle(
                                     color:
                                         listOfSpeakers[index].isSelected.value
-                                            ? Colors.white
-                                            : themeController.theme.value ==
-                                                    ThemeMode.light
-                                                ? Colors.black
-                                                : Colors.white,
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .onPrimary
+                                            : Theme.of(context)
+                                                .colorScheme
+                                                .onBackground,
                                   ),
                                 ),
                                 const SizedBox(
@@ -146,11 +142,10 @@ class CustomSpeakerTile extends StatelessWidget {
                                 Icon(
                                   Icons.lock,
                                   color: listOfSpeakers[index].isSelected.value
-                                      ? Colors.white
-                                      : themeController.theme.value ==
-                                              ThemeMode.light
-                                          ? Colors.black
-                                          : Colors.white,
+                                      ? Theme.of(context).colorScheme.onPrimary
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onBackground,
                                 )
                               ],
                             ),

@@ -15,7 +15,6 @@ class OtpScreen extends StatelessWidget {
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
-        backgroundColor: appColor,
         title: const Text(
           'VERIFICATION',
           style: TextStyle(
@@ -72,7 +71,7 @@ class OtpScreen extends StatelessWidget {
                 ),
                 Text(
                   "RESEND",
-                  style: TextStyle(color: deepPurple),
+                  style: TextStyle(color: appColor),
                 ),
               ],
             ),

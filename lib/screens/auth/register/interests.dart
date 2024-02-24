@@ -41,7 +41,6 @@ class InterestScreen extends StatelessWidget {
             ),
             expandedHeight: 150.0,
             floating: true,
-            backgroundColor: appColor,
             centerTitle: true,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.none,
@@ -96,20 +95,28 @@ class InterestScreen extends StatelessWidget {
                                     child: Obx(
                                       () => Chip(
                                         side: BorderSide(
-                                          color: deepPurple,
+                                          color: appColor,
                                         ),
                                         label: Text(
                                           v.categoryName,
                                           style: TextStyle(
                                             color: v.isSelected.value
-                                                ? Colors.white
-                                                : deepPurple,
+                                                ? Theme.of(context)
+                                                    .colorScheme
+                                                    .onPrimary
+                                                : Theme.of(context)
+                                                    .colorScheme
+                                                    .primary,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                         backgroundColor: v.isSelected.value
-                                            ? deepPurple
-                                            : appColor,
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .primary
+                                            : Theme.of(context)
+                                                .colorScheme
+                                                .background,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20),

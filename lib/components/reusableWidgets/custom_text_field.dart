@@ -1,4 +1,3 @@
-import 'package:club_92/constants/color.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -22,11 +21,9 @@ class CustomTextField extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: textFieldColor,
+        color: Theme.of(context).colorScheme.surface,
         border: Border.all(
-          color: Colors.blueGrey.withOpacity(
-            0.2,
-          ),
+          color: Theme.of(context).colorScheme.onSurface,
           width: 1.0,
         ),
       ),
@@ -37,10 +34,11 @@ class CustomTextField extends StatelessWidget {
           enabled: isEnabled,
           maxLines: maxLines,
           readOnly: isReadOnly,
-          cursorColor: Colors.white,
           decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: Theme.of(context).primaryTextTheme.bodySmall,
+            hintStyle: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
             border: InputBorder.none,
             suffixIcon: icon,
           ),

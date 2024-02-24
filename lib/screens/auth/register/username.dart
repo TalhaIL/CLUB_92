@@ -12,17 +12,13 @@ class UserName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
         actions: [
           TextButton(
             onPressed: () {},
-            child: const Text(
+            child: Text(
               'SKIP',
               style: TextStyle(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
           ),
@@ -68,7 +64,7 @@ class UserName extends StatelessWidget {
                       onPressed: () {},
                       icon: Icon(
                         Icons.camera_alt,
-                        color: deepPurple,
+                        color: appColor,
                       ),
                     ),
                   ),

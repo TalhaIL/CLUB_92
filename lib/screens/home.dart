@@ -48,9 +48,9 @@ class _HomeScreenState extends State<HomeScreen>
               insets: const EdgeInsets.only(
                 top: 5,
               ),
-              borderSide: BorderSide(color: deepPurple, width: 2),
+              borderSide: BorderSide(color: appColor, width: 2),
             ),
-            labelColor: deepPurple,
+            labelColor: appColor,
             labelPadding: const EdgeInsets.only(
               bottom: 10,
               right: 15,
@@ -328,8 +328,8 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
           padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
             color: homeController.selectedPrivacy.value == privacy
-                ? deepPurple
-                : transparentWhite.withOpacity(0.1),
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadius.circular(15),
           ),
           child: Text(
@@ -337,8 +337,8 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
             style: TextStyle(
               fontSize: 18,
               color: homeController.selectedPrivacy.value == privacy
-                  ? Colors.white
-                  : Colors.grey,
+                  ? Theme.of(context).colorScheme.onPrimary
+                  : Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),

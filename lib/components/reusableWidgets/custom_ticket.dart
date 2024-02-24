@@ -14,7 +14,7 @@ class CustomTicket extends StatelessWidget {
       width: 45,
       height: 25,
       decoration: BoxDecoration(
-        color: deepPurple,
+        color: appColor,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
@@ -24,21 +24,23 @@ class CustomTicket extends StatelessWidget {
             height: 7,
             width: 7,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.background,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(30),
             ),
           ),
           Center(
             child: Text(
               '\$$ticketAmount',
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
             ),
           ),
           Container(
             height: 7,
             width: 7,
             decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(30)),
           ),
         ],

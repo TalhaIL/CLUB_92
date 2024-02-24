@@ -97,7 +97,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
                   hintText: 'Choose Country',
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
-                      color: deepPurple,
+                      color: appColor,
                     ),
                   ),
                 ),

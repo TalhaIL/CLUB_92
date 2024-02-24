@@ -1,4 +1,3 @@
-import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/message_list.dart';
 import 'package:club_92/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +44,12 @@ class ChatListScreen extends StatelessWidget {
               ),
               subtitle: Text(
                 chats[index].lastMessage,
-                style: Theme.of(context).primaryTextTheme.bodySmall,
+                style: TextStyle(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onBackground
+                      .withOpacity(0.5),
+                ),
               ),
               onTap: () {
                 Navigator.push(

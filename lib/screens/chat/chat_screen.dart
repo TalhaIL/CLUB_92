@@ -119,8 +119,8 @@ class _ChatScreenState extends State<ChatScreen> {
                               ),
                               child: Text(
                                 'This is testing message $index',
-                                style: TextStyle(
-                                  color: isMe ? Colors.black : Colors.black87,
+                                style: const TextStyle(
+                                  color: Colors.black,
                                 ),
                               ),
                             ),
@@ -146,7 +146,7 @@ class _ChatScreenState extends State<ChatScreen> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
             decoration: BoxDecoration(
-                color: transparentWhite.withOpacity(0.4),
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(25),
                   topRight: Radius.circular(25),
@@ -175,7 +175,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   onPressed: () {},
                   icon: Icon(
                     Icons.send,
-                    color: deepPurple,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ],

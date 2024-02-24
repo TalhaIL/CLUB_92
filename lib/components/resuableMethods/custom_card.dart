@@ -20,7 +20,9 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Theme.of(context).colorScheme.background,
+      color: Theme.of(context).colorScheme.surface,
+      shadowColor: Theme.of(context).colorScheme.surface,
+      elevation: 0.1,
       child: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
@@ -33,7 +35,9 @@ class CustomCard extends StatelessWidget {
                   children: [
                     Text(
                       'Today, 6:00pm',
-                      style: TextStyle(color: deepPurple),
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                     controller!.isAllEvents.value
                         ? const Icon(Icons.notifications)
@@ -48,7 +52,9 @@ class CustomCard extends StatelessWidget {
                             },
                             child: Text(
                               'Edit',
-                              style: TextStyle(color: deepPurple),
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
                             ),
                           ),
                   ],
@@ -74,7 +80,7 @@ class CustomCard extends StatelessWidget {
                     ),
                     Icon(
                       Icons.flag,
-                      color: deepPurple,
+                      color: Theme.of(context).colorScheme.primary,
                       size: 17,
                     )
                   ],
@@ -215,7 +221,7 @@ class CustomCard extends StatelessWidget {
                             height: 5,
                             width: 5,
                             decoration: BoxDecoration(
-                              color: deepPurple,
+                              color: Theme.of(context).colorScheme.primary,
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),

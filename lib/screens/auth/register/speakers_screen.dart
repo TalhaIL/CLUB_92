@@ -13,11 +13,10 @@ class SpeakersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appColor,
         centerTitle: true,
         title: const Text(
           'TOP SPEAKERS',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          style: TextStyle(fontSize: 20),
         ),
       ),
       floatingActionButton: Padding(
@@ -81,7 +80,7 @@ class SpeakersScreen extends StatelessWidget {
                                 child: Positioned(
                                   child: Icon(
                                     Icons.check_circle_rounded,
-                                    color: deepPurple,
+                                    color: appColor,
                                   ),
                                 ),
                               ),
