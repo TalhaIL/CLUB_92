@@ -1,5 +1,4 @@
 import 'package:club_92/components/reusableWidgets/language_bottom_sheet.dart';
-import 'package:club_92/constants/color.dart';
 import 'package:club_92/controllers/theme/theme.dart';
 import 'package:club_92/screens/Settings/faqs_screen.dart';
 import 'package:club_92/screens/auth/register/interests.dart';

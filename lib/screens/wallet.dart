@@ -1,5 +1,4 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/constants/color.dart';
 import 'package:club_92/controllers/wallet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,7 +37,9 @@ class WalletScreen extends StatelessWidget {
                     Text(
                       '\$ ${controller.walletData.balance}',
                       style: const TextStyle(
-                          fontSize: 30, fontWeight: FontWeight.bold),
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 )
@@ -52,7 +53,7 @@ class WalletScreen extends StatelessWidget {
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),
                 ),
-                color: textFieldColor,
+                color: Theme.of(context).colorScheme.surface,
               ),
               child: Column(
                 children: [
@@ -76,10 +77,10 @@ class WalletScreen extends StatelessWidget {
                           baselineType: TextBaseline.alphabetic,
                           child: CustomMaterialButton(
                             onPress: () {},
-                            child: const Text(
+                            child: Text(
                               'Add Money',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.onPrimary,
                               ),
                             ),
                           ),
@@ -115,10 +116,11 @@ class WalletScreen extends StatelessWidget {
                                         ),
                                         children: [
                                           TextSpan(
-                                              text: ' 20 June,10.00 pm',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              )),
+                                            text: ' 20 June,10.00 pm',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),

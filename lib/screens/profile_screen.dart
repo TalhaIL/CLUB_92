@@ -1,5 +1,4 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/room_list.dart';
 import 'package:club_92/models/speaker_modal.dart';
 import 'package:club_92/screens/Settings/setting_screen.dart';
@@ -21,10 +20,10 @@ class ProfileScreen extends StatelessWidget {
             onPress: () {},
             height: 40,
             width: 50,
-            child: const Text(
+            child: Text(
               'Buy this app',
               style: TextStyle(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
           ),
@@ -70,7 +69,8 @@ class ProfileScreen extends StatelessWidget {
                     width: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: appColor),
+                      border: Border.all(
+                          color: Theme.of(context).colorScheme.primary),
                       image: DecorationImage(
                         image: NetworkImage(
                           speaker.profileImage,
@@ -187,7 +187,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: transparentWhite.withOpacity(0.2),
+                    color: Theme.of(context).colorScheme.surface,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
@@ -203,7 +203,7 @@ class ProfileScreen extends StatelessWidget {
                             Text(
                               'Today 8:30 pm',
                               style: TextStyle(
-                                color: appColor,
+                                color: Theme.of(context).colorScheme.primary,
                                 fontSize: 15,
                               ),
                             ),
@@ -213,7 +213,7 @@ class ProfileScreen extends StatelessWidget {
                                 'Edit',
                                 style: TextStyle(
                                   fontSize: 15,
-                                  color: appColor,
+                                  color: Theme.of(context).colorScheme.primary,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -238,7 +238,7 @@ class ProfileScreen extends StatelessWidget {
                             const Text('FROM WORLD WARRIORS'),
                             Icon(
                               Icons.flag,
-                              color: appColor,
+                              color: Theme.of(context).colorScheme.primary,
                               size: 18,
                             )
                           ],

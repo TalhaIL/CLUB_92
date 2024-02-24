@@ -5,7 +5,6 @@ import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/upcoming_events.dart';
 import 'package:club_92/controllers/events/event_controller.dart';
-import 'package:club_92/controllers/theme/theme.dart';
 import 'package:club_92/models/event_modal.dart';
 import 'package:club_92/screens/events/add_event.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,6 @@ import 'package:get/get.dart';
 class UpcomingEvents extends StatelessWidget {
   UpcomingEvents({super.key});
   final EventController _eventController = Get.put(EventController());
-  final ThemeController _themeController = Get.put(ThemeController());
 
   @override
   Widget build(BuildContext context) {
