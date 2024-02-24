@@ -472,7 +472,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                       ),
                       Obx(
                         () => Switch(
-                            activeColor: deepPurple,
+                            activeColor: Theme.of(context).colorScheme.primary,
                             value: controller.isRaisedHandsEnable.value,
                             onChanged: (val) {
                               controller.isRaisedHandsEnable.value = val;
