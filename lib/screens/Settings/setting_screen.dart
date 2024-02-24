@@ -2,6 +2,7 @@ import 'package:club_92/components/reusableWidgets/language_bottom_sheet.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/controllers/theme/theme.dart';
 import 'package:club_92/screens/Settings/faqs_screen.dart';
+import 'package:club_92/screens/auth/register/interests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,9 +40,10 @@ class _SettingScreenState extends State<SettingScreen> {
             Obx(
               () => textWithSwitch(
                   text: 'Dark Mode',
-                  switchValue: controller.theme.value == ThemeMode.dark,
+                  switchValue:
+                      controller.theme.value == ThemeMode.dark ? true : false,
                   onChanged: (val) {
-                    controller.toggleTheme();
+                    controller.toggleTheme(val);
                   }),
             ),
             const SizedBox(
@@ -54,8 +56,14 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             const Divider(),
             textWithMethod(
-              text: 'Interests',
-            ),
+                text: 'Interests',
+                onTap: () {
+                  Get.to(
+                    () => InterestScreen(
+                      isFromSettings: true,
+                    ),
+                  );
+                }),
             const SizedBox(
               height: 18,
             ),

@@ -1,15 +1,24 @@
+import 'dart:developer';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/controllers/theme/theme.dart';
 import 'package:club_92/screens/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final storage = await SharedPreferences.getInstance();
+  final isDark = storage.getBool('is_dark_theme') ?? true;
+  log(isDark.toString());
+  runApp(MyApp(
+    isDark: isDark,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isDark;
+  const MyApp({super.key, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +27,7 @@ class MyApp extends StatelessWidget {
         final controller = Get.put(
           ThemeController(),
         );
+        controller.themeChange(isDark);
         return Obx(
           () => GetMaterialApp(
             debugShowCheckedModeBanner: false,

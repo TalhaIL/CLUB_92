@@ -9,12 +9,14 @@ class CustomSpeakerTile extends StatelessWidget {
   final bool isEvents;
   final bool isSearchSceen;
   final bool isStartRoom;
+  final bool isRaiseHands;
   final int index;
   const CustomSpeakerTile({
     super.key,
     this.isSearchSceen = false,
     this.isEvents = false,
     this.isStartRoom = false,
+    this.isRaiseHands = false,
     required this.index,
     required this.profileImage,
     required this.name,
@@ -42,7 +44,7 @@ class CustomSpeakerTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
             ),
-            isStartRoom == true
+            isStartRoom == true || isRaiseHands == true
                 ? SizedBox(
                     width: MediaQuery.of(context).size.width * 0.38,
                     child: Column(
@@ -96,7 +98,7 @@ class CustomSpeakerTile extends StatelessWidget {
                       ),
                     ),
                   )
-                : isStartRoom
+                : isStartRoom || isRaiseHands
                     ? Obx(
                         () => GestureDetector(
                           onTap: () {
@@ -124,7 +126,7 @@ class CustomSpeakerTile extends StatelessWidget {
                                   width: 4,
                                 ),
                                 Text(
-                                  'Room',
+                                  isRaiseHands ? 'invited' : 'Room',
                                   style: TextStyle(
                                     color:
                                         listOfSpeakers[index].isSelected.value
@@ -140,7 +142,7 @@ class CustomSpeakerTile extends StatelessWidget {
                                   width: 4,
                                 ),
                                 Icon(
-                                  Icons.lock,
+                                  isRaiseHands ? Icons.mic : Icons.lock,
                                   color: listOfSpeakers[index].isSelected.value
                                       ? Theme.of(context).colorScheme.onPrimary
                                       : Theme.of(context)

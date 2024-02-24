@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 
 class InterestScreen extends StatelessWidget {
   final InterestController _interestController = Get.put(InterestController());
-
-  InterestScreen({super.key});
+  final bool isFromSettings;
+  InterestScreen({super.key, this.isFromSettings = false});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,12 @@ class InterestScreen extends StatelessWidget {
             Get.offAll(() => const HomeScreen());
           },
           width: 130,
-          child: const Text('Next'),
+          child: Text(
+            isFromSettings ? 'Save' : 'Next',
+            style: const TextStyle(
+              color: Colors.white,
+            ),
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -29,7 +34,9 @@ class InterestScreen extends StatelessWidget {
         slivers: [
           SliverAppBar(
             leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               icon: const Icon(
                 Icons.arrow_back_ios,
                 size: 20,

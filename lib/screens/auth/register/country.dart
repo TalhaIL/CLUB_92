@@ -17,23 +17,6 @@ class ChooseCountry extends StatefulWidget {
 class _ChooseCountryState extends State<ChooseCountry> {
   @override
   void initState() {
-    // Future.delayed(const Duration(seconds: 5), () {
-    //   showModalBottomSheet(
-    //     clipBehavior: Clip.antiAliasWithSaveLayer,
-    //     shape: const RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.only(
-    //         topLeft: Radius.circular(20),
-    //         topRight: Radius.circular(20),
-    //       ),
-    //     ),
-    //     backgroundColor: Colors.black,
-    //     context: context,
-    //     builder: (BuildContext context) {
-    //       return const LanguageBottomSheet();
-    //     },
-    //   );
-    // });
-
     super.initState();
   }
 
@@ -43,6 +26,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
     if (isFirstBuild) {
       Future.delayed(Duration.zero, () {
         showModalBottomSheet(
+          backgroundColor: Theme.of(context).colorScheme.background,
           clipBehavior: Clip.antiAliasWithSaveLayer,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -50,7 +34,6 @@ class _ChooseCountryState extends State<ChooseCountry> {
               topRight: Radius.circular(20),
             ),
           ),
-          backgroundColor: Colors.black,
           context: context,
           builder: (BuildContext context) {
             return const LanguageBottomSheet();
@@ -116,7 +99,10 @@ class _ChooseCountryState extends State<ChooseCountry> {
               onPress: () {
                 Get.to(() => const OtpScreen());
               },
-              child: const Text('Next'),
+              child: const Text(
+                'Next',
+                style: TextStyle(color: Colors.white),
+              ),
             )
           ],
         ),

@@ -18,7 +18,6 @@ class OtpScreen extends StatelessWidget {
         title: const Text(
           'VERIFICATION',
           style: TextStyle(
-            color: Colors.white,
             fontSize: 15,
           ),
         ),
@@ -57,14 +56,16 @@ class OtpScreen extends StatelessWidget {
                       () => const UserName(),
                     );
                   },
-                  child: const Text('Next'),
+                  child: const Text(
+                    'Next',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 const Text(
                   "Didn't recieve it?",
-                  style: TextStyle(color: Colors.white),
                 ),
                 const SizedBox(
                   height: 20,
