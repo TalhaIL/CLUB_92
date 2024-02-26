@@ -41,7 +41,9 @@ class CustomCard extends StatelessWidget {
                       ),
                     ),
                     controller!.isAllEvents.value
-                        ? const Icon(Icons.notifications)
+                        ? const Icon(
+                            Icons.notifications,
+                          )
                         : GestureDetector(
                             onTap: () {
                               Get.to(
@@ -87,23 +89,18 @@ class CustomCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      event.title,
-                      style: const TextStyle(
-                        fontSize: 13,
-                      ),
+                Expanded(
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      event.eventName,
+                      style: Theme.of(context).textTheme.titleLarge,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Icon(
-                      Icons.flag,
-                      color: Theme.of(context).colorScheme.primary,
-                      size: 17,
-                    )
-                  ],
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
                 ),
                 if (event.ticketAmount != null)
                   CustomTicket(
@@ -112,13 +109,24 @@ class CustomCard extends StatelessWidget {
               ],
             ),
             const SizedBox(
-              height: 5,
+              height: 10,
             ),
-            Text(
-              event.eventName,
-              style: const TextStyle(
-                fontSize: 14,
-              ),
+            Row(
+              children: [
+                Text(
+                  event.title,
+                  style: Theme.of(context).textTheme.titleSmall,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Icon(
+                  Icons.flag,
+                  color: Theme.of(context).colorScheme.primary,
+                  size: 17,
+                )
+              ],
             ),
             const SizedBox(
               height: 10,
@@ -218,14 +226,16 @@ class CustomCard extends StatelessWidget {
                           const SizedBox(
                             width: 3,
                           ),
-                          const Icon(
+                          Icon(
                             Icons.mic,
+                            color: Theme.of(context).colorScheme.primary,
                             size: 15,
                           ),
                         ],
                       ),
                       Text(
                         event.coHost[1].name,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                       Row(
                         children: [
@@ -235,18 +245,19 @@ class CustomCard extends StatelessWidget {
                           const SizedBox(
                             width: 3,
                           ),
-                          const Icon(
+                          Icon(
                             Icons.mic,
                             size: 15,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ],
                       ),
                     ],
                   ),
                   const SizedBox(
-                    width: 20,
+                    width: 15,
                   ),
-                  liveStatsData()
+                  liveStatsData(context)
                 ],
               ),
             if (isUpcoming)
@@ -260,7 +271,7 @@ class CustomCard extends StatelessWidget {
     );
   }
 
-  Column liveStatsData() {
+  Column liveStatsData(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -288,7 +299,7 @@ class CustomCard extends StatelessWidget {
           height: 5,
           width: 5,
           decoration: BoxDecoration(
-            color: appColor,
+            color: Theme.of(context).colorScheme.primary,
             borderRadius: BorderRadius.circular(30),
           ),
         ),

@@ -48,7 +48,7 @@ class SpeakersScreen extends StatelessWidget {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
                 crossAxisSpacing: 15.0,
-                mainAxisExtent: 95,
+                mainAxisExtent: 100,
                 mainAxisSpacing: 20.0,
               ),
               delegate: SliverChildBuilderDelegate(

@@ -1,3 +1,4 @@
+import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/message_list.dart';
 import 'package:club_92/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,20 @@ class ChatListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Chats'),
+        actions: [
+          CustomMaterialButton(
+            onPress: () {},
+            child: Text(
+              'Start New Chat',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          )
+        ],
       ),
       body: ListView.builder(
         itemCount: chats.length,

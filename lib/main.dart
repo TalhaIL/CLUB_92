@@ -34,46 +34,72 @@ class MyApp extends StatelessWidget {
             title: 'Club 92',
             themeMode: controller.theme.value,
             darkTheme: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.dark(
-                brightness: Brightness.dark,
-                background: const Color(0xff121212),
-                surface: const Color(0xff222222),
-                onBackground: const Color(0xffffffff),
-                onSurface: const Color(0xffffffff),
-                primary: appColor,
-                onPrimary: const Color(0xffffffff),
-              ),
-              // primaryTextTheme: TextTheme(
-              //   bodyLarge: const TextStyle(color: Colors.white),
-              //   bodyMedium: const TextStyle(color: Colors.white),
-              //   bodySmall: TextStyle(
-              //     fontWeight: FontWeight.w500,
-              //     color: Colors.white.withOpacity(0.5),
-              //   ),
-              // ),
-            ),
+                useMaterial3: true,
+                colorScheme: ColorScheme.dark(
+                  brightness: Brightness.dark,
+                  background: const Color(0xff121212),
+                  surface: const Color(0xff222222),
+                  onBackground: const Color(0xffffffff),
+                  onSurface: const Color(0xffffffff),
+                  primary: appColor,
+                  onPrimary: const Color(0xffffffff),
+                ),
+                textTheme: TextTheme(
+                  titleLarge: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w800,
+                  ),
+                  titleSmall: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w200,
+                  ),
+                  bodySmall: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white.withOpacity(0.3),
+                  ),
+                  bodyMedium: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white.withOpacity(0.7),
+                  ),
+                ),
+                appBarTheme: const AppBarTheme(
+                  titleTextStyle: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                )),
             theme: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.light(
-                brightness: Brightness.light,
-                background: const Color(0xffffffff),
-                surface: const Color(0xffffffff),
-                onBackground: const Color(0xff121212),
-                onSurface: const Color(0xff121212),
-                primary: appColor,
-                onPrimary: const Color(0xffffffff),
-              ),
-              // primaryTextTheme: TextTheme(
-              //   bodyLarge: const TextStyle(color: Colors.black),
-              //   bodyMedium: const TextStyle(color: Colors.black),
-              //   bodySmall: TextStyle(
-              //     fontSize: 16,
-              //     fontWeight: FontWeight.w500,
-              //     color: Colors.black.withOpacity(0.5),
-              //   ),
-              // ),
-            ),
+                useMaterial3: true,
+                colorScheme: ColorScheme.light(
+                  brightness: Brightness.light,
+                  background: const Color(0xffffffff),
+                  surface: const Color(0xffECECEC),
+                  onBackground: const Color(0xff121212),
+                  onSurface: const Color(0xff121212),
+                  primary: appColor,
+                  onPrimary: const Color(0xffffffff),
+                ),
+                textTheme: TextTheme(
+                  titleLarge: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  titleSmall: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w200,
+                  ),
+                  bodySmall: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black.withOpacity(0.5),
+                  ),
+                  bodyMedium: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black.withOpacity(0.7),
+                  ),
+                ),
+                appBarTheme: const AppBarTheme(
+                  titleTextStyle: TextStyle(fontSize: 20, color: Colors.black),
+                )),
             home: const LoginScreen(),
           ),
         );

@@ -1,6 +1,7 @@
 import 'package:club_92/components/reusableWidgets/language_bottom_sheet.dart';
 import 'package:club_92/controllers/theme/theme.dart';
 import 'package:club_92/screens/Settings/faqs_screen.dart';
+import 'package:club_92/screens/auth/login/login_screen.dart';
 import 'package:club_92/screens/auth/register/interests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -88,8 +89,10 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             const Divider(),
             textWithMethod(
-              text: 'logout',
-            ),
+                text: 'logout',
+                onTap: () {
+                  Get.to(() => const LoginScreen());
+                }),
             const SizedBox(
               height: 18,
             ),

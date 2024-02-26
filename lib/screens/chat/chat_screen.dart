@@ -156,12 +156,13 @@ class _ChatScreenState extends State<ChatScreen> {
                   onPressed: () {},
                   icon: const Icon(Icons.attach_file),
                 ),
-                const Expanded(
+                Expanded(
                   child: TextField(
                     maxLines: null,
                     keyboardType: TextInputType.multiline,
                     decoration: InputDecoration(
                       hintText: 'Type your message...',
+                      hintStyle: Theme.of(context).textTheme.bodySmall,
                       border: InputBorder.none,
                     ),
                   ),

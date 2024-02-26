@@ -25,22 +25,21 @@ class WalletScreen extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Available amount in wallet',
-                      style: TextStyle(
-                        fontSize: 17,
-                      ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall
+                          ?.copyWith(fontSize: 20),
                     ),
                     const SizedBox(
                       height: 5,
                     ),
-                    Text(
-                      '\$ ${controller.walletData.balance}',
-                      style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    Text('\$ ${controller.walletData.balance}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge
+                            ?.copyWith(fontSize: 30)),
                   ],
                 )
               ],
@@ -69,7 +68,6 @@ class WalletScreen extends StatelessWidget {
                           baselineType: TextBaseline.alphabetic,
                           child: Text(
                             'Recent Transactions',
-                            style: TextStyle(fontSize: 15),
                           ),
                         ),
                         Baseline(
@@ -109,17 +107,17 @@ class WalletScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     RichText(
-                                      text: const TextSpan(
+                                      text: TextSpan(
                                         text: 'Joined on',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w200,
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
                                         children: [
                                           TextSpan(
                                             text: ' 20 June,10.00 pm',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall,
                                           ),
                                         ],
                                       ),
@@ -130,10 +128,9 @@ class WalletScreen extends StatelessWidget {
                                         controller.walletData
                                             .transactions![index].roomName,
                                         maxLines: 2,
-                                        style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     )
@@ -151,8 +148,9 @@ class WalletScreen extends StatelessWidget {
                             const SizedBox(
                               height: 15,
                             ),
-                            const Divider(
-                              height: 1,
+                            Divider(
+                              height: 0.5,
+                              color: Theme.of(context).colorScheme.background,
                             ),
                             const SizedBox(
                               height: 5,

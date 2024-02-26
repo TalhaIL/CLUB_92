@@ -1,5 +1,6 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
+import 'package:club_92/components/reusableWidgets/logo_with_text.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPassword extends StatelessWidget {
@@ -16,6 +17,7 @@ class ForgotPassword extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const LogowithText(),
             const Text('We will send you a reset password link'),
             const SizedBox(
               height: 20,

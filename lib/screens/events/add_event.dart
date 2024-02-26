@@ -68,11 +68,22 @@ class _AddEventSceenState extends State<AddEventSceen> {
                 )
               : CustomMaterialButton(
                   onPress: () {},
-                  width: 120,
-                  child: Text(
-                    'Publish',
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimary),
+                  width: 100,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.upload,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
+                      const SizedBox(
+                        width: 7,
+                      ),
+                      Text(
+                        'Add',
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary),
+                      ),
+                    ],
                   ),
                 ),
           const SizedBox(
@@ -109,7 +120,7 @@ class _AddEventSceenState extends State<AddEventSceen> {
                     physics: const ClampingScrollPhysics(),
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.only(bottom: 7),
+                        padding: const EdgeInsets.only(bottom: 10),
                         child: cohostTile(
                           text:
                               _addEventController.coHostOfAddEvent[index].name,
@@ -255,7 +266,7 @@ class _AddEventSceenState extends State<AddEventSceen> {
         color: Theme.of(context).colorScheme.surface,
         border: Border.all(
           color: Theme.of(context).colorScheme.onSurface,
-          width: 1.0,
+          width: 0.1,
         ),
       ),
       child: Padding(

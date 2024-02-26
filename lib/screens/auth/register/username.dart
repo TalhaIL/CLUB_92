@@ -39,8 +39,9 @@ class UserName extends StatelessWidget {
                   textAlign: TextAlign.center,
                   text: TextSpan(
                     style: TextStyle(
-                        fontSize: 15,
-                        color: Theme.of(context).colorScheme.tertiary),
+                      fontSize: 15,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                     children: const [
                       TextSpan(text: 'Great now let us know\n'),
                       TextSpan(text: 'how you look a like'),
@@ -54,7 +55,7 @@ class UserName extends StatelessWidget {
                   height: 120,
                   width: 115,
                   decoration: BoxDecoration(
-                    color: transparentWhite.withOpacity(0.5),
+                    color: Theme.of(context).colorScheme.surface,
                     borderRadius: BorderRadius.circular(
                       35,
                     ),

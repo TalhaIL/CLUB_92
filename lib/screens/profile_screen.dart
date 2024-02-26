@@ -86,13 +86,14 @@ class ProfileScreen extends StatelessWidget {
                     children: [
                       Text(
                         speaker.name,
-                        style: const TextStyle(fontSize: 25),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge
+                            ?.copyWith(fontSize: 25),
                       ),
                       Text(
                         speaker.username.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                        ),
+                        style: Theme.of(context).textTheme.bodySmall,
                       )
                     ],
                   )
@@ -115,7 +116,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Text(
                         'Followers',
-                        style: Theme.of(context).primaryTextTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodySmall,
                       )
                     ],
                   ),
@@ -134,7 +135,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Text(
                         'Followings',
-                        style: Theme.of(context).primaryTextTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodySmall,
                       )
                     ],
                   )
@@ -145,9 +146,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               Text(
                 speaker.about.toString(),
-                style: const TextStyle(
-                  fontSize: 15,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(
                 height: 20,

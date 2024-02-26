@@ -39,7 +39,7 @@ class _SearchScreenState extends State<SearchScreen>
                     color: _focusNode.hasFocus
                         ? Theme.of(context).colorScheme.background
                         : Theme.of(context).colorScheme.onSurface,
-                    width: 2,
+                    width: 1,
                   ),
                 ),
               ),
@@ -62,9 +62,10 @@ class _SearchScreenState extends State<SearchScreen>
                         },
                         child: TextField(
                           focusNode: _focusNode,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Search People and Rooms',
+                            hintStyle: Theme.of(context).textTheme.bodySmall,
                           ),
                         ),
                       ),
@@ -101,7 +102,9 @@ class _SearchScreenState extends State<SearchScreen>
                       dividerHeight: 0,
                       controller: tabcontroller,
                       tabs: const [
-                        Text('People'),
+                        Text(
+                          'People',
+                        ),
                         Text('Room'),
                       ],
                     ),
@@ -115,9 +118,9 @@ class _SearchScreenState extends State<SearchScreen>
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
+                              Text(
                                 'People you may follow',
-                                style: TextStyle(fontSize: 15),
+                                style: Theme.of(context).textTheme.bodySmall,
                               ),
                               Expanded(
                                 child: ListView.builder(

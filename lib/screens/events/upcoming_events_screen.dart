@@ -40,6 +40,7 @@ class UpcomingEvents extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
                           color: appColor,
+                          width: 0.2,
                         ),
                       ),
                       child: Center(
@@ -68,9 +69,7 @@ class UpcomingEvents extends StatelessWidget {
                             ? Theme.of(context).colorScheme.background
                             : Theme.of(context).colorScheme.primary,
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: appColor,
-                        ),
+                        border: Border.all(color: appColor, width: 0.2),
                       ),
                       child: Center(
                         child: Text(
@@ -144,7 +143,8 @@ class UpcomingEvents extends StatelessWidget {
 
   Future<dynamic> upcomingEventsSheet(BuildContext context, EventModal event) {
     return showModalBottomSheet(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      elevation: 0,
       showDragHandle: false,
       context: context,
       builder: (context) => SizedBox(
@@ -212,10 +212,10 @@ class UpcomingEvents extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Text(event.title,
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodySmall),
+                              Text(
+                                event.title,
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
                               const SizedBox(
                                 width: 2,
                               ),
@@ -236,10 +236,9 @@ class UpcomingEvents extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text(
+                          Text(
                             'Mentors',
-                            style: TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.bold),
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                           ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),

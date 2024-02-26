@@ -61,11 +61,15 @@ class _HomeScreenState extends State<HomeScreen>
             tabs: const [
               Text(
                 'LIVE',
-                style: TextStyle(fontSize: 15),
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                ),
               ),
               Text(
                 'UPCOMING',
-                style: TextStyle(fontSize: 15),
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ],
           ),
@@ -188,16 +192,16 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
         ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: [
             Row(

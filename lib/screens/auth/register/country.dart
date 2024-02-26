@@ -1,6 +1,7 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/components/reusableWidgets/language_bottom_sheet.dart';
+import 'package:club_92/components/reusableWidgets/logo_with_text.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/screens/auth/register/otp.dart';
 import 'package:country_code_picker/country_code_picker.dart';
@@ -45,11 +46,13 @@ class _ChooseCountryState extends State<ChooseCountry> {
       });
     }
     return Scaffold(
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const LogowithText(),
             Container(
               width: double.infinity,
               decoration: BoxDecoration(
@@ -66,14 +69,11 @@ class _ChooseCountryState extends State<ChooseCountry> {
                 showDropDownButton: true,
                 onChanged: print,
                 initialSelection: 'Pk',
-                // countryFilter: const ['IT', 'FR'],
-                // favorite: const ['+92', 'Pk', '+91', 'IN'],
                 showFlag: true,
                 showFlagMain: false,
                 showFlagDialog: true,
                 showOnlyCountryWhenClosed: true,
                 alignLeft: true,
-
                 padding: const EdgeInsets.all(0),
                 dialogBackgroundColor: appColor,
                 searchDecoration: InputDecoration(

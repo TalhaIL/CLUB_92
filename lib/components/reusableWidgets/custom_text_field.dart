@@ -24,7 +24,7 @@ class CustomTextField extends StatelessWidget {
         color: Theme.of(context).colorScheme.surface,
         border: Border.all(
           color: Theme.of(context).colorScheme.onSurface,
-          width: 1.0,
+          width: 0.1,
         ),
       ),
       child: Padding(
@@ -36,9 +36,7 @@ class CustomTextField extends StatelessWidget {
           readOnly: isReadOnly,
           decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: TextStyle(
-              color: Theme.of(context).colorScheme.onSurface,
-            ),
+            hintStyle: Theme.of(context).textTheme.bodySmall,
             border: InputBorder.none,
             suffixIcon: icon,
           ),

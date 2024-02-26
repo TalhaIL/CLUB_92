@@ -94,7 +94,10 @@ class _MainEventScreenState extends State<MainEventScreen> {
               children: [
                 Row(
                   children: [
-                    Text(widget.event.title),
+                    Text(
+                      widget.event.title,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
                     Icon(
                       Icons.flag,
                       color: appColor,
@@ -106,7 +109,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                 ),
                 Text(
                   widget.event.eventName,
-                  style: const TextStyle(fontSize: 18),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ],
             ),
@@ -452,7 +455,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
 
   Future<dynamic> customRaiseHandSheet(BuildContext context) {
     return showModalBottomSheet(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: Theme.of(context).colorScheme.background,
         context: context,
         builder: (context) {
           return SizedBox(
@@ -504,7 +507,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
       height: 190,
       width: 190,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
+        color: Theme.of(context).colorScheme.surface,
         boxShadow: [
           BoxShadow(
             color: transparentWhite.withOpacity(0.05),
@@ -576,7 +579,8 @@ class _MainEventScreenState extends State<MainEventScreen> {
 
   Future<dynamic> shortProfileSheet(BuildContext context, int index) {
     return showModalBottomSheet(
-      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      elevation: 0,
       context: context,
       builder: (context) => SizedBox(
         height: 400,
@@ -685,6 +689,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                 listOfSpeakers[index].about.toString(),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(
                 height: 20,
@@ -722,9 +727,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
         ),
         Text(
           text,
-          style: const TextStyle(
-            fontSize: 18,
-          ),
+          style: Theme.of(context).textTheme.bodySmall,
         )
       ],
     );
@@ -732,7 +735,8 @@ class _MainEventScreenState extends State<MainEventScreen> {
 
   Future<dynamic> customRoomRulesSheet(BuildContext context) {
     return showModalBottomSheet(
-      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      elevation: 0,
       context: context,
       showDragHandle: true,
       builder: (context) => SizedBox(
@@ -745,8 +749,8 @@ class _MainEventScreenState extends State<MainEventScreen> {
               Row(
                 children: [
                   Text(
-                    widget.event.title,
-                    style: const TextStyle(),
+                    widget.event.eventName,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(
                     width: 5,
@@ -802,16 +806,14 @@ class _MainEventScreenState extends State<MainEventScreen> {
       children: [
         Text(
           heading,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 17,
-          ),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(
           height: 10,
         ),
         Text(
           text,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(
           height: 10,
