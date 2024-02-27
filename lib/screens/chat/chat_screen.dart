@@ -1,5 +1,7 @@
+import 'package:club_92/components/reusableWidgets/instruction_dialog.dart';
 import 'package:club_92/models/chat_model.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ChatScreen extends StatefulWidget {
   final ChatModel sender;
@@ -16,10 +18,25 @@ class _ChatScreenState extends State<ChatScreen> {
   List<bool> _isSelectedList = [];
   bool _isSelectionModeActive = false;
 
+  void _checkInstructionStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool shown = prefs.getBool('chatScreenInstructions') ?? false;
+    if (shown) {
+      if (mounted) {
+        instructionDialog(
+            context: context,
+            title: 'Instructions',
+            content: 'Hold message to delete and edit');
+      }
+      prefs.setBool('chatScreenInstructions', true);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _isSelectedList = List.filled(20, false);
+    _checkInstructionStatus();
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:club_92/components/reusableWidgets/app_logo.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/components/reusableWidgets/logo_with_text.dart';
@@ -30,7 +31,7 @@ class OtpScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const LogowithText(),
+              const AppLogo(),
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(

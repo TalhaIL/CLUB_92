@@ -1,5 +1,4 @@
 import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
-import 'package:club_92/constants/color.dart';
 import 'package:club_92/controllers/events/event_controller.dart';
 import 'package:club_92/models/event_modal.dart';
 import 'package:club_92/screens/events/add_event.dart';
@@ -172,45 +171,14 @@ class CustomCard extends StatelessWidget {
                     width: 170,
                     child: Stack(
                       children: [
-                        Container(
-                          height: 60,
-                          width: 55,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                event.coHost[0].profileImage,
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+                        cardImageContainer(index: 0),
                         Positioned(
                           left: 45,
-                          child: Container(
-                            height: 60,
-                            width: 55,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.primary,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
+                          child: cardImageContainer(index: 1),
                         ),
                         Positioned(
                           left: 95,
-                          child: Container(
-                            height: 60,
-                            width: 55,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              image: DecorationImage(
-                                image: NetworkImage(
-                                  event.coHost[2].profileImage,
-                                ),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
+                          child: cardImageContainer(index: 2),
                         ),
                       ],
                     ),
@@ -266,6 +234,22 @@ class CustomCard extends StatelessWidget {
                 style: const TextStyle(fontSize: 12),
               )
           ],
+        ),
+      ),
+    );
+  }
+
+  Container cardImageContainer({index}) {
+    return Container(
+      height: 60,
+      width: 55,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        image: DecorationImage(
+          image: NetworkImage(
+            event.coHost[index].profileImage,
+          ),
+          fit: BoxFit.cover,
         ),
       ),
     );

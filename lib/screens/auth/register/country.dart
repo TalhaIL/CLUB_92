@@ -1,3 +1,4 @@
+import 'package:club_92/components/reusableWidgets/app_logo.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/components/reusableWidgets/language_bottom_sheet.dart';
@@ -52,7 +53,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const LogowithText(),
+            const AppLogo(),
             Container(
               width: double.infinity,
               decoration: BoxDecoration(

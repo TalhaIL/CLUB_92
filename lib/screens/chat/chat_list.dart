@@ -1,10 +1,37 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/components/reusableWidgets/instruction_dialog.dart';
 import 'package:club_92/constants/message_list.dart';
 import 'package:club_92/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ChatListScreen extends StatelessWidget {
+class ChatListScreen extends StatefulWidget {
   const ChatListScreen({super.key});
+
+  @override
+  State<ChatListScreen> createState() => _ChatListScreenState();
+}
+
+class _ChatListScreenState extends State<ChatListScreen> {
+  void _checkInstructionStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool shown = prefs.getBool('instructionShown') ?? false;
+    if (shown) {
+      if (mounted) {
+        instructionDialog(
+            context: context,
+            title: 'Instructions',
+            content: 'Swipe to delete conservation');
+      }
+      prefs.setBool('instructionShown', true);
+    }
+  }
+
+  @override
+  void initState() {
+    _checkInstructionStatus();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
