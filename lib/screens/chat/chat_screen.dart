@@ -1,4 +1,4 @@
-import 'package:club_92/components/reusableWidgets/instruction_dialog.dart';
+import 'package:club_92/components/resuableMethods/instruction_dialog.dart';
 import 'package:club_92/models/chat_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -87,7 +87,7 @@ class UpcomingEvents extends StatelessWidget {
                 CustomMaterialButton(
                   onPress: () {
                     Get.to(
-                      const AddEventSceen(),
+                      () => const AddEventSceen(),
                     );
                   },
                   width: 120,

@@ -1,5 +1,5 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/components/reusableWidgets/instruction_dialog.dart';
+import 'package:club_92/components/resuableMethods/instruction_dialog.dart';
 import 'package:club_92/constants/message_list.dart';
 import 'package:club_92/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';

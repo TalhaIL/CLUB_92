@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen>
           IconButton(
             onPressed: () {
               Get.to(
-                () => ChatListScreen(),
+                () => const ChatListScreen(),
               );
             },
             icon: const Icon(

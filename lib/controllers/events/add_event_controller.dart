@@ -7,6 +7,7 @@ class AddEventController extends GetxController {
   final Rx<DateTime> selectedDate = DateTime.now().obs;
   Rx<TimeOfDay> selectedTime = TimeOfDay.now().obs;
   RxBool isSwitched = true.obs;
+  RxBool showAnimation = false.obs;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController ticketController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();

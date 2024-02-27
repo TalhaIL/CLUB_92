@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:club_92/components/resuableMethods/instruction_dialog.dart';
+import 'package:club_92/components/reusableWidgets/alert_dialog.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/constants/color.dart';
@@ -7,6 +9,8 @@ import 'package:club_92/controllers/events/add_event_controller.dart';
 import 'package:club_92/models/event_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddEventSceen extends StatefulWidget {
   final bool isUpdateEvent;
@@ -26,6 +30,20 @@ class _AddEventSceenState extends State<AddEventSceen> {
     AddEventController(),
   );
 
+  void _checkInstructionStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool shown = prefs.getBool('isAddEventInstructionShown') ?? false;
+    if (!shown) {
+      if (mounted) {
+        instructionDialog(
+            context: context,
+            title: 'Instruction',
+            content: 'Click on Add Event to see animation');
+      }
+      prefs.setBool('isAddEventInstructionShown', true);
+    }
+  }
+
   @override
   void initState() {
     _addEventController.nameController.text = widget.event?.eventName ?? '';
@@ -33,7 +51,7 @@ class _AddEventSceenState extends State<AddEventSceen> {
         widget.event?.ticketAmount.toString() ?? '';
     _addEventController.descriptionController.text =
         widget.event?.eventDescription.toString() ?? '';
-
+    _checkInstructionStatus();
     super.initState();
   }
 
@@ -67,7 +85,9 @@ class _AddEventSceenState extends State<AddEventSceen> {
                   ),
                 )
               : CustomMaterialButton(
-                  onPress: () {},
+                  onPress: () {
+                    _addEventController.showAnimation.value = true;
+                  },
                   width: 100,
                   child: Row(
                     children: [
@@ -93,123 +113,179 @@ class _AddEventSceenState extends State<AddEventSceen> {
       ),
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 25,
-            vertical: 20,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomTextField(
-                hintText: 'Event name',
-                controller: _addEventController.nameController,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text('Select Co-host or Guest'),
-              const SizedBox(
-                height: 10,
-              ),
-              Column(
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const ClampingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: cohostTile(
-                          text:
-                              _addEventController.coHostOfAddEvent[index].name,
-                          url: _addEventController
-                              .coHostOfAddEvent[index].profileImage,
-                          showCloseIcon: index == 1 ? true : false,
-                        ),
-                      );
-                    },
-                    itemCount: _addEventController.coHostOfAddEvent.length,
+                  CustomTextField(
+                    hintText: 'Event name',
+                    controller: _addEventController.nameController,
                   ),
-                  cohostTile(text: 'Add Co-host or Guest', isAddCoHost: true),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text('Select Event date and time'),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  eventDateTime(
-                      context: context,
-                      icon: Icons.calendar_today_outlined,
-                      onTap: () {
-                        _addEventController.selectDate(context);
-                      },
-                      isDate: true),
                   const SizedBox(
-                    width: 20,
+                    height: 20,
                   ),
-                  eventDateTime(
-                    context: context,
-                    icon: Icons.access_time,
-                    onTap: () {
-                      _addEventController.selectTime(context);
-                    },
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Obx(
-                () => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text('Paid Event?'),
-                    Switch(
-                      activeColor: Theme.of(context).colorScheme.primary,
-                      value: _addEventController.isSwitched.value,
-                      onChanged: (val) {
-                        _addEventController.isSwitched.value = val;
-                        log(_addEventController.isSwitched.value.toString());
-                      },
-                    )
-                  ],
-                ),
-              ),
-              Obx(
-                () => Visibility(
-                  visible: _addEventController.isSwitched.value,
-                  child: Column(
+                  const Text('Select Co-host or Guest'),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Column(
                     children: [
-                      CustomTextField(
-                        hintText: 'Enter Ticket amount in (\$)',
-                        controller: _addEventController.ticketController,
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: cohostTile(
+                              text: _addEventController
+                                  .coHostOfAddEvent[index].name,
+                              url: _addEventController
+                                  .coHostOfAddEvent[index].profileImage,
+                              showCloseIcon: index == 1 ? true : false,
+                            ),
+                          );
+                        },
+                        itemCount: _addEventController.coHostOfAddEvent.length,
                       ),
+                      cohostTile(
+                          text: 'Add Co-host or Guest', isAddCoHost: true),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text('Select Event date and time'),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      eventDateTime(
+                          context: context,
+                          icon: Icons.calendar_today_outlined,
+                          onTap: () {
+                            _addEventController.selectDate(context);
+                          },
+                          isDate: true),
                       const SizedBox(
-                        height: 20,
+                        width: 20,
+                      ),
+                      eventDateTime(
+                        context: context,
+                        icon: Icons.access_time,
+                        onTap: () {
+                          _addEventController.selectTime(context);
+                        },
                       )
                     ],
                   ),
-                ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Obx(
+                    () => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text('Paid Event?'),
+                        Switch(
+                          activeColor: Theme.of(context).colorScheme.primary,
+                          value: _addEventController.isSwitched.value,
+                          onChanged: (val) {
+                            _addEventController.isSwitched.value = val;
+                            log(_addEventController.isSwitched.value
+                                .toString());
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  Obx(
+                    () => Visibility(
+                      visible: _addEventController.isSwitched.value,
+                      child: Column(
+                        children: [
+                          CustomTextField(
+                            hintText: 'Enter Ticket amount in (\$)',
+                            controller: _addEventController.ticketController,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  const Text('Description'),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CustomTextField(
+                    hintText: 'Description',
+                    controller: _addEventController.descriptionController,
+                    maxLines: 5,
+                  )
+                ],
               ),
-              const Text('Description'),
-              const SizedBox(
-                height: 10,
+            ),
+            Obx(
+              () => Visibility(
+                visible: _addEventController.showAnimation.value,
+                child: addEventAnimation(context),
               ),
-              CustomTextField(
-                hintText: 'Description',
-                controller: _addEventController.descriptionController,
-                maxLines: 5,
-              )
-            ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Positioned addEventAnimation(BuildContext context) {
+    return Positioned.fill(
+      child: Container(
+        color: Colors.black.withOpacity(0.8),
+        child: Center(
+          child: Lottie.asset(
+            'assets/animations/rocket_animation.json',
+            width: double.infinity,
+            height: double.infinity,
+            reverse: false,
+            animate: true,
+            repeat: false,
+            onLoaded: (composition) {
+              Future.delayed(
+                composition.duration,
+                () {
+                  _alertDialog(
+                      context: context,
+                      title: 'Added',
+                      content: 'Event Added Successfully');
+                  Future.delayed(
+                    const Duration(seconds: 1),
+                    () {
+                      _addEventController.showAnimation.value = false;
+                      Navigator.pop(context);
+                    },
+                  );
+                },
+              );
+            },
           ),
         ),
+      ),
+    );
+  }
+
+  Future<dynamic> _alertDialog(
+      {required BuildContext context, title, content}) {
+    return showDialog(
+      context: context,
+      builder: (context) => CustomAlertDialog(
+        title: title,
+        content: content,
       ),
     );
   }
