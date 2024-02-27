@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 instructionDialog({required BuildContext context, title, content}) {
-  Future.delayed(Duration.zero, () {
+  Future.delayed(const Duration(seconds: 1), () {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -20,7 +20,7 @@ instructionDialog({required BuildContext context, title, content}) {
         );
       },
     );
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 4), () {
       Navigator.of(context).pop();
       return;
     });

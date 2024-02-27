@@ -15,15 +15,15 @@ class ChatListScreen extends StatefulWidget {
 class _ChatListScreenState extends State<ChatListScreen> {
   void _checkInstructionStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool shown = prefs.getBool('instructionShown') ?? false;
-    if (shown) {
+    bool shown = prefs.getBool('isChatListInstructionShown') ?? false;
+    if (!shown) {
       if (mounted) {
         instructionDialog(
             context: context,
-            title: 'Instructions',
+            title: 'Instruction',
             content: 'Swipe to delete conservation');
       }
-      prefs.setBool('instructionShown', true);
+      prefs.setBool('isChatListInstructionShown', true);
     }
   }
 

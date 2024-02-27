@@ -20,15 +20,15 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _checkInstructionStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool shown = prefs.getBool('chatScreenInstructions') ?? false;
-    if (shown) {
+    bool shown = prefs.getBool('isChatScreenInstructionShown') ?? false;
+    if (!shown) {
       if (mounted) {
         instructionDialog(
             context: context,
-            title: 'Instructions',
-            content: 'Hold message to delete and edit');
+            title: 'Instruction',
+            content: 'Hold messages to delete and edit');
       }
-      prefs.setBool('chatScreenInstructions', true);
+      prefs.setBool('isChatScreenInstructionShown', true);
     }
   }
 

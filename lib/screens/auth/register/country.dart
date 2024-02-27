@@ -2,7 +2,6 @@ import 'package:club_92/components/reusableWidgets/app_logo.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/components/reusableWidgets/language_bottom_sheet.dart';
-import 'package:club_92/components/reusableWidgets/logo_with_text.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/screens/auth/register/otp.dart';
 import 'package:country_code_picker/country_code_picker.dart';

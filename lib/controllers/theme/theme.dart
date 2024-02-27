@@ -30,23 +30,3 @@ class ThemeController extends GetxController {
     }
   }
 }
-
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-
-// class ThemeController extends GetxController {
-//   Future<bool> get isDark async {
-//     final box = await SharedPreferences.getInstance();
-//     return box.getBool('darkmode') ?? false;
-//   }
-
-//   Future<ThemeMode> get theme async {
-//     return await isDark ? ThemeMode.dark : ThemeMode.light;
-//   }
-
-//   void changeTheme(bool val) async {
-//     final box = await SharedPreferences.getInstance();
-//     await box.setBool('darkmode', val);
-//   }
-// }

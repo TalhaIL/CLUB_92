@@ -152,8 +152,15 @@ class CustomSpeakerTile extends StatelessWidget {
                           ),
                         ),
                       )
-                    : const Text(
-                        '3m ago',
+                    : const Row(
+                        children: [
+                          Text(
+                            '3m ago',
+                          ),
+                          SizedBox(
+                            width: 20,
+                          )
+                        ],
                       )
           ],
         ),
