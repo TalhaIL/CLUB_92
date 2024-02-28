@@ -3,6 +3,7 @@ import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/speaker.dart';
 import 'package:club_92/screens/auth/register/interests.dart';
+import 'package:club_92/utils/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -64,17 +65,11 @@ class SpeakersScreen extends StatelessWidget {
                       children: [
                         Stack(
                           children: [
-                            Container(
+                            MyCachedNetworkImage(
+                              profileImage: listOfSpeakers[index].profileImage,
                               height: 70,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    listOfSpeakers[index].profileImage,
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                              width: 70,
+                              borderRadius: 20,
                             ),
                             Obx(
                               () => Visibility(

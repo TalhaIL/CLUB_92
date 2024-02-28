@@ -1,5 +1,6 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/speaker.dart';
+import 'package:club_92/utils/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,18 +32,10 @@ class CustomSpeakerTile extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
+            MyCachedNetworkImage(
+              profileImage: profileImage,
               height: 60,
               width: 60,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                    profileImage,
-                  ),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
             ),
             isStartRoom == true || isRaiseHands == true
                 ? SizedBox(

@@ -2,6 +2,7 @@ import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/room_list.dart';
 import 'package:club_92/constants/speaker.dart';
+import 'package:club_92/utils/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -152,18 +153,11 @@ class _SearchScreenState extends State<SearchScreen>
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      height: 60,
+                                    MyCachedNetworkImage(
+                                      profileImage:
+                                          listOfRooms[index].coverImage,
                                       width: 60,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                            listOfRooms[index].coverImage,
-                                          ),
-                                          fit: BoxFit.cover,
-                                        ),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
+                                      height: 60,
                                     ),
                                     const SizedBox(
                                       width: 15,

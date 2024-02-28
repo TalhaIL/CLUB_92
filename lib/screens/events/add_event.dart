@@ -1,6 +1,7 @@
 import 'dart:developer';
 
-import 'package:club_92/components/resuableMethods/instruction_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:club_92/utils/instruction_dialog.dart';
 import 'package:club_92/components/reusableWidgets/alert_dialog.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
@@ -25,7 +26,8 @@ class AddEventSceen extends StatefulWidget {
   State<AddEventSceen> createState() => _AddEventSceenState();
 }
 
-class _AddEventSceenState extends State<AddEventSceen> {
+class _AddEventSceenState extends State<AddEventSceen>
+    with SingleTickerProviderStateMixin {
   final AddEventController _addEventController = Get.put(
     AddEventController(),
   );
@@ -38,7 +40,7 @@ class _AddEventSceenState extends State<AddEventSceen> {
         instructionDialog(
             context: context,
             title: 'Instruction',
-            content: 'Click on Add Event to see animation');
+            content: 'Click on Add button to see animation');
       }
       prefs.setBool('isAddEventInstructionShown', true);
     }
@@ -51,6 +53,7 @@ class _AddEventSceenState extends State<AddEventSceen> {
         widget.event?.ticketAmount.toString() ?? '';
     _addEventController.descriptionController.text =
         widget.event?.eventDescription.toString() ?? '';
+
     _checkInstructionStatus();
     super.initState();
   }
@@ -86,7 +89,7 @@ class _AddEventSceenState extends State<AddEventSceen> {
                 )
               : CustomMaterialButton(
                   onPress: () {
-                    _addEventController.showAnimation.value = true;
+                    _addEventController.showFirstAnimation.value = true;
                   },
                   width: 100,
                   child: Row(
@@ -233,8 +236,14 @@ class _AddEventSceenState extends State<AddEventSceen> {
             ),
             Obx(
               () => Visibility(
+                visible: _addEventController.showFirstAnimation.value,
+                child: uploadingTimerAnimation(context),
+              ),
+            ),
+            Obx(
+              () => Visibility(
                 visible: _addEventController.showAnimation.value,
-                child: addEventAnimation(context),
+                child: uploadingRocketAnimation(context),
               ),
             )
           ],
@@ -243,10 +252,42 @@ class _AddEventSceenState extends State<AddEventSceen> {
     );
   }
 
-  Positioned addEventAnimation(BuildContext context) {
+  Positioned uploadingTimerAnimation(BuildContext context) {
     return Positioned.fill(
       child: Container(
         color: Colors.black.withOpacity(0.8),
+        child: Center(
+          child: ColorFiltered(
+            colorFilter: const ColorFilter.mode(
+              Colors.white,
+              BlendMode.srcATop,
+            ),
+            child: Lottie.asset(
+              'assets/animations/timer_animation.json',
+              width: double.infinity,
+              height: double.infinity,
+              reverse: false,
+              animate: true,
+              repeat: false,
+              onLoaded: (composition) {
+                Future.delayed(
+                  composition.duration,
+                  () {
+                    _addEventController.showAnimation.value = true;
+                  },
+                );
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Positioned uploadingRocketAnimation(BuildContext context) {
+    return Positioned.fill(
+      child: Container(
+        color: Colors.black.withOpacity(0.5),
         child: Center(
           child: Lottie.asset(
             'assets/animations/rocket_animation.json',
@@ -266,6 +307,7 @@ class _AddEventSceenState extends State<AddEventSceen> {
                   Future.delayed(
                     const Duration(seconds: 1),
                     () {
+                      _addEventController.showFirstAnimation.value = false;
                       _addEventController.showAnimation.value = false;
                       Navigator.pop(context);
                     },
@@ -357,7 +399,7 @@ class _AddEventSceenState extends State<AddEventSceen> {
                     )
                   : CircleAvatar(
                       maxRadius: 25,
-                      backgroundImage: NetworkImage(
+                      backgroundImage: CachedNetworkImageProvider(
                         url.toString(),
                       ),
                     ),

@@ -1,5 +1,5 @@
 import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
-import 'package:club_92/components/resuableMethods/instruction_dialog.dart';
+import 'package:club_92/utils/instruction_dialog.dart';
 import 'package:club_92/constants/speaker.dart';
 
 import 'package:flutter/material.dart';

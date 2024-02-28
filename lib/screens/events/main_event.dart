@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
 import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
@@ -6,6 +7,7 @@ import 'package:club_92/constants/speaker.dart';
 import 'package:club_92/controllers/events/event_controller.dart';
 import 'package:club_92/models/event_modal.dart';
 import 'package:club_92/screens/profile_screen.dart';
+import 'package:club_92/utils/cached_network_image.dart';
 import 'package:club_92/utils/countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -75,7 +77,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
               );
             },
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
+              backgroundImage: CachedNetworkImageProvider(
                 listOfSpeakers[0].profileImage,
               ),
             ),
@@ -156,20 +158,12 @@ class _MainEventScreenState extends State<MainEventScreen> {
                                   Stack(
                                     alignment: Alignment.bottomRight,
                                     children: [
-                                      Container(
-                                        width: 70,
+                                      MyCachedNetworkImage(
+                                        profileImage:
+                                            listOfSpeakers[index].profileImage,
                                         height: 70,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                              listOfSpeakers[index]
-                                                  .profileImage,
-                                            ),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
+                                        width: 70,
+                                        borderRadius: 25,
                                       ),
                                       (index % 2 == 0)
                                           ? Positioned(
@@ -187,7 +181,9 @@ class _MainEventScreenState extends State<MainEventScreen> {
                                                 ),
                                                 child: ColorFiltered(
                                                   colorFilter: ColorFilter.mode(
-                                                    appColor,
+                                                    Theme.of(context)
+                                                        .colorScheme
+                                                        .primary,
                                                     BlendMode.srcATop,
                                                   ),
                                                   child: Lottie.asset(
@@ -262,15 +258,18 @@ class _MainEventScreenState extends State<MainEventScreen> {
                               },
                               child: Column(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: 60,
                                     height: 60,
-                                    decoration: BoxDecoration(
+                                    child: ClipRRect(
                                       borderRadius: BorderRadius.circular(25),
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                          listOfSpeakers[index].profileImage,
-                                        ),
+                                      child: CachedNetworkImage(
+                                        imageUrl:
+                                            listOfSpeakers[index].profileImage,
+                                        placeholder: (context, url) =>
+                                            const CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -619,7 +618,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(color: appColor),
                       image: DecorationImage(
-                        image: NetworkImage(
+                        image: CachedNetworkImageProvider(
                           listOfSpeakers[index].profileImage,
                         ),
                         fit: BoxFit.cover,

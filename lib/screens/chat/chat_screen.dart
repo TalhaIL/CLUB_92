@@ -1,4 +1,5 @@
-import 'package:club_92/components/resuableMethods/instruction_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:club_92/utils/instruction_dialog.dart';
 import 'package:club_92/models/chat_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -102,7 +103,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           if (!isMe)
                             CircleAvatar(
                               radius: 20,
-                              backgroundImage: NetworkImage(
+                              backgroundImage: CachedNetworkImageProvider(
                                 widget.sender.profileImage,
                               ),
                             ),
@@ -147,7 +148,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           if (isMe)
                             const CircleAvatar(
                               radius: 20,
-                              backgroundImage: NetworkImage(
+                              backgroundImage: CachedNetworkImageProvider(
                                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjOOQLYeoZtOLftSG_sqMn0EiqyX4t9-lwAuhOtit5DtPiefzbW6-3eEcSTvGPmh-VBb8&usqp=CAU',
                               ),
                             ),

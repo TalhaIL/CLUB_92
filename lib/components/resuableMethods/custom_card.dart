@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
 import 'package:club_92/controllers/events/event_controller.dart';
 import 'package:club_92/models/event_modal.dart';
 import 'package:club_92/screens/events/add_event.dart';
+import 'package:club_92/utils/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -141,18 +143,8 @@ class CustomCard extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 5),
                     child: Column(
                       children: [
-                        Container(
-                          height: 50,
-                          width: 55,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                event.coHost[index].profileImage,
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                        MyCachedNetworkImage(
+                          profileImage: event.coHost[index].profileImage,
                         ),
                         const SizedBox(
                           height: 2,
@@ -171,14 +163,29 @@ class CustomCard extends StatelessWidget {
                     width: 170,
                     child: Stack(
                       children: [
-                        cardImageContainer(index: 0),
+                        MyCachedNetworkImage(
+                          profileImage: event.coHost[0].profileImage,
+                          height: 60,
+                          width: 60,
+                          borderRadius: 25,
+                        ),
                         Positioned(
                           left: 45,
-                          child: cardImageContainer(index: 1),
+                          child: MyCachedNetworkImage(
+                            profileImage: event.coHost[1].profileImage,
+                            height: 60,
+                            width: 60,
+                            borderRadius: 25,
+                          ),
                         ),
                         Positioned(
                           left: 95,
-                          child: cardImageContainer(index: 2),
+                          child: MyCachedNetworkImage(
+                            profileImage: event.coHost[2].profileImage,
+                            height: 60,
+                            width: 60,
+                            borderRadius: 25,
+                          ),
                         ),
                       ],
                     ),
@@ -234,22 +241,6 @@ class CustomCard extends StatelessWidget {
                 style: const TextStyle(fontSize: 12),
               )
           ],
-        ),
-      ),
-    );
-  }
-
-  Container cardImageContainer({index}) {
-    return Container(
-      height: 60,
-      width: 55,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        image: DecorationImage(
-          image: NetworkImage(
-            event.coHost[index].profileImage,
-          ),
-          fit: BoxFit.cover,
         ),
       ),
     );

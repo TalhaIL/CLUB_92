@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
 import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
@@ -120,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen>
               );
             },
             child: const CircleAvatar(
-              backgroundImage: NetworkImage(
+              backgroundImage: CachedNetworkImageProvider(
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjOOQLYeoZtOLftSG_sqMn0EiqyX4t9-lwAuhOtit5DtPiefzbW6-3eEcSTvGPmh-VBb8&usqp=CAU'),
             ),
           ),

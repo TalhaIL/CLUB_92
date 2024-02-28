@@ -1,5 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/components/resuableMethods/instruction_dialog.dart';
+import 'package:club_92/utils/instruction_dialog.dart';
 import 'package:club_92/constants/message_list.dart';
 import 'package:club_92/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
@@ -70,8 +71,8 @@ class _ChatListScreenState extends State<ChatListScreen> {
             },
             child: ListTile(
               leading: CircleAvatar(
-                radius: 30,
-                backgroundImage: NetworkImage(
+                radius: 25,
+                backgroundImage: CachedNetworkImageProvider(
                   chats[index].profileImage,
                 ),
               ),

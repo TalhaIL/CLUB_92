@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/room_list.dart';
 import 'package:club_92/models/speaker_modal.dart';
 import 'package:club_92/screens/Settings/setting_screen.dart';
 import 'package:club_92/screens/wallet.dart';
+import 'package:club_92/utils/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -72,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
                       border: Border.all(
                           color: Theme.of(context).colorScheme.primary),
                       image: DecorationImage(
-                        image: NetworkImage(
+                        image: CachedNetworkImageProvider(
                           speaker.profileImage,
                         ),
                         fit: BoxFit.cover,
@@ -265,21 +267,12 @@ class ProfileScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            listOfRooms[index].coverImage,
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(right: 10),
+                      child: MyCachedNetworkImage(
+                        profileImage: listOfRooms[index].coverImage,
+                        height: 60,
+                        width: 60,
+                      )),
                   itemCount: listOfRooms.length,
                 ),
               ),

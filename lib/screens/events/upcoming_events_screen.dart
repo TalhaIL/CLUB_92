@@ -7,12 +7,41 @@ import 'package:club_92/constants/upcoming_events.dart';
 import 'package:club_92/controllers/events/event_controller.dart';
 import 'package:club_92/models/event_modal.dart';
 import 'package:club_92/screens/events/add_event.dart';
+import 'package:club_92/utils/instruction_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class UpcomingEvents extends StatelessWidget {
-  UpcomingEvents({super.key});
+class UpcomingEvents extends StatefulWidget {
+  const UpcomingEvents({super.key});
+
+  @override
+  State<UpcomingEvents> createState() => _UpcomingEventsState();
+}
+
+class _UpcomingEventsState extends State<UpcomingEvents> {
   final EventController _eventController = Get.put(EventController());
+
+  void _checkInstructionStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool shown = prefs.getBool('isUpcomingEventInstructionShown') ?? false;
+    if (!shown) {
+      if (mounted) {
+        instructionDialog(
+          context: context,
+          title: 'Instruction',
+          content: 'Swipe speakers list to see more speakers if present',
+        );
+      }
+      prefs.setBool('isUpcomingEventInstructionShown', true);
+    }
+  }
+
+  @override
+  void initState() {
+    _checkInstructionStatus();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
