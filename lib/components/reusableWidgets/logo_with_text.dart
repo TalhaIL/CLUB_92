@@ -23,6 +23,7 @@ class LogowithText extends StatelessWidget {
                 'assets/animations/app_logo.json',
                 height: 60,
                 width: 60,
+                repeat: false,
               ),
             ),
             const SizedBox(

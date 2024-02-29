@@ -1,6 +1,7 @@
 import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:club_92/constants/live_events.dart';
+import 'package:club_92/screens/events/main_event.dart';
 import 'package:club_92/utils/instruction_dialog.dart';
 import 'package:club_92/components/reusableWidgets/alert_dialog.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
@@ -31,6 +32,8 @@ class _AddEventSceenState extends State<AddEventSceen>
   final AddEventController _addEventController = Get.put(
     AddEventController(),
   );
+  // String selectedPrivacy = 'Public';
+  // List<String> privacies = ['Public', 'Social', 'Private'];
 
   void _checkInstructionStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -70,12 +73,6 @@ class _AddEventSceenState extends State<AddEventSceen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'ADD EVENT',
-          style: TextStyle(
-            fontSize: 18,
-          ),
-        ),
         actions: [
           widget.isUpdateEvent
               ? CustomMaterialButton(
@@ -87,27 +84,55 @@ class _AddEventSceenState extends State<AddEventSceen>
                         color: Theme.of(context).colorScheme.onPrimary),
                   ),
                 )
-              : CustomMaterialButton(
-                  onPress: () {
-                    _addEventController.showFirstAnimation.value = true;
-                  },
-                  width: 100,
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.upload,
-                        color: Theme.of(context).colorScheme.onPrimary,
+              : Row(
+                  children: [
+                    CustomMaterialButton(
+                      onPress: () {},
+                      width: 100,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.schedule,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                          const SizedBox(
+                            width: 7,
+                          ),
+                          Text(
+                            'Schedule',
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary),
+                          ),
+                        ],
                       ),
-                      const SizedBox(
-                        width: 7,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    CustomMaterialButton(
+                      width: 100,
+                      onPress: () {
+                        _addEventController.showFirstAnimation.value = true;
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.upload,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                          const SizedBox(
+                            width: 7,
+                          ),
+                          Text(
+                            'Start Now',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        'Add',
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary),
-                      ),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
           const SizedBox(
             width: 15,
@@ -157,6 +182,62 @@ class _AddEventSceenState extends State<AddEventSceen>
                       cohostTile(
                           text: 'Add Co-host or Guest', isAddCoHost: true),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text('Select privacy of your event'),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => Obx(
+                        () => Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _addEventController.selectedPrivacy.value =
+                                      _addEventController.privacies[index];
+                                });
+                              },
+                              child: Container(
+                                height: 80,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                  color: _addEventController
+                                              .selectedPrivacy.value ==
+                                          _addEventController.privacies[index]
+                                      ? Theme.of(context).colorScheme.surface
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .surface
+                                          .withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    color:
+                                        Theme.of(context).colorScheme.surface,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    _addEventController.privacies[index],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            )
+                          ],
+                        ),
+                      ),
+                      itemCount: _addEventController.privacies.length,
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -301,15 +382,21 @@ class _AddEventSceenState extends State<AddEventSceen>
                 composition.duration,
                 () {
                   _alertDialog(
-                      context: context,
-                      title: 'Added',
-                      content: 'Event Added Successfully');
+                    context: context,
+                    title: 'Started',
+                    content: 'Event Started Successfully',
+                  );
                   Future.delayed(
                     const Duration(seconds: 1),
                     () {
                       _addEventController.showFirstAnimation.value = false;
                       _addEventController.showAnimation.value = false;
-                      Navigator.pop(context);
+                      Get.off(
+                        () => MainEventScreen(
+                          event: liveEvents[0],
+                          isMyEvent: true,
+                        ),
+                      );
                     },
                   );
                 },

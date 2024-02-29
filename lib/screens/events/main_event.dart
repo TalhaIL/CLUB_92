@@ -29,7 +29,6 @@ class _MainEventScreenState extends State<MainEventScreen> {
   final controller = Get.put(
     EventController(),
   );
-
   @override
   void dispose() {
     controller.isMicOn.value = false;

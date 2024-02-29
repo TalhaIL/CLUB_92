@@ -18,17 +18,6 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          CustomMaterialButton(
-            onPress: () {},
-            height: 40,
-            width: 50,
-            child: Text(
-              'Buy this app',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
-            ),
-          ),
           IconButton(
             onPressed: () {
               Get.to(
@@ -72,7 +61,8 @@ class ProfileScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(
-                          color: Theme.of(context).colorScheme.primary),
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                       image: DecorationImage(
                         image: CachedNetworkImageProvider(
                           speaker.profileImage,
@@ -149,6 +139,7 @@ class ProfileScreen extends StatelessWidget {
               Text(
                 speaker.about.toString(),
                 style: Theme.of(context).textTheme.bodyMedium,
+                textAlign: TextAlign.justify,
               ),
               const SizedBox(
                 height: 20,

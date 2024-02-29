@@ -167,8 +167,8 @@ class _HomeScreenState extends State<HomeScreen>
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: TabBarView(
         controller: _tabController,
-        children: [
-          const LiveEvents(),
+        children: const [
+          LiveEvents(),
           UpcomingEvents(),
         ],
       ),

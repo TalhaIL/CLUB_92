@@ -75,7 +75,7 @@ class _ChooseCountryState extends State<ChooseCountry> {
                 showOnlyCountryWhenClosed: true,
                 alignLeft: true,
                 padding: const EdgeInsets.all(0),
-                dialogBackgroundColor: appColor,
+                dialogBackgroundColor: Theme.of(context).colorScheme.surface,
                 searchDecoration: InputDecoration(
                   hintText: 'Choose Country',
                   focusedBorder: UnderlineInputBorder(

@@ -9,6 +9,8 @@ class AddEventController extends GetxController {
   RxBool isSwitched = true.obs;
   RxBool showFirstAnimation = false.obs;
   RxBool showAnimation = false.obs;
+  RxString selectedPrivacy = 'Public'.obs;
+  List<String> privacies = ['Public', 'Social', 'Private'];
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController ticketController = TextEditingController();
