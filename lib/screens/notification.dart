@@ -38,6 +38,15 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Activity'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.tune),
+          ),
+          const SizedBox(
+            width: 10,
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(

@@ -49,9 +49,8 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -110,20 +109,36 @@ class ProfileScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           MaterialButton(
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.surface,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
                             onPressed: () {},
-                            child: const Text('22k followers'),
+                            child: Row(
+                              children: [
+                                Text(speaker.followers.toString()),
+                                Text(
+                                  ' followers',
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                )
+                              ],
+                            ),
                           ),
                           MaterialButton(
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.surface,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
                             onPressed: () {},
-                            child: const Text('20 following'),
+                            child: Row(
+                              children: [
+                                Text(speaker.following.toString()),
+                                Text(
+                                  ' following',
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                )
+                              ],
+                            ),
                           )
                         ],
                       )
@@ -142,118 +157,75 @@ class ProfileScreen extends StatelessWidget {
                       TextStyle(color: Theme.of(context).colorScheme.onPrimary),
                 ),
               ),
-              // Row(
-              //   children: [
-              //     Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: [
-              //         Text(
-              //           speaker.followers.toString(),
-              //           style: const TextStyle(
-              //             fontSize: 18,
-              //             fontWeight: FontWeight.bold,
-              //           ),
-              //         ),
-              //         Text(
-              //           'Followers',
-              //           style: Theme.of(context).textTheme.bodySmall,
-              //         )
-              //       ],
-              //     ),
-              //     const SizedBox(
-              //       width: 20,
-              //     ),
-              //     Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: [
-              //         Text(
-              //           speaker.following.toString(),
-              //           style: const TextStyle(
-              //             fontSize: 18,
-              //             fontWeight: FontWeight.bold,
-              //           ),
-              //         ),
-              //         Text(
-              //           'Followings',
-              //           style: Theme.of(context).textTheme.bodySmall,
-              //         )
-              //       ],
-              //     )
-              //   ],
-              // ),
-
               const SizedBox(
                 height: 20,
               ),
-              ExpansionTile(
-                backgroundColor: Theme.of(context).colorScheme.surface,
-                collapsedBackgroundColor: Theme.of(context).colorScheme.surface,
-                collapsedShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                title: const Text('About'),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      speaker.about.toString(),
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    customExpansionTile(
+                      context,
+                      title: 'About',
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            speaker.about.toString(),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface,
+                                ),
+                            textAlign: TextAlign.justify,
                           ),
-                      textAlign: TextAlign.justify,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ExpansionTile(
-                backgroundColor: Theme.of(context).colorScheme.surface,
-                collapsedBackgroundColor: Theme.of(context).colorScheme.surface,
-                collapsedShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    customExpansionTile(
+                      context,
+                      title: 'Social Handles',
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            accountIconWithUrl(
+                                icon: 'assets/icons/linkedinIcon.svg',
+                                accountHandle: speaker.linkedInHandle!),
+                            accountIconWithUrl(
+                                icon: 'assets/icons/youtubeIcon.svg',
+                                accountHandle: speaker.youtubeHandle!),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            accountIconWithUrl(
+                                icon: 'assets/icons/twitterIcon.svg',
+                                accountHandle: speaker.twitterHandle!),
+                            accountIconWithUrl(
+                                icon: 'assets/icons/instagramIcon.svg',
+                                accountHandle: speaker.instaHandle!),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        )
+                      ],
+                    ),
+                  ],
                 ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                title: const Text('Social Handles'),
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      accountIconWithUrl(
-                          icon: 'assets/icons/linkedinIcon.svg',
-                          accountHandle: speaker.linkedInHandle!),
-                      accountIconWithUrl(
-                          icon: 'assets/icons/youtubeIcon.svg',
-                          accountHandle: speaker.youtubeHandle!),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      accountIconWithUrl(
-                          icon: 'assets/icons/twitterIcon.svg',
-                          accountHandle: speaker.twitterHandle!),
-                      accountIconWithUrl(
-                          icon: 'assets/icons/instagramIcon.svg',
-                          accountHandle: speaker.instaHandle!),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  )
-                ],
               ),
               const SizedBox(
                 height: 20,
@@ -326,7 +298,6 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
               const SizedBox(
                 height: 20,
               ),
@@ -361,8 +332,25 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Row accountIconWithUrl(
-      {required String icon, required String accountHandle}) {
+  ExpansionTile customExpansionTile(BuildContext context, {title, children}) {
+    return ExpansionTile(
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      collapsedBackgroundColor: Theme.of(context).colorScheme.surface,
+      collapsedShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      title: Text(title),
+      children: children,
+    );
+  }
+
+  Row accountIconWithUrl({
+    required String icon,
+    required String accountHandle,
+  }) {
     return Row(
       children: [
         SvgPicture.asset(
