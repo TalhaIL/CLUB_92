@@ -51,28 +51,47 @@ class ProfileScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      image: DecorationImage(
-                        image: CachedNetworkImageProvider(
-                          speaker.profileImage,
+                  Stack(children: [
+                    Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.primary,
                         ),
-                        fit: BoxFit.cover,
+                        image: DecorationImage(
+                          image: CachedNetworkImageProvider(
+                            speaker.profileImage,
+                          ),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Theme.of(context).colorScheme.primary),
+                        child: const Icon(
+                          Icons.camera_alt,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  ]),
                   const SizedBox(
-                    width: 20,
+                    height: 10,
                   ),
                   Column(
                     children: [
@@ -86,6 +105,27 @@ class ProfileScreen extends StatelessWidget {
                       Text(
                         speaker.username.toString(),
                         style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          MaterialButton(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            onPressed: () {},
+                            child: const Text('22k followers'),
+                          ),
+                          MaterialButton(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            onPressed: () {},
+                            child: const Text('20 following'),
+                          )
+                        ],
                       )
                     ],
                   )
@@ -94,151 +134,207 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Row(
+              CustomMaterialButton(
+                onPress: () {},
+                child: Text(
+                  'Edit Profile',
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                ),
+              ),
+              // Row(
+              //   children: [
+              //     Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         Text(
+              //           speaker.followers.toString(),
+              //           style: const TextStyle(
+              //             fontSize: 18,
+              //             fontWeight: FontWeight.bold,
+              //           ),
+              //         ),
+              //         Text(
+              //           'Followers',
+              //           style: Theme.of(context).textTheme.bodySmall,
+              //         )
+              //       ],
+              //     ),
+              //     const SizedBox(
+              //       width: 20,
+              //     ),
+              //     Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         Text(
+              //           speaker.following.toString(),
+              //           style: const TextStyle(
+              //             fontSize: 18,
+              //             fontWeight: FontWeight.bold,
+              //           ),
+              //         ),
+              //         Text(
+              //           'Followings',
+              //           style: Theme.of(context).textTheme.bodySmall,
+              //         )
+              //       ],
+              //     )
+              //   ],
+              // ),
+
+              const SizedBox(
+                height: 20,
+              ),
+              ExpansionTile(
+                backgroundColor: Theme.of(context).colorScheme.surface,
+                collapsedBackgroundColor: Theme.of(context).colorScheme.surface,
+                collapsedShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                title: const Text('About'),
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      speaker.about.toString(),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ExpansionTile(
+                backgroundColor: Theme.of(context).colorScheme.surface,
+                collapsedBackgroundColor: Theme.of(context).colorScheme.surface,
+                collapsedShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                title: const Text('Social Handles'),
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
-                        speaker.followers.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        'Followers',
-                        style: Theme.of(context).textTheme.bodySmall,
-                      )
+                      accountIconWithUrl(
+                          icon: 'assets/icons/linkedinIcon.svg',
+                          accountHandle: speaker.linkedInHandle!),
+                      accountIconWithUrl(
+                          icon: 'assets/icons/youtubeIcon.svg',
+                          accountHandle: speaker.youtubeHandle!),
                     ],
                   ),
                   const SizedBox(
-                    width: 20,
+                    height: 30,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
-                        speaker.following.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        'Followings',
-                        style: Theme.of(context).textTheme.bodySmall,
-                      )
+                      accountIconWithUrl(
+                          icon: 'assets/icons/twitterIcon.svg',
+                          accountHandle: speaker.twitterHandle!),
+                      accountIconWithUrl(
+                          icon: 'assets/icons/instagramIcon.svg',
+                          accountHandle: speaker.instaHandle!),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 20,
                   )
                 ],
               ),
               const SizedBox(
                 height: 20,
               ),
-              Text(
-                speaker.about.toString(),
-                style: Theme.of(context).textTheme.bodyMedium,
-                textAlign: TextAlign.justify,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  accountIconWithUrl(
-                      icon: 'assets/icons/linkedinIcon.svg',
-                      accountHandle: speaker.linkedInHandle!),
-                  accountIconWithUrl(
-                      icon: 'assets/icons/youtubeIcon.svg',
-                      accountHandle: speaker.youtubeHandle!),
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  accountIconWithUrl(
-                      icon: 'assets/icons/twitterIcon.svg',
-                      accountHandle: speaker.twitterHandle!),
-                  accountIconWithUrl(
-                      icon: 'assets/icons/instagramIcon.svg',
-                      accountHandle: speaker.instaHandle!),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
+              ExpansionTile(
+                backgroundColor: Theme.of(context).colorScheme.surface,
+                collapsedBackgroundColor: Theme.of(context).colorScheme.surface,
+                collapsedShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surface,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                title: const Text('Upcoming Event'),
+                children: [
+                  Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Today 8:30 pm',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontSize: 15,
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {},
-                              child: Text(
-                                'Edit',
+                      horizontal: 10,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Today 8:30 pm',
                                 style: TextStyle(
-                                  fontSize: 15,
                                   color: Theme.of(context).colorScheme.primary,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const Text(
-                          'Discuss over pollution control',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                              InkWell(
+                                onTap: () {},
+                                child: Text(
+                                  'Edit',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            const Text('FROM WORLD WARRIORS'),
-                            Icon(
-                              Icons.flag,
-                              color: Theme.of(context).colorScheme.primary,
-                              size: 18,
-                            )
-                          ],
-                        )
-                      ],
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            'Discuss over pollution control',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              const Text('FROM WORLD WARRIORS'),
+                              Icon(
+                                Icons.flag,
+                                color: Theme.of(context).colorScheme.primary,
+                                size: 18,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 20,
