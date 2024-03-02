@@ -1,8 +1,13 @@
+import 'dart:developer';
+
+import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
+import 'package:club_92/controllers/notification_controller.dart';
 import 'package:club_92/utils/instruction_dialog.dart';
 import 'package:club_92/constants/speaker.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationScreen extends StatefulWidget {
@@ -13,6 +18,8 @@ class NotificationScreen extends StatefulWidget {
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
+  final notificationController = Get.put(NotificationController());
+
   void _checkInstructionStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool shown = prefs.getBool('isActivityInstructionShown') ?? false;
@@ -39,9 +46,99 @@ class _NotificationScreenState extends State<NotificationScreen> {
       appBar: AppBar(
         title: const Text('Activity'),
         actions: [
-          IconButton(
-            onPressed: () {},
+          PopupMenuButton(
             icon: const Icon(Icons.tune),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            color: Theme.of(context).colorScheme.surface,
+            elevation: 0,
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                child: Text('Related to your'),
+              ),
+              PopupMenuItem(
+                onTap: () {
+                  notificationController.notifyYourEvents.value =
+                      !notificationController.notifyYourEvents.value;
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Events'),
+                    Obx(
+                      () => Switch(
+                          value: notificationController.notifyYourEvents.value,
+                          onChanged: (v) {
+                            notificationController.notifyYourEvents.value = v;
+                          }),
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                onTap: () {
+                  notificationController.notifyFollowingEvents.value =
+                      !notificationController.notifyFollowingEvents.value;
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Following Events'),
+                    Obx(
+                      () => Switch(
+                          value: notificationController
+                              .notifyFollowingEvents.value,
+                          onChanged: (v) {
+                            log(v.toString());
+                            setState(() {
+                              notificationController
+                                  .notifyFollowingEvents.value = v;
+                            });
+                          }),
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                onTap: () {
+                  notificationController.notifyOthers.value =
+                      !notificationController.notifyOthers.value;
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Others'),
+                    Obx(
+                      () => Switch(
+                        value: notificationController.notifyOthers.value,
+                        onChanged: (v) {
+                          notificationController.notifyOthers.value = v;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomMaterialButton(
+                    height: 30,
+                    width: 70,
+                    onPress: () {
+                      Get.back();
+                    },
+                    child: Text(
+                      'Filter',
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary),
+                    ),
+                  )
+                ],
+              ))
+            ],
           ),
           const SizedBox(
             width: 10,

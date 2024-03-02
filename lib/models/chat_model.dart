@@ -1,11 +1,11 @@
 class ChatModel {
-  final String sender;
+  final String messageSender;
   final String profileImage;
   final String lastMessage;
   final DateTime time;
 
   ChatModel({
-    required this.sender,
+    required this.messageSender,
     required this.profileImage,
     required this.lastMessage,
     required this.time,

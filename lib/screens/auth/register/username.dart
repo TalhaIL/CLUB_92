@@ -6,22 +6,29 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserName extends StatelessWidget {
-  const UserName({super.key});
+  final bool isUpdate;
+  const UserName({super.key, this.isUpdate = false});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              'SKIP',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-            ),
-          ),
+          isUpdate == false
+              ? TextButton(
+                  onPressed: () {
+                    Get.to(
+                      () => const SpeakersScreen(),
+                    );
+                  },
+                  child: Text(
+                    'SKIP',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                )
+              : const SizedBox(),
         ],
       ),
       body: SingleChildScrollView(
@@ -89,17 +96,29 @@ class UserName extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                CustomMaterialButton(
-                  onPress: () {
-                    Get.to(
-                      () => const SpeakersScreen(),
-                    );
-                  },
-                  child: const Text(
-                    'Next',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                isUpdate == false
+                    ? CustomMaterialButton(
+                        onPress: () {
+                          Get.to(
+                            () => const SpeakersScreen(),
+                          );
+                        },
+                        child: Text(
+                          'Next',
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary),
+                        ),
+                      )
+                    : CustomMaterialButton(
+                        onPress: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          'Update',
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary),
+                        ),
+                      ),
                 const SizedBox(
                   height: 20,
                 ),

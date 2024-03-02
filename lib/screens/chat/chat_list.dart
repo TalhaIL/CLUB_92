@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/screens/chat/new_chat_list.dart';
 import 'package:club_92/utils/instruction_dialog.dart';
 import 'package:club_92/constants/message_list.dart';
 import 'package:club_92/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChatListScreen extends StatefulWidget {
@@ -41,7 +43,11 @@ class _ChatListScreenState extends State<ChatListScreen> {
         title: const Text('Chats'),
         actions: [
           CustomMaterialButton(
-            onPress: () {},
+            onPress: () {
+              Get.to(
+                () => const NewChatScreen(),
+              );
+            },
             child: Text(
               'Start New Chat',
               style: TextStyle(
@@ -58,7 +64,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
         itemCount: chats.length,
         itemBuilder: (context, index) {
           return Dismissible(
-            key: Key(chats[index].sender),
+            key: Key(chats[index].messageSender),
             direction: DismissDirection.endToStart,
             background: Container(
               color: Colors.red,
@@ -78,7 +84,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
               ),
               title: SizedBox(
                 child: Text(
-                  chats[index].sender,
+                  chats[index].messageSender,
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 18,

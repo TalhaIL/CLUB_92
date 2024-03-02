@@ -17,33 +17,13 @@ class CustomTicket extends StatelessWidget {
         color: appColor,
         borderRadius: BorderRadius.circular(5),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            height: 7,
-            width: 7,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
-              borderRadius: BorderRadius.circular(30),
-            ),
+      child: Center(
+        child: Text(
+          '\$$ticketAmount',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
-          Center(
-            child: Text(
-              '\$$ticketAmount',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
-            ),
-          ),
-          Container(
-            height: 7,
-            width: 7,
-            decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surface,
-                borderRadius: BorderRadius.circular(30)),
-          ),
-        ],
+        ),
       ),
     );
   }

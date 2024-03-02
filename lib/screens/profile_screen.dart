@@ -3,6 +3,7 @@ import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/room_list.dart';
 import 'package:club_92/models/speaker_modal.dart';
 import 'package:club_92/screens/Settings/setting_screen.dart';
+import 'package:club_92/screens/auth/register/username.dart';
 import 'package:club_92/screens/wallet.dart';
 import 'package:club_92/utils/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -150,7 +151,11 @@ class ProfileScreen extends StatelessWidget {
                 height: 20,
               ),
               CustomMaterialButton(
-                onPress: () {},
+                onPress: () {
+                  Get.to(() => const UserName(
+                        isUpdate: true,
+                      ));
+                },
                 child: Text(
                   'Edit Profile',
                   style:
