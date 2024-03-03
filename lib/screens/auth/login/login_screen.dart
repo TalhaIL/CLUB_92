@@ -3,7 +3,7 @@ import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/components/reusableWidgets/logo_with_text.dart';
 import 'package:club_92/screens/auth/login/forgot_password_screen.dart';
 import 'package:club_92/screens/auth/register/country.dart';
-import 'package:club_92/screens/home.dart';
+import 'package:club_92/screens/home/home.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

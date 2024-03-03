@@ -1,11 +1,9 @@
 import 'dart:developer';
-
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
-import 'package:club_92/controllers/notification_controller.dart';
+import 'package:club_92/controllers/notification/notification_controller.dart';
 import 'package:club_92/utils/instruction_dialog.dart';
 import 'package:club_92/constants/speaker.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,6 +42,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.background,
         title: const Text('Activity'),
         actions: [
           PopupMenuButton(

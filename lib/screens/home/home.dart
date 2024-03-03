@@ -5,7 +5,8 @@ import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/live_events.dart';
 import 'package:club_92/constants/speaker.dart';
-import 'package:club_92/controllers/home_controller.dart';
+import 'package:club_92/controllers/google_ads/google_ad.dart';
+import 'package:club_92/controllers/home/home_controller.dart';
 import 'package:club_92/screens/chat/chat_list.dart';
 import 'package:club_92/screens/events/live_events.dart';
 import 'package:club_92/screens/events/main_event.dart';
@@ -15,6 +16,7 @@ import 'package:club_92/screens/profile_screen.dart';
 import 'package:club_92/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,10 +28,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  final adController = Get.put(
+    GoogleAdController(),
+  );
 
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
+    adController.initBannerAd();
     super.initState();
   }
 
@@ -131,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen>
         ],
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 20),
+        padding: const EdgeInsets.only(bottom: 50),
         child: CustomMaterialButton(
           onPress: () {
             showModalBottomSheet(
@@ -154,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen>
                   width: 5,
                 ),
                 Text(
-                  'Start a room',
+                  'Start a Event',
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -171,6 +177,17 @@ class _HomeScreenState extends State<HomeScreen>
           LiveEvents(),
           UpcomingEvents(),
         ],
+      ),
+      bottomNavigationBar: Obx(
+        () => Visibility(
+          visible: adController.isAdLoaded.value,
+          child: SizedBox(
+              height: adController.bannerAd.size.height.toDouble(),
+              width: adController.bannerAd.size.width.toDouble(),
+              child: AdWidget(
+                ad: adController.bannerAd,
+              )),
+        ),
       ),
     );
   }
@@ -212,7 +229,7 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
                   width: 25,
                 ),
                 const Text(
-                  'Start a Room',
+                  'Start a Event',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -254,7 +271,7 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
                   children: [
                     RichText(
                       text: const TextSpan(
-                        text: 'Start a room for a',
+                        text: 'Start a event for a',
                         style: TextStyle(color: Colors.grey),
                         children: [
                           TextSpan(

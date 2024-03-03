@@ -1,5 +1,5 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/controllers/wallet_controller.dart';
+import 'package:club_92/controllers/wallet/wallet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

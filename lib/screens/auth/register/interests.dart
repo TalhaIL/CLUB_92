@@ -1,7 +1,7 @@
 import 'package:club_92/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/constants/color.dart';
-import 'package:club_92/controllers/interest_controller.dart';
-import 'package:club_92/screens/home.dart';
+import 'package:club_92/controllers/interest/interest_controller.dart';
+import 'package:club_92/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
