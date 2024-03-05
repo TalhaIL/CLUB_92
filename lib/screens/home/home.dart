@@ -5,8 +5,9 @@ import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/live_events.dart';
 import 'package:club_92/constants/speaker.dart';
+import 'package:club_92/controllers/events/event_controller.dart';
 import 'package:club_92/controllers/google_ads/google_ad.dart';
-import 'package:club_92/controllers/home/home_controller.dart';
+import 'package:club_92/locator.dart';
 import 'package:club_92/screens/chat/chat_list.dart';
 import 'package:club_92/screens/events/live_events.dart';
 import 'package:club_92/screens/events/main_event.dart';
@@ -28,9 +29,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final adController = Get.put(
-    GoogleAdController(),
-  );
+  final adController = locator.get<GoogleAdController>();
 
   @override
   void initState() {
@@ -180,13 +179,17 @@ class _HomeScreenState extends State<HomeScreen>
       ),
       bottomNavigationBar: Obx(
         () => Visibility(
+          maintainState: true,
+          maintainAnimation: true,
+          maintainSize: true,
           visible: adController.isAdLoaded.value,
           child: SizedBox(
-              height: adController.bannerAd.size.height.toDouble(),
-              width: adController.bannerAd.size.width.toDouble(),
-              child: AdWidget(
-                ad: adController.bannerAd,
-              )),
+            height: adController.bannerAd.size.height.toDouble(),
+            width: adController.bannerAd.size.width.toDouble(),
+            child: AdWidget(
+              ad: adController.bannerAd,
+            ),
+          ),
         ),
       ),
     );
@@ -204,9 +207,7 @@ class StartRoomSheet extends StatefulWidget {
 
 class _StartRoomSheetState extends State<StartRoomSheet> {
   String selectedPrivacy = 'Public';
-  final homeController = Get.put(
-    HomeController(),
-  );
+  final homeController = locator.get<EventController>();
 
   @override
   Widget build(BuildContext context) {

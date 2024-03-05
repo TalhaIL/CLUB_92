@@ -5,6 +5,7 @@ import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/constants/upcoming_events.dart';
 import 'package:club_92/controllers/events/event_controller.dart';
+import 'package:club_92/locator.dart';
 import 'package:club_92/models/event_modal.dart';
 import 'package:club_92/screens/events/add_event.dart';
 import 'package:club_92/utils/instruction_dialog.dart';
@@ -20,7 +21,7 @@ class UpcomingEvents extends StatefulWidget {
 }
 
 class _UpcomingEventsState extends State<UpcomingEvents> {
-  final EventController _eventController = Get.put(EventController());
+  final _eventController = locator.get<EventController>();
 
   void _checkInstructionStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

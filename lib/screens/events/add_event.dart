@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:club_92/constants/live_events.dart';
+import 'package:club_92/locator.dart';
 import 'package:club_92/screens/events/main_event.dart';
 import 'package:club_92/utils/instruction_dialog.dart';
 import 'package:club_92/components/reusableWidgets/alert_dialog.dart';
@@ -29,12 +30,7 @@ class AddEventSceen extends StatefulWidget {
 
 class _AddEventSceenState extends State<AddEventSceen>
     with SingleTickerProviderStateMixin {
-  final AddEventController _addEventController = Get.put(
-    AddEventController(),
-  );
-  // String selectedPrivacy = 'Public';
-  // List<String> privacies = ['Public', 'Social', 'Private'];
-
+  final _addEventController = locator.get<AddEventController>();
   void _checkInstructionStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool shown = prefs.getBool('isAddEventInstructionShown') ?? false;

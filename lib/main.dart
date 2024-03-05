@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:club_92/constants/color.dart';
 import 'package:club_92/controllers/theme/theme.dart';
+import 'package:club_92/locator.dart';
 import 'package:club_92/screens/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   var devices = ["C50914FFA3EB94E9E9E0FE234E98AEA1"];
   WidgetsFlutterBinding.ensureInitialized();
+  setUp();
   await MobileAds.instance.initialize();
   RequestConfiguration requestConfiguration =
       RequestConfiguration(testDeviceIds: devices);
@@ -31,15 +33,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        final controller = Get.put(
-          ThemeController(),
-        );
-        controller.themeChange(isDark);
+        locator.get<ThemeController>().themeChange(isDark);
         return Obx(
           () => GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Club 92',
-            themeMode: controller.theme.value,
+            themeMode: locator.get<ThemeController>().theme.value,
             darkTheme: ThemeData(
                 useMaterial3: true,
                 colorScheme: ColorScheme.dark(
