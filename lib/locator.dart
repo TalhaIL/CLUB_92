@@ -7,16 +7,16 @@ import 'package:get_it/get_it.dart';
 GetIt locator = GetIt.instance;
 
 void setUp() {
-  locator.registerLazySingleton<AddEventController>(
-    () => AddEventController(),
+  locator.registerSingleton<AddEventController>(
+    AddEventController(),
   );
-  locator.registerLazySingleton<EventController>(
-    () => EventController(),
+  locator.registerSingleton<EventController>(
+    EventController(),
   );
-  locator.registerLazySingleton<ThemeController>(
+  locator.registerFactory<ThemeController>(
     () => ThemeController(),
   );
-  locator.registerLazySingleton<GoogleAdController>(
-    () => GoogleAdController(),
+  locator.registerSingleton<GoogleAdController>(
+    GoogleAdController(),
   );
 }
