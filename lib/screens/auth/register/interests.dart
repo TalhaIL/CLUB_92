@@ -1,14 +1,16 @@
-import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/constants/color.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/core/constants/color.dart';
 import 'package:club_92/controllers/interest/interest_controller.dart';
 import 'package:club_92/screens/home/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
-class InterestScreen extends StatelessWidget {
+class UsersInterestScreen extends StatelessWidget {
+  static const String route = 'users-interest-screen';
   final InterestController _interestController = Get.put(InterestController());
   final bool isFromSettings;
-  InterestScreen({super.key, this.isFromSettings = false});
+  UsersInterestScreen({super.key, required this.isFromSettings});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class InterestScreen extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 20),
         child: CustomMaterialButton(
           onPress: () {
-            Get.offAll(() => const HomeScreen());
+            Get.offAndToNamed(HomeScreen.route);
           },
           width: 130,
           child: Text(
@@ -26,7 +28,7 @@ class InterestScreen extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-        ),
+        ).animate().fade().scaleX(delay: 100.ms),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: CustomScrollView(

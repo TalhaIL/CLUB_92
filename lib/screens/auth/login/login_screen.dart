@@ -1,14 +1,16 @@
-import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
-import 'package:club_92/components/reusableWidgets/logo_with_text.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_text_field.dart';
+import 'package:club_92/core/components/reusableWidgets/logo_with_text.dart';
 import 'package:club_92/screens/auth/login/forgot_password_screen.dart';
 import 'package:club_92/screens/auth/register/country.dart';
 import 'package:club_92/screens/home/home.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const String route = '/login-screen';
   const LoginScreen({super.key});
 
   @override
@@ -34,9 +36,7 @@ class LoginScreen extends StatelessWidget {
               alignment: Alignment.topRight,
               child: GestureDetector(
                 onTap: () {
-                  Get.to(
-                    () => const ForgotPassword(),
-                  );
+                  Get.toNamed(ForgotPasswordScreen.route);
                 },
                 child: const Text(
                   'Forget Password ?',
@@ -51,15 +51,13 @@ class LoginScreen extends StatelessWidget {
             ),
             CustomMaterialButton(
               onPress: () {
-                Get.offAll(
-                  () => const HomeScreen(),
-                );
+                Get.offAndToNamed(HomeScreen.route);
               },
               child: const Text(
                 'Login',
                 style: TextStyle(color: Colors.white),
               ),
-            ),
+            ).animate().fade().slideY(delay: 500.ms),
             const SizedBox(
               height: 20,
             ),
@@ -68,15 +66,16 @@ class LoginScreen extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   text: "Don't have account ? ",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                   children: [
                     TextSpan(
                       text: 'Register',
                       style: const TextStyle(color: Colors.blue, fontSize: 17),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          Get.to(
-                            () => const ChooseCountry(),
-                          );
+                          Get.toNamed(ChooseCountryScreen.route);
                         },
                     ),
                   ],

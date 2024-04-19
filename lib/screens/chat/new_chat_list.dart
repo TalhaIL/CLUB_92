@@ -1,10 +1,11 @@
-import 'package:club_92/constants/speaker.dart';
+import 'package:club_92/core/constants/speaker.dart';
 import 'package:club_92/screens/chat/chat_screen.dart';
-import 'package:club_92/utils/cached_network_image.dart';
+import 'package:club_92/core/utils/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NewChatScreen extends StatelessWidget {
+  static const String route = 'new-chat-screen';
   const NewChatScreen({super.key});
 
   @override
@@ -27,10 +28,11 @@ class NewChatScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: ListTile(
             onTap: () {
-              Get.to(
-                () => ChatScreen(
-                  newReceiver: listOfSpeakers[index],
-                ),
+              Get.toNamed(
+                ChatScreen.route,
+                arguments: {
+                  'newReceiver': listOfSpeakers[index],
+                },
               );
             },
             leading: MyCachedNetworkImage(

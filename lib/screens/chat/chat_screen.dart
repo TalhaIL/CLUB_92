@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:club_92/models/speaker_modal.dart';
-import 'package:club_92/utils/instruction_dialog.dart';
+import 'package:club_92/core/utils/instruction_dialog.dart';
 import 'package:club_92/models/chat_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChatScreen extends StatefulWidget {
+  static const String route = 'chat-screen';
   final ChatModel? sender;
   final Speaker? newReceiver;
   const ChatScreen({super.key, this.sender, this.newReceiver});

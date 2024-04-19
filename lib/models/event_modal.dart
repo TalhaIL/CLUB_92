@@ -1,6 +1,6 @@
 import 'package:club_92/models/speaker_modal.dart';
 
-class EventModal {
+class Event {
   final String title;
   final String eventName;
   final String? eventDescription;
@@ -11,7 +11,7 @@ class EventModal {
   final int? listeners;
   final bool? isOwner;
 
-  EventModal({
+  Event({
     required this.title,
     required this.eventName,
     this.eventDescription,

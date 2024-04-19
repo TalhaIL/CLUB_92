@@ -1,50 +1,29 @@
-import 'package:club_92/components/reusableWidgets/app_logo.dart';
-import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
-import 'package:club_92/components/reusableWidgets/language_bottom_sheet.dart';
-import 'package:club_92/constants/color.dart';
+import 'package:club_92/core/components/reusableWidgets/app_logo.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_text_field.dart';
+import 'package:club_92/core/constants/color.dart';
 import 'package:club_92/screens/auth/register/otp.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
-class ChooseCountry extends StatefulWidget {
-  const ChooseCountry({super.key});
+class ChooseCountryScreen extends StatefulWidget {
+  static const String route = '/choose-country-screen';
+  const ChooseCountryScreen({super.key});
 
   @override
-  State<ChooseCountry> createState() => _ChooseCountryState();
+  State<ChooseCountryScreen> createState() => _ChooseCountryScreenState();
 }
 
-class _ChooseCountryState extends State<ChooseCountry> {
+class _ChooseCountryScreenState extends State<ChooseCountryScreen> {
   @override
   void initState() {
     super.initState();
   }
 
-  bool isFirstBuild = true;
   @override
   Widget build(BuildContext context) {
-    if (isFirstBuild) {
-      Future.delayed(Duration.zero, () {
-        showModalBottomSheet(
-          backgroundColor: Theme.of(context).colorScheme.background,
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-            ),
-          ),
-          context: context,
-          builder: (BuildContext context) {
-            return const LanguageBottomSheet();
-          },
-        );
-        setState(() {
-          isFirstBuild = false;
-        });
-      });
-    }
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -97,13 +76,13 @@ class _ChooseCountryState extends State<ChooseCountry> {
             ),
             CustomMaterialButton(
               onPress: () {
-                Get.to(() => const OtpScreen());
+                Get.toNamed(OtpScreen.route);
               },
               child: const Text(
                 'Next',
                 style: TextStyle(color: Colors.white),
               ),
-            )
+            ).animate().fade().scaleX(delay: 100.ms)
           ],
         ),
       ),

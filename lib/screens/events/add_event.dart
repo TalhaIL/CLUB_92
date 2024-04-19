@@ -1,13 +1,12 @@
 import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:club_92/constants/live_events.dart';
-import 'package:club_92/locator.dart';
+import 'package:club_92/core/constants/live_events.dart';
 import 'package:club_92/screens/events/main_event.dart';
-import 'package:club_92/utils/instruction_dialog.dart';
-import 'package:club_92/components/reusableWidgets/alert_dialog.dart';
-import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
-import 'package:club_92/constants/color.dart';
+import 'package:club_92/core/utils/instruction_dialog.dart';
+import 'package:club_92/core/components/reusableWidgets/alert_dialog.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_text_field.dart';
+import 'package:club_92/core/constants/color.dart';
 import 'package:club_92/controllers/events/add_event_controller.dart';
 import 'package:club_92/models/event_modal.dart';
 import 'package:flutter/material.dart';
@@ -15,22 +14,23 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AddEventSceen extends StatefulWidget {
+class AddEventScreen extends StatefulWidget {
+  static const String route = 'add-event-screen';
   final bool isUpdateEvent;
-  final EventModal? event;
-  const AddEventSceen({
+  final Event? event;
+  const AddEventScreen({
     super.key,
-    this.isUpdateEvent = false,
+    required this.isUpdateEvent,
     this.event,
   });
 
   @override
-  State<AddEventSceen> createState() => _AddEventSceenState();
+  State<AddEventScreen> createState() => _AddEventScreenState();
 }
 
-class _AddEventSceenState extends State<AddEventSceen>
+class _AddEventScreenState extends State<AddEventScreen>
     with SingleTickerProviderStateMixin {
-  final _addEventController = locator.get<AddEventController>();
+  final _addEventController = Get.put(AddEventController());
   void _checkInstructionStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool shown = prefs.getBool('isAddEventInstructionShown') ?? false;
@@ -55,14 +55,6 @@ class _AddEventSceenState extends State<AddEventSceen>
 
     _checkInstructionStatus();
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    _addEventController.nameController.dispose();
-    _addEventController.ticketController.dispose();
-    _addEventController.descriptionController.dispose();
-    super.dispose();
   }
 
   @override
@@ -389,9 +381,9 @@ class _AddEventSceenState extends State<AddEventSceen>
                       _addEventController.showAnimation.value = false;
                       Get.off(
                         () => MainEventScreen(
-                          event: liveEvents[0],
-                          isMyEvent: true,
-                        ),
+                            event: liveEvents[0], isMyEvent: true),
+                        transition: Transition.downToUp,
+                        duration: const Duration(milliseconds: 500),
                       );
                     },
                   );

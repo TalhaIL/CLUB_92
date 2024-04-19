@@ -1,13 +1,15 @@
-import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
-import 'package:club_92/constants/color.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_text_field.dart';
+import 'package:club_92/core/constants/color.dart';
 import 'package:club_92/screens/auth/register/speakers_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
-class UserName extends StatelessWidget {
+class AddUserDetailsScreen extends StatelessWidget {
+  static const String route = '/username-screen';
   final bool isUpdate;
-  const UserName({super.key, this.isUpdate = false});
+  const AddUserDetailsScreen({super.key, required this.isUpdate});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +19,7 @@ class UserName extends StatelessWidget {
           isUpdate == false
               ? TextButton(
                   onPressed: () {
-                    Get.to(
-                      () => const SpeakersScreen(),
-                    );
+                    Get.toNamed(ChooseSpeakersScreen.route);
                   },
                   child: Text(
                     'SKIP',
@@ -99,16 +99,14 @@ class UserName extends StatelessWidget {
                 isUpdate == false
                     ? CustomMaterialButton(
                         onPress: () {
-                          Get.to(
-                            () => const SpeakersScreen(),
-                          );
+                          Get.toNamed(ChooseSpeakersScreen.route);
                         },
                         child: Text(
                           'Next',
                           style: TextStyle(
                               color: Theme.of(context).colorScheme.onPrimary),
                         ),
-                      )
+                      ).animate().fade().scaleX(delay: 100.ms)
                     : CustomMaterialButton(
                         onPress: () {
                           Navigator.pop(context);
@@ -118,7 +116,7 @@ class UserName extends StatelessWidget {
                           style: TextStyle(
                               color: Theme.of(context).colorScheme.onPrimary),
                         ),
-                      ),
+                      ).animate().fade().scaleX(delay: 100.ms),
                 const SizedBox(
                   height: 20,
                 ),

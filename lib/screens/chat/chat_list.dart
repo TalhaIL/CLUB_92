@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:club_92/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/screens/chat/new_chat_list.dart';
-import 'package:club_92/utils/instruction_dialog.dart';
-import 'package:club_92/constants/message_list.dart';
+import 'package:club_92/core/utils/instruction_dialog.dart';
+import 'package:club_92/core/constants/message_list.dart';
 import 'package:club_92/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChatListScreen extends StatefulWidget {
+  static const String route = '/chat-list-screen';
   const ChatListScreen({super.key});
 
   @override
@@ -44,9 +45,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
         actions: [
           CustomMaterialButton(
             onPress: () {
-              Get.to(
-                () => const NewChatScreen(),
-              );
+              Get.toNamed(NewChatScreen.route);
             },
             child: Text(
               'Start New Chat',

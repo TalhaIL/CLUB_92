@@ -1,24 +1,28 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
-import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
-import 'package:club_92/constants/color.dart';
-import 'package:club_92/constants/speaker.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_speaker_tile.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_ticket.dart';
+import 'package:club_92/core/constants/color.dart';
+import 'package:club_92/core/constants/speaker.dart';
 import 'package:club_92/controllers/events/event_controller.dart';
 import 'package:club_92/models/event_modal.dart';
-import 'package:club_92/screens/profile_screen.dart';
-import 'package:club_92/utils/cached_network_image.dart';
-import 'package:club_92/utils/countdown_timer.dart';
+import 'package:club_92/screens/profile/profile_screen.dart';
+import 'package:club_92/core/utils/cached_network_image.dart';
+import 'package:club_92/core/utils/countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class MainEventScreen extends StatefulWidget {
-  final EventModal event;
+  static const String route = '/main-event-screen';
+  final Event event;
   final bool isMyEvent;
 
-  const MainEventScreen(
-      {super.key, required this.event, this.isMyEvent = false});
+  const MainEventScreen({
+    super.key,
+    required this.event,
+    required this.isMyEvent,
+  });
 
   @override
   State<MainEventScreen> createState() => _MainEventScreenState();
@@ -69,10 +73,9 @@ class _MainEventScreenState extends State<MainEventScreen> {
           ),
           GestureDetector(
             onTap: () {
-              Get.to(
-                () => ProfileScreen(
-                  speaker: listOfSpeakers[0],
-                ),
+              Get.toNamed(
+                ProfileScreen.route,
+                arguments: listOfSpeakers[0],
               );
             },
             child: CircleAvatar(
@@ -694,11 +697,8 @@ class _MainEventScreenState extends State<MainEventScreen> {
               ),
               CustomMaterialButton(
                 onPress: () {
-                  Get.to(
-                    () => ProfileScreen(
-                      speaker: listOfSpeakers[index],
-                    ),
-                  );
+                  Get.toNamed(ProfileScreen.route,
+                      arguments: listOfSpeakers[index]);
                 },
                 child: const Text(
                   'Visit Full Profile',
@@ -747,7 +747,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
               Row(
                 children: [
                   Text(
-                    widget.event.eventName,
+                    widget.event.title,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(

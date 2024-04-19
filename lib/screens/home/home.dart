@@ -1,25 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
-import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
-import 'package:club_92/constants/color.dart';
-import 'package:club_92/constants/live_events.dart';
-import 'package:club_92/constants/speaker.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_speaker_tile.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_text_field.dart';
+import 'package:club_92/core/constants/color.dart';
+import 'package:club_92/core/constants/live_events.dart';
+import 'package:club_92/core/constants/speaker.dart';
 import 'package:club_92/controllers/events/event_controller.dart';
 import 'package:club_92/controllers/google_ads/google_ad.dart';
-import 'package:club_92/locator.dart';
 import 'package:club_92/screens/chat/chat_list.dart';
-import 'package:club_92/screens/events/live_events.dart';
+import 'package:club_92/screens/events/live_events_screen.dart';
 import 'package:club_92/screens/events/main_event.dart';
 import 'package:club_92/screens/events/upcoming_events_screen.dart';
-import 'package:club_92/screens/notification.dart';
-import 'package:club_92/screens/profile_screen.dart';
-import 'package:club_92/screens/search_screen.dart';
+import 'package:club_92/screens/notification/notification.dart';
+import 'package:club_92/screens/profile/profile_screen.dart';
+import 'package:club_92/screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const String route = 'home-screen';
   const HomeScreen({super.key});
 
   @override
@@ -29,7 +30,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final adController = locator.get<GoogleAdController>();
+  final adController = Get.put(GoogleAdController());
 
   @override
   void initState() {
@@ -83,9 +84,7 @@ class _HomeScreenState extends State<HomeScreen>
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(
-                () => const SearchScreen(),
-              );
+              Get.toNamed(SearchScreen.route);
             },
             icon: const Icon(
               Icons.search,
@@ -93,9 +92,7 @@ class _HomeScreenState extends State<HomeScreen>
           ),
           IconButton(
             onPressed: () {
-              Get.to(
-                () => const ChatListScreen(),
-              );
+              Get.toNamed(ChatListScreen.route);
             },
             icon: const Icon(
               Icons.chat,
@@ -103,12 +100,7 @@ class _HomeScreenState extends State<HomeScreen>
           ),
           IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const NotificationScreen(),
-                ),
-              );
+              Get.toNamed(NotificationScreen.route);
             },
             icon: const Icon(
               Icons.notifications,
@@ -119,10 +111,9 @@ class _HomeScreenState extends State<HomeScreen>
           ),
           GestureDetector(
             onTap: () {
-              Get.to(
-                () => ProfileScreen(
-                  speaker: listOfSpeakers[0],
-                ),
+              Get.toNamed(
+                ProfileScreen.route,
+                arguments: listOfSpeakers[0],
               );
             },
             child: const CircleAvatar(
@@ -167,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen>
               ],
             ),
           ),
-        ),
+        ).animate().fade().scaleX(delay: 100.ms),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: TabBarView(
@@ -207,7 +198,7 @@ class StartRoomSheet extends StatefulWidget {
 
 class _StartRoomSheetState extends State<StartRoomSheet> {
   String selectedPrivacy = 'Public';
-  final homeController = locator.get<EventController>();
+  final homeController = Get.put(EventController());
 
   @override
   Widget build(BuildContext context) {
@@ -297,9 +288,9 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
                       onPress: () {
                         Get.off(
                           () => MainEventScreen(
-                            event: liveEvents[0],
-                            isMyEvent: true,
-                          ),
+                              event: liveEvents[0], isMyEvent: true),
+                          transition: Transition.downToUp,
+                          duration: const Duration(milliseconds: 500),
                         );
                       },
                       child: const Text(

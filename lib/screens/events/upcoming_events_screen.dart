@@ -1,14 +1,13 @@
-import 'package:club_92/components/resuableMethods/custom_card.dart';
-import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/components/reusableWidgets/custom_speaker_tile.dart';
-import 'package:club_92/components/reusableWidgets/custom_ticket.dart';
-import 'package:club_92/constants/color.dart';
-import 'package:club_92/constants/upcoming_events.dart';
+import 'package:club_92/core/components/resuableMethods/custom_card.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_speaker_tile.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_ticket.dart';
+import 'package:club_92/core/constants/color.dart';
+import 'package:club_92/core/constants/upcoming_events.dart';
 import 'package:club_92/controllers/events/event_controller.dart';
-import 'package:club_92/locator.dart';
 import 'package:club_92/models/event_modal.dart';
 import 'package:club_92/screens/events/add_event.dart';
-import 'package:club_92/utils/instruction_dialog.dart';
+import 'package:club_92/core/utils/instruction_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,7 +20,7 @@ class UpcomingEvents extends StatefulWidget {
 }
 
 class _UpcomingEventsState extends State<UpcomingEvents> {
-  final _eventController = locator.get<EventController>();
+  final _eventController = Get.put(EventController());
 
   void _checkInstructionStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -116,9 +115,7 @@ class _UpcomingEventsState extends State<UpcomingEvents> {
                 ),
                 CustomMaterialButton(
                   onPress: () {
-                    Get.to(
-                      () => const AddEventSceen(),
-                    );
+                    Get.toNamed(AddEventScreen.route);
                   },
                   width: 120,
                   child: Row(
@@ -171,7 +168,7 @@ class _UpcomingEventsState extends State<UpcomingEvents> {
     );
   }
 
-  Future<dynamic> upcomingEventsSheet(BuildContext context, EventModal event) {
+  Future<dynamic> upcomingEventsSheet(BuildContext context, Event event) {
     return showModalBottomSheet(
       backgroundColor: Theme.of(context).colorScheme.surface,
       elevation: 0,
@@ -336,11 +333,12 @@ class _UpcomingEventsState extends State<UpcomingEvents> {
                               : CustomMaterialButton(
                                   height: 45,
                                   onPress: () {
-                                    Get.to(
-                                      () => AddEventSceen(
-                                        isUpdateEvent: true,
-                                        event: event,
-                                      ),
+                                    Get.toNamed(
+                                      AddEventScreen.route,
+                                      arguments: {
+                                        'event': event,
+                                        'isUpdateEvent': true
+                                      },
                                     );
                                   },
                                   child: const Text(

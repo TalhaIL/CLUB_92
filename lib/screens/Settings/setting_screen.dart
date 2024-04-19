@@ -1,12 +1,15 @@
-import 'package:club_92/components/reusableWidgets/language_bottom_sheet.dart';
 import 'package:club_92/controllers/theme/theme.dart';
-import 'package:club_92/screens/Settings/faqs_screen.dart';
+import 'package:club_92/screens/settings/community_guidelines_screen.dart';
+import 'package:club_92/screens/settings/faqs_screen.dart';
 import 'package:club_92/screens/auth/login/login_screen.dart';
 import 'package:club_92/screens/auth/register/interests.dart';
+import 'package:club_92/screens/settings/privacy_policy_screen.dart';
+import 'package:club_92/screens/settings/terms_conditions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SettingScreen extends StatefulWidget {
+  static const String route = '/setting-screen';
   const SettingScreen({super.key});
 
   @override
@@ -15,9 +18,7 @@ class SettingScreen extends StatefulWidget {
 
 class _SettingScreenState extends State<SettingScreen> {
   bool isPausedNotification = false;
-  bool isDarkMode = true;
-  String isSelectedLanguage = 'English';
-  final controller = Get.put(ThemeController());
+  final ThemeController controller = Get.put(ThemeController());
 
   @override
   Widget build(BuildContext context) {
@@ -30,154 +31,87 @@ class _SettingScreenState extends State<SettingScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            textWithSwitch(
-                text: 'Pause Notifications',
-                switchValue: isPausedNotification,
-                onChanged: null),
-            const SizedBox(
-              height: 18,
+            _buildSwitchTile(
+              text: 'Pause Notifications',
+              switchValue: isPausedNotification,
+              onChanged: (val) => setState(() => isPausedNotification = val),
             ),
-            Obx(
-              () => textWithSwitch(
+            const SizedBox(height: 18),
+            Obx(() => _buildSwitchTile(
                   text: 'Dark Mode',
-                  switchValue:
-                      controller.theme.value == ThemeMode.dark ? true : false,
-                  onChanged: (val) {
-                    controller.toggleTheme(val);
-                  }),
-            ),
-            const SizedBox(
-              height: 18,
-            ),
-            textWithSwitch(
-                text: 'App Language', text2: 'English', onChanged: null),
-            const SizedBox(
-              height: 18,
-            ),
+                  switchValue: controller.theme.value == ThemeMode.dark,
+                  onChanged: controller.toggleTheme,
+                )),
+            const SizedBox(height: 18),
             const Divider(),
-            textWithMethod(
-                text: 'Interests',
-                onTap: () {
-                  Get.to(
-                    () => InterestScreen(
-                      isFromSettings: true,
-                    ),
-                  );
-                }),
-            const SizedBox(
-              height: 18,
+            _buildMethodTile(
+              text: 'Interests',
+              onTap: () =>
+                  Get.toNamed(UsersInterestScreen.route, arguments: true),
             ),
+            const SizedBox(height: 18),
             const Divider(),
-            textWithMethod(
-                text: 'FAQs',
-                onTap: () {
-                  Get.to(
-                    () => const FaqsScreen(),
-                  );
-                }),
-            textWithMethod(
-              text: 'Terms and Conditions',
-            ),
-            textWithMethod(
-              text: 'Community Guidelines',
-            ),
-            textWithMethod(
-              text: 'Privacy Policy',
-            ),
-            const SizedBox(
-              height: 18,
-            ),
+            _buildMethodTile(
+                text: 'FAQs', onTap: () => Get.toNamed(FaqsScreen.route)),
+            _buildMethodTile(
+                text: 'Terms and Conditions',
+                onTap: () => Get.toNamed(TermsConditionsScreen.route)),
+            _buildMethodTile(
+                text: 'Community Guidelines',
+                onTap: () => Get.toNamed(CommunityGuidelines.route)),
+            _buildMethodTile(
+                text: 'Privacy Policy',
+                onTap: () => Get.toNamed(PrivacyPolicyScreen.route)),
+            const SizedBox(height: 18),
             const Divider(),
-            textWithMethod(
-                text: 'logout',
-                onTap: () {
-                  Get.to(() => const LoginScreen());
-                }),
-            const SizedBox(
-              height: 18,
-            ),
+            _buildMethodTile(
+                text: 'logout', onTap: () => Get.toNamed(LoginScreen.route)),
+            const SizedBox(height: 18),
             const Divider(),
-            const SizedBox(
-              height: 18,
-            ),
+            const SizedBox(height: 18),
             Text(
               'Version 1.0.0',
               style: TextStyle(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .onBackground
-                      .withOpacity(0.5)),
-            )
+                color:
+                    Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Column textWithMethod({required String text, Function()? onTap}) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 18,
-        ),
-        InkWell(
-          onTap: onTap,
-          child: Text(
-            text,
-            style: const TextStyle(
-              fontSize: 19,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Row textWithSwitch({
+  Widget _buildSwitchTile({
     required String text,
-    String? text2,
-    bool? switchValue,
-    required Function(bool)? onChanged,
+    required bool switchValue,
+    required Function(bool) onChanged,
   }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          text,
-          style: const TextStyle(
-            fontSize: 19,
-          ),
+        Text(text, style: const TextStyle(fontSize: 19)),
+        Switch(
+          value: switchValue,
+          onChanged: onChanged,
+          activeColor: Theme.of(context).colorScheme.primary,
         ),
-        switchValue != null
-            ? Switch(
-                value: switchValue,
-                onChanged: onChanged,
-                activeColor: Theme.of(context).colorScheme.primary,
-              )
-            : TextButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
-                        ),
-                      ),
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const LanguageBottomSheet();
-                      });
-                },
-                child: Text(
-                  text2.toString(),
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              )
+      ],
+    );
+  }
+
+  Widget _buildMethodTile({
+    required String text,
+    required VoidCallback onTap,
+  }) {
+    return Column(
+      children: [
+        const SizedBox(height: 18),
+        InkWell(
+          onTap: onTap,
+          child: Text(text, style: const TextStyle(fontSize: 19)),
+        ),
       ],
     );
   }

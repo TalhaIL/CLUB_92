@@ -1,15 +1,23 @@
-import 'dart:developer';
-import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/constants/color.dart';
-import 'package:club_92/constants/speaker.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/core/constants/color.dart';
+import 'package:club_92/core/constants/speaker.dart';
+import 'package:club_92/models/speaker_modal.dart';
 import 'package:club_92/screens/auth/register/interests.dart';
-import 'package:club_92/utils/cached_network_image.dart';
+import 'package:club_92/core/utils/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
-class SpeakersScreen extends StatelessWidget {
-  const SpeakersScreen({super.key});
+class ChooseSpeakersScreen extends StatefulWidget {
+  static const String route = 'choose-speakers-screen';
+  const ChooseSpeakersScreen({super.key});
 
+  @override
+  State<ChooseSpeakersScreen> createState() => _ChooseSpeakersScreenState();
+}
+
+class _ChooseSpeakersScreenState extends State<ChooseSpeakersScreen> {
+  List<Speaker> selectedSpeakers = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,18 +28,21 @@ class SpeakersScreen extends StatelessWidget {
           style: TextStyle(fontSize: 20),
         ),
       ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 20),
-        child: CustomMaterialButton(
-            onPress: () {
-              Get.to(() => InterestScreen());
-            },
-            width: 130,
-            child: const Text(
-              'Next',
-              style: TextStyle(color: Colors.white),
-            )),
-      ),
+      floatingActionButton: selectedSpeakers.isEmpty
+          ? const SizedBox()
+          : Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: CustomMaterialButton(
+                onPress: () {
+                  Get.toNamed(UsersInterestScreen.route);
+                },
+                width: 130,
+                child: const Text(
+                  'Next',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ).animate().fade().scaleX(delay: 100.ms),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -58,8 +69,11 @@ class SpeakersScreen extends StatelessWidget {
                     onTap: () {
                       listOfSpeakers[index].isSelected.value =
                           !listOfSpeakers[index].isSelected.value;
-
-                      log(listOfSpeakers[index].isSelected.toString());
+                      setState(() {
+                        selectedSpeakers.contains(listOfSpeakers[index])
+                            ? selectedSpeakers.remove(listOfSpeakers[index])
+                            : selectedSpeakers.add(listOfSpeakers[index]);
+                      });
                     },
                     child: Column(
                       children: [

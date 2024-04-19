@@ -1,8 +1,9 @@
-import 'package:club_92/constants/faq.dart';
+import 'package:club_92/core/constants/faq.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FaqsScreen extends StatelessWidget {
+  static const String route = 'faq-screen';
   const FaqsScreen({super.key});
 
   @override
@@ -28,7 +29,6 @@ class FaqsScreen extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 20,
                     ),
-                    // overflow: TextOverflow.visible,
                   ),
                 ),
               ),

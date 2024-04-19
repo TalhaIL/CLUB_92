@@ -1,12 +1,14 @@
-import 'package:club_92/components/reusableWidgets/app_logo.dart';
-import 'package:club_92/components/reusableWidgets/custom_button.dart';
-import 'package:club_92/components/reusableWidgets/custom_text_field.dart';
-import 'package:club_92/constants/color.dart';
+import 'package:club_92/core/components/reusableWidgets/app_logo.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_button.dart';
+import 'package:club_92/core/components/reusableWidgets/custom_text_field.dart';
+import 'package:club_92/core/constants/color.dart';
 import 'package:club_92/screens/auth/register/username.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
 class OtpScreen extends StatelessWidget {
+  static const String route = '/otp-screen';
   const OtpScreen({super.key});
 
   @override
@@ -50,15 +52,15 @@ class OtpScreen extends StatelessWidget {
               ),
               CustomMaterialButton(
                 onPress: () {
-                  Get.to(
-                    () => const UserName(),
+                  Get.toNamed(
+                    AddUserDetailsScreen.route,
                   );
                 },
                 child: const Text(
                   'Next',
                   style: TextStyle(color: Colors.white),
                 ),
-              ),
+              ).animate().fade().scaleX(delay: 100.ms),
               const SizedBox(
                 height: 20,
               ),
