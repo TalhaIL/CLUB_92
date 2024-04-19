@@ -25,7 +25,9 @@ class _ChooseCountryScreenState extends State<ChooseCountryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Choose Country and Phone'),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0),
         child: Column(

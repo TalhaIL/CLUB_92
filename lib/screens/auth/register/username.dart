@@ -30,6 +30,9 @@ class AddUserDetailsScreen extends StatelessWidget {
                 )
               : const SizedBox(),
         ],
+        title: isUpdate
+            ? const Text('Update Your Details')
+            : const Text('Give Your Details'),
       ),
       body: SingleChildScrollView(
         child: Padding(
