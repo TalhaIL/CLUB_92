@@ -68,13 +68,13 @@ class _ChooseCountryScreenState extends State<ChooseCountryScreen> {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             const CustomTextField(
               hintText: 'Enter phone number',
             ),
             const SizedBox(
-              height: 40,
+              height: 10,
             ),
             CustomMaterialButton(
               onPress: () {

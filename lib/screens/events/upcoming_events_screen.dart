@@ -143,7 +143,7 @@ class _UpcomingEventsState extends State<UpcomingEvents> {
           Obx(
             () => Expanded(
               child: ListView.builder(
-                  padding: const EdgeInsets.only(bottom: 90, top: 15),
+                  padding: const EdgeInsets.only(bottom: 90),
                   physics: const BouncingScrollPhysics(),
                   itemCount: _eventController.isAllEvents.value
                       ? upcomingEvents.length
@@ -293,10 +293,12 @@ class _UpcomingEventsState extends State<UpcomingEvents> {
                       alignment: Alignment.bottomCenter,
                       padding: const EdgeInsets.only(bottom: 20),
                       decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                              colors: [Color(0xff20283b), Colors.transparent])),
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [Color(0xff20283b), Colors.transparent],
+                        ),
+                      ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,

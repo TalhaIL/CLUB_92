@@ -25,7 +25,7 @@ class NewChatScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: ListTile(
             onTap: () {
               Get.toNamed(

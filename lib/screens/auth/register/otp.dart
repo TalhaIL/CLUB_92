@@ -44,11 +44,11 @@ class OtpScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 50,
+                height: 20,
               ),
               const CustomTextField(hintText: 'Enter code here'),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
               CustomMaterialButton(
                 onPress: () {
@@ -62,13 +62,13 @@ class OtpScreen extends StatelessWidget {
                 ),
               ).animate().fade().scaleX(delay: 100.ms),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               const Text(
                 "Didn't recieve it?",
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Text(
                 "RESEND",

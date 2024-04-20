@@ -145,26 +145,41 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
-              CustomMaterialButton(
-                onPress: () {
-                  Get.toNamed(
-                    AddUserDetailsScreen.route,
-                    arguments: true,
-                  );
-                },
-                child: Text(
-                  'Edit Profile',
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              SizedBox(
+                width: 150,
+                child: CustomMaterialButton(
+                  onPress: () {
+                    Get.toNamed(
+                      AddUserDetailsScreen.route,
+                      arguments: true,
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        'Edit Profile',
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   children: [
                     customExpansionTile(
@@ -231,7 +246,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -302,7 +317,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               const Text(
                 'Members of',

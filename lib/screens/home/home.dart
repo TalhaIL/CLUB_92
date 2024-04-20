@@ -59,7 +59,6 @@ class _HomeScreenState extends State<HomeScreen>
             ),
             labelColor: appColor,
             labelPadding: const EdgeInsets.only(
-              bottom: 10,
               right: 15,
               left: 15,
               top: 15,
@@ -237,7 +236,7 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
               ],
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -254,7 +253,7 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
               ],
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -276,11 +275,11 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     const CustomTextField(hintText: 'Add a topic'),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     CustomMaterialButton(
                       height: 45,
@@ -301,7 +300,7 @@ class _StartRoomSheetState extends State<StartRoomSheet> {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     RichText(
                       text: const TextSpan(

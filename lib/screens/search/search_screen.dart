@@ -33,7 +33,7 @@ class _SearchScreenState extends State<SearchScreen>
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+            padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
             child: Container(
               decoration: BoxDecoration(
                 border: Border(
@@ -91,7 +91,7 @@ class _SearchScreenState extends State<SearchScreen>
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 20,
-                      vertical: 20,
+                      vertical: 10,
                     ),
                     child: TabBar(
                       indicator: BoxDecoration(
@@ -107,7 +107,7 @@ class _SearchScreenState extends State<SearchScreen>
                         Text(
                           'People',
                         ),
-                        Text('Room'),
+                        Text('Rooms'),
                       ],
                     ),
                   ),
@@ -116,13 +116,17 @@ class _SearchScreenState extends State<SearchScreen>
                       controller: tabcontroller,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'People you may follow',
                                 style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                              const SizedBox(
+                                height: 10,
                               ),
                               Expanded(
                                 child: ListView.builder(

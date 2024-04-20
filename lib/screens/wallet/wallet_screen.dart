@@ -20,7 +20,7 @@ class WalletScreen extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
             child: Row(
               children: [
                 Column(
@@ -36,11 +36,41 @@ class WalletScreen extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    Text('\$ ${controller.walletData.balance}',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge
-                            ?.copyWith(fontSize: 30)),
+                    Row(
+                      children: [
+                        Text(
+                          '\$ ${controller.walletData.balance}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(fontSize: 30),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        CustomMaterialButton(
+                          onPress: () {},
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                'Add Money',
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 )
               ],
@@ -57,33 +87,20 @@ class WalletScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 20,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Baseline(
+                        Baseline(
                           baseline: 30,
                           baselineType: TextBaseline.alphabetic,
                           child: Text(
                             'Recent Transactions',
                           ),
                         ),
-                        Baseline(
-                          baseline: 5,
-                          baselineType: TextBaseline.alphabetic,
-                          child: CustomMaterialButton(
-                            onPress: () {},
-                            child: Text(
-                              'Add Money',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary,
-                              ),
-                            ),
-                          ),
-                        )
                       ],
                     ),
                   ),

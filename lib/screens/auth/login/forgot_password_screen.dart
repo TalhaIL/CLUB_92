@@ -26,9 +26,6 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
             const CustomTextField(hintText: 'Enter your email'),
             const SizedBox(
-              height: 20,
-            ),
-            const SizedBox(
               height: 10,
             ),
             CustomMaterialButton(

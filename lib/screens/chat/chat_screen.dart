@@ -87,77 +87,112 @@ class _ChatScreenState extends State<ChatScreen> {
 
                       return Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 8),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: _isSelectedList[index]
-                                ? Colors.blue[200]
-                                : Colors.transparent,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 2),
-                            child: Row(
-                              mainAxisAlignment: isMe
-                                  ? MainAxisAlignment.end
-                                  : MainAxisAlignment.start,
-                              children: [
-                                if (!isMe)
-                                  CircleAvatar(
-                                    radius: 20,
-                                    backgroundImage: CachedNetworkImageProvider(
-                                      widget.sender!.profileImage,
-                                    ),
-                                  ),
-                                const SizedBox(
-                                  width: 10,
+                            vertical: 8, horizontal: 8),
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: _isSelectedList[index]
+                                    ? Colors.blue[200]
+                                    : Colors.transparent,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 5,
                                 ),
-                                GestureDetector(
-                                  onLongPress: () {
-                                    if (!_isSelectionModeActive) {
-                                      _toggleSelection(index);
-                                    }
-                                  },
-                                  onTap: () {
-                                    if (_isSelectionModeActive) {
-                                      _toggleSelection(index);
-                                    }
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 10,
-                                      vertical: 15,
+                                child: Row(
+                                  mainAxisAlignment: isMe
+                                      ? MainAxisAlignment.end
+                                      : MainAxisAlignment.start,
+                                  children: [
+                                    if (!isMe)
+                                      CircleAvatar(
+                                        radius: 20,
+                                        backgroundImage:
+                                            CachedNetworkImageProvider(
+                                          widget.sender!.profileImage,
+                                        ),
+                                      ),
+                                    const SizedBox(
+                                      width: 10,
                                     ),
-                                    decoration: BoxDecoration(
-                                      color: _isSelectedList[index]
-                                          ? Colors.blue[200]
-                                          : (isMe
-                                              ? Colors.deepPurple[100]
-                                              : Colors.grey[300]),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Text(
-                                      'This is testing message $index',
-                                      style: const TextStyle(
-                                        color: Colors.black,
+                                    GestureDetector(
+                                      onLongPress: () {
+                                        if (!_isSelectionModeActive) {
+                                          _toggleSelection(index);
+                                        }
+                                      },
+                                      onTap: () {
+                                        if (_isSelectionModeActive) {
+                                          _toggleSelection(index);
+                                        }
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 5),
+                                        decoration: BoxDecoration(
+                                          color: _isSelectedList[index]
+                                              ? Colors.blue[200]
+                                              : (isMe
+                                                  ? Colors.deepPurple[100]
+                                                  : Colors.grey[300]),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              'This is testing message $index',
+                                              style: const TextStyle(
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            Text(
+                                              '$index:00 PM',
+                                              style:
+                                                  const TextStyle(fontSize: 12),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                if (isMe)
-                                  const CircleAvatar(
-                                    radius: 20,
-                                    backgroundImage: CachedNetworkImageProvider(
-                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjOOQLYeoZtOLftSG_sqMn0EiqyX4t9-lwAuhOtit5DtPiefzbW6-3eEcSTvGPmh-VBb8&usqp=CAU',
+                                    const SizedBox(
+                                      width: 10,
                                     ),
-                                  ),
-                              ],
+                                    if (isMe)
+                                      const CircleAvatar(
+                                        radius: 20,
+                                        backgroundImage:
+                                            CachedNetworkImageProvider(
+                                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjOOQLYeoZtOLftSG_sqMn0EiqyX4t9-lwAuhOtit5DtPiefzbW6-3eEcSTvGPmh-VBb8&usqp=CAU',
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
+                            if (index == 5)
+                              const Column(
+                                children: [
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text('Today'),
+                                ],
+                              ),
+                            if (index == 15)
+                              const Column(
+                                children: [
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text('Yesterday'),
+                                ],
+                              ),
+                          ],
                         ),
                       );
                     },

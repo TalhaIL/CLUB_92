@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             CustomMaterialButton(
               onPress: () {
@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ).animate().fade().slideY(delay: 500.ms),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             Align(
               alignment: Alignment.topRight,

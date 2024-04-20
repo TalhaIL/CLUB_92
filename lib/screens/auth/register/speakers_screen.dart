@@ -61,7 +61,7 @@ class _ChooseSpeakersScreenState extends State<ChooseSpeakersScreen> {
                 crossAxisCount: 4,
                 crossAxisSpacing: 15.0,
                 mainAxisExtent: 100,
-                mainAxisSpacing: 20.0,
+                mainAxisSpacing: 10.0,
               ),
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {

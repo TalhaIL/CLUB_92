@@ -118,9 +118,6 @@ class _MainEventScreenState extends State<MainEventScreen> {
               ],
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
           Expanded(
             child: Stack(
               alignment: Alignment.bottomCenter,
@@ -137,7 +134,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 35, vertical: 30),
+                          horizontal: 30, vertical: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -148,7 +145,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
                               crossAxisSpacing: 15.0,
-                              mainAxisExtent: 120,
+                              mainAxisExtent: 100,
                               mainAxisSpacing: 0.0,
                             ),
                             itemBuilder: (context, index) => InkWell(
@@ -166,6 +163,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                                         height: 70,
                                         width: 70,
                                         borderRadius: 25,
+                                        index: index,
                                       ),
                                       (index % 2 == 0)
                                           ? Positioned(
@@ -232,14 +230,11 @@ class _MainEventScreenState extends State<MainEventScreen> {
                             itemCount: 7,
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
-                          const Text(
+                          Text(
                             'Other Listeners',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                           const SizedBox(
                             height: 20,
@@ -251,7 +246,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 4,
                               crossAxisSpacing: 0,
-                              mainAxisExtent: 115,
+                              mainAxisExtent: 100,
                               mainAxisSpacing: 10.0,
                             ),
                             itemBuilder: (context, index) => InkWell(
@@ -263,16 +258,23 @@ class _MainEventScreenState extends State<MainEventScreen> {
                                   SizedBox(
                                     width: 60,
                                     height: 60,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(25),
-                                      child: CachedNetworkImage(
-                                        imageUrl:
-                                            listOfSpeakers[index].profileImage,
-                                        placeholder: (context, url) =>
-                                            const CircularProgressIndicator(),
-                                        errorWidget: (context, url, error) =>
-                                            const Icon(Icons.error),
-                                        fit: BoxFit.cover,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          border: Border.all(
+                                              color: Colors.black12)),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(25),
+                                        child: CachedNetworkImage(
+                                          imageUrl: listOfSpeakers[index]
+                                              .profileImage,
+                                          placeholder: (context, url) =>
+                                              const CircularProgressIndicator(),
+                                          errorWidget: (context, url, error) =>
+                                              const Icon(Icons.error),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -322,31 +324,37 @@ class _MainEventScreenState extends State<MainEventScreen> {
         () => Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-              height: 40,
-              width: 100,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Center(
-                child: Text(
-                  'Leave',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Container(
+                height: 40,
+                width: 100,
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.4),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Center(
+                  child: Text(
+                    'Leave',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
             ),
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  isContainerVisible = !isContainerVisible;
-                });
-              },
-              icon: isContainerVisible
-                  ? const Icon(Icons.close)
-                  : const Icon(Icons.keyboard_control),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: IconButton(
+                onPressed: () {
+                  setState(() {
+                    isContainerVisible = !isContainerVisible;
+                  });
+                },
+                icon: isContainerVisible
+                    ? const Icon(Icons.close)
+                    : const Icon(Icons.keyboard_control),
+              ),
             ),
             if (widget.isMyEvent)
               GestureDetector(
@@ -357,10 +365,9 @@ class _MainEventScreenState extends State<MainEventScreen> {
                   children: [
                     Positioned(
                       top: 15,
-                      bottom: 10,
+                      bottom: 8,
                       right: 0,
                       child: Container(
-                        height: 35,
                         width: 60,
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.5),
@@ -370,7 +377,6 @@ class _MainEventScreenState extends State<MainEventScreen> {
                     ),
                     Lottie.asset(
                       'assets/animations/raise_hand.json',
-                      height: 60,
                       animate: false,
                       width: 70,
                     ),
@@ -398,12 +404,12 @@ class _MainEventScreenState extends State<MainEventScreen> {
                     child: Stack(
                       children: [
                         Positioned(
-                          top: 28,
-                          bottom: 20,
-                          right: 0,
+                          top: 30,
+                          bottom: 17,
+                          right: 10,
                           child: Container(
                             height: 35,
-                            width: 60,
+                            width: 50,
                             decoration: BoxDecoration(
                               color: Colors.white.withOpacity(0.5),
                               borderRadius: BorderRadius.circular(15),
@@ -462,7 +468,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
           return SizedBox(
             height: 400,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Column(
                 children: [
                   Row(
@@ -482,7 +488,9 @@ class _MainEventScreenState extends State<MainEventScreen> {
                       )
                     ],
                   ),
-                  const Divider(),
+                  const Divider(
+                    thickness: 0.5,
+                  ),
                   Expanded(
                     child: ListView.builder(
                       itemBuilder: (context, index) {
@@ -505,7 +513,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
 
   Container dialogContainer(BuildContext context) {
     return Container(
-      height: 190,
+      height: 150,
       width: 190,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
@@ -520,14 +528,23 @@ class _MainEventScreenState extends State<MainEventScreen> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             dialogContainerOption(text: 'Invite to Room'),
+            const Divider(
+              thickness: 0.1,
+            ),
             dialogContainerOption(text: 'Search in Room'),
+            const Divider(
+              thickness: 0.1,
+            ),
             dialogContainerOption(text: 'Report Room Activity'),
+            const Divider(
+              thickness: 0.1,
+            ),
             dialogContainerOption(
                 text: 'Review Clubroom Rules',
                 onTap: () {
@@ -558,7 +575,8 @@ class _MainEventScreenState extends State<MainEventScreen> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          elevation: 0,
           shadowColor: Colors.black26,
           title: const Text(
             'Wait for 3 seconds',
@@ -592,7 +610,6 @@ class _MainEventScreenState extends State<MainEventScreen> {
             vertical: 10,
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -630,19 +647,22 @@ class _MainEventScreenState extends State<MainEventScreen> {
                   const SizedBox(
                     width: 20,
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        listOfSpeakers[index].name,
-                        style: const TextStyle(fontSize: 25),
-                      ),
-                      Text(
-                        listOfSpeakers[index].username.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
+                  SizedBox(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          listOfSpeakers[index].name,
+                          style: const TextStyle(fontSize: 25),
                         ),
-                      )
-                    ],
+                        Text(
+                          listOfSpeakers[index].username.toString(),
+                          style: const TextStyle(
+                            fontSize: 18,
+                          ),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),

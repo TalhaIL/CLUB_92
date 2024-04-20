@@ -24,10 +24,10 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Setting'),
+        title: const Text('Settings'),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -36,21 +36,24 @@ class _SettingScreenState extends State<SettingScreen> {
               switchValue: isPausedNotification,
               onChanged: (val) => setState(() => isPausedNotification = val),
             ),
-            const SizedBox(height: 18),
             Obx(() => _buildSwitchTile(
                   text: 'Dark Mode',
                   switchValue: controller.theme.value == ThemeMode.dark,
                   onChanged: controller.toggleTheme,
                 )),
-            const SizedBox(height: 18),
-            const Divider(),
+            const SizedBox(height: 5),
+            const Divider(
+              thickness: 0.2,
+            ),
             _buildMethodTile(
               text: 'Interests',
               onTap: () =>
                   Get.toNamed(UsersInterestScreen.route, arguments: true),
             ),
-            const SizedBox(height: 18),
-            const Divider(),
+            const SizedBox(height: 5),
+            const Divider(
+              thickness: 0.2,
+            ),
             _buildMethodTile(
                 text: 'FAQs', onTap: () => Get.toNamed(FaqsScreen.route)),
             _buildMethodTile(
@@ -62,13 +65,17 @@ class _SettingScreenState extends State<SettingScreen> {
             _buildMethodTile(
                 text: 'Privacy Policy',
                 onTap: () => Get.toNamed(PrivacyPolicyScreen.route)),
-            const SizedBox(height: 18),
-            const Divider(),
+            const SizedBox(height: 5),
+            const Divider(
+              thickness: 0.2,
+            ),
             _buildMethodTile(
                 text: 'logout', onTap: () => Get.toNamed(LoginScreen.route)),
-            const SizedBox(height: 18),
-            const Divider(),
-            const SizedBox(height: 18),
+            const SizedBox(height: 5),
+            const Divider(
+              thickness: 0.2,
+            ),
+            const SizedBox(height: 10),
             Text(
               'Version 1.0.0',
               style: TextStyle(
@@ -107,7 +114,7 @@ class _SettingScreenState extends State<SettingScreen> {
   }) {
     return Column(
       children: [
-        const SizedBox(height: 18),
+        const SizedBox(height: 10),
         InkWell(
           onTap: onTap,
           child: Text(text, style: const TextStyle(fontSize: 19)),

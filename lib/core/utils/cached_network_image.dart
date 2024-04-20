@@ -7,8 +7,10 @@ class MyCachedNetworkImage extends StatelessWidget {
     this.height = 50,
     this.width = 50,
     this.borderRadius = 15,
+    this.index,
     required this.profileImage,
   });
+  final int? index;
   final double height;
   final double width;
   final double borderRadius;
@@ -16,11 +18,20 @@ class MyCachedNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: height,
       width: width,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: (index != null && (index! % 2) == 0)
+              ? Theme.of(context).colorScheme.primary
+              : Colors.grey.shade100,
+          width: 2,
+        ),
+        borderRadius: BorderRadius.circular(borderRadius + 1.5),
+      ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.circular(borderRadius - 1.5),
         child: CachedNetworkImage(
           imageUrl: profileImage,
           placeholder: (context, url) => const Center(

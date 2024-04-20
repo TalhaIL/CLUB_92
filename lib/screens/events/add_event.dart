@@ -200,8 +200,7 @@ class _AddEventScreenState extends State<AddEventScreen>
                                 });
                               },
                               child: Container(
-                                height: 80,
-                                width: 80,
+                                width: 70,
                                 decoration: BoxDecoration(
                                   color: _addEventController
                                               .selectedPrivacy.value ==
@@ -304,7 +303,7 @@ class _AddEventScreenState extends State<AddEventScreen>
                   CustomTextField(
                     hintText: 'Description',
                     controller: _addEventController.descriptionController,
-                    maxLines: 5,
+                    maxLines: null,
                   )
                 ],
               ),
@@ -459,7 +458,7 @@ class _AddEventScreenState extends State<AddEventScreen>
     bool showCloseIcon = false,
   }) {
     return Container(
-      height: 60,
+      height: 55,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Theme.of(context).colorScheme.surface,
@@ -475,11 +474,11 @@ class _AddEventScreenState extends State<AddEventScreen>
               isAddCoHost
                   ? CircleAvatar(
                       backgroundColor: appColor,
-                      maxRadius: 25,
+                      maxRadius: 15,
                       child: const Icon(Icons.add),
                     )
                   : CircleAvatar(
-                      maxRadius: 25,
+                      maxRadius: 20,
                       backgroundImage: CachedNetworkImageProvider(
                         url.toString(),
                       ),

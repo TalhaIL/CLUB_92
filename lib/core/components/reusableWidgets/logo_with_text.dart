@@ -29,7 +29,7 @@ class LogowithText extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 50,
+          height: 30,
         ),
       ],
     );

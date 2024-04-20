@@ -17,7 +17,7 @@ class AppLogo extends StatelessWidget {
           fit: BoxFit.cover,
         ),
         const SizedBox(
-          height: 50,
+          height: 30,
         ),
       ],
     );

@@ -59,7 +59,7 @@ class AddUserDetailsScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Container(
                   height: 120,
@@ -81,23 +81,23 @@ class AddUserDetailsScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 const CustomTextField(hintText: "What's your name"),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 const CustomTextField(hintText: 'Set a username'),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 const CustomTextField(hintText: 'Enter your email'),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 const CustomTextField(hintText: 'Choose your password'),
                 const SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 isUpdate == false
                     ? CustomMaterialButton(
@@ -120,9 +120,6 @@ class AddUserDetailsScreen extends StatelessWidget {
                               color: Theme.of(context).colorScheme.onPrimary),
                         ),
                       ).animate().fade().scaleX(delay: 100.ms),
-                const SizedBox(
-                  height: 20,
-                ),
               ],
             ),
           ),

@@ -21,7 +21,6 @@ class UsersInterestScreen extends StatelessWidget {
           onPress: () {
             Get.offAndToNamed(HomeScreen.route);
           },
-          width: 130,
           child: Text(
             isFromSettings ? 'Save' : 'Next',
             style: const TextStyle(
@@ -48,13 +47,13 @@ class UsersInterestScreen extends StatelessWidget {
               'INTERESTS',
               style: TextStyle(fontSize: 17),
             ),
-            expandedHeight: 150.0,
+            expandedHeight: 120.0,
             floating: true,
             centerTitle: true,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.none,
               background: Container(
-                margin: const EdgeInsets.only(top: 50),
+                margin: const EdgeInsets.only(top: 70),
                 padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: const Center(
                   child: Text(
@@ -81,11 +80,11 @@ class UsersInterestScreen extends StatelessWidget {
                       Text(
                         _interestController.interests[index].name,
                         style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 17,
                         ),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       SingleChildScrollView(
                         physics: const BouncingScrollPhysics(),
