@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class LogowithText extends StatelessWidget {
   const LogowithText({
@@ -8,38 +7,28 @@ class LogowithText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ColorFiltered(
-              colorFilter: ColorFilter.mode(
-                Theme.of(context).colorScheme.primary,
-                BlendMode.srcATop,
-              ),
-              child: Lottie.asset(
-                'assets/animations/app_logo.json',
-                height: 60,
-                width: 60,
-                repeat: false,
-              ),
+            Image(
+              height: 80,
+              width: 80,
+              image: AssetImage('assets/images/voice-square.png'),
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            const Text(
+            Text(
               'Club 92',
               style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
+                fontSize: 30,
+                fontWeight: FontWeight.w900,
+                fontStyle: FontStyle.normal,
               ),
             )
           ],
         ),
-        const SizedBox(
+        SizedBox(
           height: 50,
         ),
       ],

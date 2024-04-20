@@ -16,7 +16,7 @@ void main() async {
   MobileAds.instance.updateRequestConfiguration(requestConfiguration);
   final storage = await SharedPreferences.getInstance();
   final isDark = storage.getBool('is_dark_theme') ?? true;
-  Future.delayed(const Duration(seconds: 5), () {
+  Future.delayed(const Duration(seconds: 2), () {
     FlutterNativeSplash.remove();
   });
   runApp(MyApp(

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,11 +8,8 @@ class ThemeController extends GetxController {
 
   themeChange(bool isDark) {
     if (isDark) {
-      log('true....${isDark.toString()}');
       _currentTheme.value = ThemeMode.dark;
     } else {
-      log('false....${isDark.toString()}');
-
       _currentTheme.value = ThemeMode.light;
     }
     return;

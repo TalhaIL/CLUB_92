@@ -53,7 +53,9 @@ class _AddEventScreenState extends State<AddEventScreen>
     _addEventController.descriptionController.text =
         widget.event?.eventDescription.toString() ?? '';
 
-    _checkInstructionStatus();
+    if (widget.isUpdateEvent == false) {
+      _checkInstructionStatus();
+    }
     super.initState();
   }
 
@@ -64,7 +66,9 @@ class _AddEventScreenState extends State<AddEventScreen>
         actions: [
           widget.isUpdateEvent
               ? CustomMaterialButton(
-                  onPress: () {},
+                  onPress: () {
+                    Get.back();
+                  },
                   width: 120,
                   child: Text(
                     'Update',
@@ -75,7 +79,9 @@ class _AddEventScreenState extends State<AddEventScreen>
               : Row(
                   children: [
                     CustomMaterialButton(
-                      onPress: () {},
+                      onPress: () {
+                        Get.back();
+                      },
                       width: 100,
                       child: Row(
                         children: [
