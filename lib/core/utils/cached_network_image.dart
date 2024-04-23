@@ -25,20 +25,25 @@ class MyCachedNetworkImage extends StatelessWidget {
         border: Border.all(
           color: (index != null && (index! % 2) == 0)
               ? Theme.of(context).colorScheme.primary
-              : Colors.grey.shade100,
+              : Colors.transparent,
           width: 2,
         ),
         borderRadius: BorderRadius.circular(borderRadius + 1.5),
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(borderRadius - 1.5),
-        child: CachedNetworkImage(
-          imageUrl: profileImage,
-          placeholder: (context, url) => const Center(
-            child: CircularProgressIndicator(),
+      child: Padding(
+        padding: index != null
+            ? const EdgeInsets.all(2.0)
+            : const EdgeInsets.all(0.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(borderRadius - 1.5),
+          child: CachedNetworkImage(
+            imageUrl: profileImage,
+            placeholder: (context, url) => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+            fit: BoxFit.cover,
           ),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
-          fit: BoxFit.cover,
         ),
       ),
     );

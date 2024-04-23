@@ -45,6 +45,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
         title: const Text('Chats'),
         actions: [
           CustomMaterialButton(
+            width: 120,
             onPress: () {
               Get.toNamed(NewChatScreen.route);
             },
@@ -53,6 +54,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                 const Icon(
                   Icons.add,
                   color: Colors.white,
+                  size: 15,
                 ),
                 const SizedBox(
                   width: 5,
@@ -61,6 +63,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                   'Start New Chat',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onPrimary,
+                    fontSize: 12,
                   ),
                 ),
               ],

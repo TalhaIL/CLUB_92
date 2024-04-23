@@ -45,11 +45,11 @@ class UsersInterestScreen extends StatelessWidget {
             ),
             title: const Text(
               'INTERESTS',
-              style: TextStyle(fontSize: 17),
+              style: TextStyle(fontSize: 15),
             ),
             expandedHeight: 120.0,
-            floating: true,
             centerTitle: true,
+            floating: true,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.none,
               background: Container(

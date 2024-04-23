@@ -1,6 +1,5 @@
 import 'package:club_92/core/components/reusableWidgets/custom_button.dart';
 import 'package:club_92/core/components/reusableWidgets/custom_text_field.dart';
-import 'package:club_92/core/components/reusableWidgets/logo_with_text.dart';
 import 'package:club_92/screens/auth/login/forgot_password_screen.dart';
 import 'package:club_92/screens/auth/register/country.dart';
 import 'package:club_92/screens/home/home.dart';
@@ -23,7 +22,15 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const LogowithText(),
+            SizedBox(
+              height: 110,
+              width: 170,
+              child: Image(
+                image: Theme.of(context).brightness == Brightness.light
+                    ? const AssetImage('assets/images/light_logo.png')
+                    : const AssetImage('assets/images/dark_logo.png'),
+              ),
+            ),
             const CustomTextField(hintText: 'Enter your email/username'),
             const SizedBox(
               height: 20,

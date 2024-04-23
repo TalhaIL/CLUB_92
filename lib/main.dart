@@ -2,7 +2,6 @@ import 'package:club_92/app_routes_import.dart';
 import 'package:club_92/controllers/theme/theme.dart';
 import 'package:club_92/core/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,12 +15,12 @@ void main() async {
   MobileAds.instance.updateRequestConfiguration(requestConfiguration);
   final storage = await SharedPreferences.getInstance();
   final isDark = storage.getBool('is_dark_theme') ?? true;
-  Future.delayed(const Duration(seconds: 2), () {
-    FlutterNativeSplash.remove();
-  });
-  runApp(MyApp(
-    isDark: isDark,
-  ));
+
+  runApp(
+    MyApp(
+      isDark: isDark,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

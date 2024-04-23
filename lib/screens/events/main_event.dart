@@ -10,6 +10,7 @@ import 'package:club_92/screens/profile/profile_screen.dart';
 import 'package:club_92/core/utils/cached_network_image.dart';
 import 'package:club_92/core/utils/countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
@@ -145,7 +146,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
                               crossAxisSpacing: 15.0,
-                              mainAxisExtent: 100,
+                              mainAxisExtent: 110,
                               mainAxisSpacing: 0.0,
                             ),
                             itemBuilder: (context, index) => InkWell(
@@ -324,20 +325,29 @@ class _MainEventScreenState extends State<MainEventScreen> {
         () => Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Container(
-                height: 40,
-                width: 100,
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Leave',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+            GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Container(
+                  height: 40,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Text(
+                        'Leave',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: red,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -366,7 +376,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                     Positioned(
                       top: 15,
                       bottom: 8,
-                      right: 0,
+                      right: 5,
                       child: Container(
                         width: 60,
                         decoration: BoxDecoration(
@@ -405,7 +415,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
                       children: [
                         Positioned(
                           top: 30,
-                          bottom: 17,
+                          bottom: 20,
                           right: 10,
                           child: Container(
                             height: 35,
@@ -513,8 +523,8 @@ class _MainEventScreenState extends State<MainEventScreen> {
 
   Container dialogContainer(BuildContext context) {
     return Container(
-      height: 150,
-      width: 190,
+      height: 180,
+      width: 200,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         boxShadow: [
@@ -528,7 +538,7 @@ class _MainEventScreenState extends State<MainEventScreen> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,

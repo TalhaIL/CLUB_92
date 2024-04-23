@@ -22,10 +22,9 @@ class _ChooseSpeakersScreenState extends State<ChooseSpeakersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: const Text(
           'TOP SPEAKERS',
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: 15),
         ),
       ),
       floatingActionButton: selectedSpeakers.isEmpty
@@ -81,7 +80,7 @@ class _ChooseSpeakersScreenState extends State<ChooseSpeakersScreen> {
                           children: [
                             MyCachedNetworkImage(
                               profileImage: listOfSpeakers[index].profileImage,
-                              height: 70,
+                              height: 65,
                               width: 70,
                               borderRadius: 20,
                             ),
@@ -90,7 +89,7 @@ class _ChooseSpeakersScreenState extends State<ChooseSpeakersScreen> {
                                 visible: listOfSpeakers[index].isSelected.value,
                                 child: Positioned(
                                   child: Icon(
-                                    Icons.check_circle_rounded,
+                                    Icons.check_circle,
                                     color: appColor,
                                   ),
                                 ),

@@ -51,42 +51,43 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             children: [
               Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Stack(children: [
-                    Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        image: DecorationImage(
-                          image: CachedNetworkImageProvider(
-                            speaker.profileImage,
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: Container(
-                        height: 30,
-                        width: 30,
+                  Stack(
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 100,
                         decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Theme.of(context).colorScheme.primary),
-                        child: const Icon(
-                          Icons.camera_alt,
-                          size: 20,
-                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          image: DecorationImage(
+                            image: CachedNetworkImageProvider(
+                              speaker.profileImage,
+                            ),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    )
-                  ]),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).colorScheme.primary),
+                          child: const Icon(
+                            Icons.camera_alt,
+                            size: 20,
+                            color: Colors.white,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -103,40 +104,70 @@ class ProfileScreen extends StatelessWidget {
                         speaker.username.toString(),
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          accountIconWithUrl(
+                            icon: 'assets/icons/linkedinIcon.svg',
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          accountIconWithUrl(
+                            icon: 'assets/icons/youtubeIcon.svg',
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          accountIconWithUrl(
+                            icon: 'assets/icons/twitterIcon.svg',
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          accountIconWithUrl(
+                            icon: 'assets/icons/instagramIcon.svg',
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          MaterialButton(
-                            color: Theme.of(context).colorScheme.surface,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                Text(speaker.followers.toString()),
-                                Text(
-                                  ' followers',
-                                  style: Theme.of(context).textTheme.bodySmall,
-                                )
-                              ],
-                            ),
+                          Column(
+                            children: [
+                              Text(
+                                speaker.followers.toString(),
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              Text(
+                                ' followers',
+                                style: Theme.of(context).textTheme.bodySmall,
+                              )
+                            ],
                           ),
-                          MaterialButton(
-                            color: Theme.of(context).colorScheme.surface,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                Text(speaker.following.toString()),
-                                Text(
-                                  ' following',
-                                  style: Theme.of(context).textTheme.bodySmall,
-                                )
-                              ],
-                            ),
+                          Column(
+                            children: [
+                              Text(
+                                speaker.following.toString(),
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              Text(
+                                ' following',
+                                style: Theme.of(context).textTheme.bodySmall,
+                              )
+                            ],
                           )
                         ],
                       )
@@ -181,66 +212,22 @@ class ProfileScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    customExpansionTile(
-                      context,
-                      title: 'About',
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            speaker.about.toString(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onSurface,
-                                ),
-                            textAlign: TextAlign.justify,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                      ],
+                    const Text(
+                      'About Me',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    customExpansionTile(
-                      context,
-                      title: 'Social Handles',
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            accountIconWithUrl(
-                                icon: 'assets/icons/linkedinIcon.svg',
-                                accountHandle: speaker.linkedInHandle!),
-                            accountIconWithUrl(
-                                icon: 'assets/icons/youtubeIcon.svg',
-                                accountHandle: speaker.youtubeHandle!),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            accountIconWithUrl(
-                                icon: 'assets/icons/twitterIcon.svg',
-                                accountHandle: speaker.twitterHandle!),
-                            accountIconWithUrl(
-                                icon: 'assets/icons/instagramIcon.svg',
-                                accountHandle: speaker.instaHandle!),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        )
-                      ],
+                    Text(
+                      speaker.about.toString(),
+                      textAlign: TextAlign.justify,
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                   ],
                 ),
@@ -320,7 +307,7 @@ class ProfileScreen extends StatelessWidget {
                 height: 10,
               ),
               const Text(
-                'Members of',
+                'Member of',
                 style: TextStyle(fontSize: 17),
               ),
               const SizedBox(
@@ -365,27 +352,13 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Row accountIconWithUrl({
+  SvgPicture accountIconWithUrl({
     required String icon,
-    required String accountHandle,
   }) {
-    return Row(
-      children: [
-        SvgPicture.asset(
-          icon,
-          height: 30,
-          width: 30,
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Text(
-          accountHandle,
-          style: const TextStyle(
-            fontSize: 18,
-          ),
-        )
-      ],
+    return SvgPicture.asset(
+      icon,
+      height: 30,
+      width: 30,
     );
   }
 }
