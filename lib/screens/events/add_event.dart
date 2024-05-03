@@ -223,9 +223,9 @@ class _AddEventScreenState extends State<AddEventScreen>
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              width: 10,
-                            )
+                            // const SizedBox(
+                            //   width: 10,
+                            // )
                           ],
                         ),
                       ),
